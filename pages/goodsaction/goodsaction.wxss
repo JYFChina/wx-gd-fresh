@@ -96,7 +96,7 @@ button:last-child{
 }
 .swiper-item{
   display: block;
-  height: 30vh;
+  height: 60vh;
 }
 .page-section-title{
   margin-top: 60rpx;
