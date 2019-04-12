@@ -1,0 +1,92 @@
+<!--pages/commodity/commodity.wxml-->
+<!-- 搜索引擎 -->
+<view>
+  <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+</view>
+<!-- 轮播图 -->
+<view class="page-section page-section-spacing swiper">
+  <swiper style='height:40vh' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item {{item}}"></view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 主题部分 -->
+<view>
+  <view style=''>
+    <view style='width:100vw;text-align:center;'>
+      <view style='padding:20rpx 20rpx;'>
+        <text style='border : 1px solid red;'>测试1</text>
+      </view>
+      <van-row gutter="1">
+        <van-col span="12">
+          <view style='border : 1px solid green; height:40vh'>span: 8</view>
+        </van-col>
+
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red;height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+      </van-row>
+       <view style='padding:20rpx 20rpx;'>
+        <text style='border : 1px solid red;'>测试2</text>
+      </view>
+      <van-row gutter="1">
+        <van-col span="12">
+          <view style='border : 1px solid green; height:40vh'>span: 8</view>
+        </van-col>
+
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red;height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+      </van-row>
+       <view style='padding:20rpx 20rpx;'>
+        <text style='border : 1px solid red;'>测试3</text>
+      </view>
+      <van-row gutter="1">
+        <van-col span="12">
+          <view style='border : 1px solid green; height:40vh'>span: 8</view>
+        </van-col>
+
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red;height:40vh'>span: 8</view>
+        </van-col>
+        <van-col span="12">
+          <view style='border : 1px solid red; height:40vh'>span: 8</view>
+        </van-col>
+      </van-row>
+    </view>
+
+  </view>
+  <view style='width:100vw;' margin-top='20rpx'>
+
+  </view>
+</view>
+
+<view style='height:100px;border : 1px solid transparent;'>
+
+</view>
+<view>
+  <van-tabbar active="{{ active }}" active-color="#07c160" bind:change="onChange">
+    <van-tabbar-item icon="home-o">主页</van-tabbar-item>
+    <van-tabbar-item icon="search">搜索</van-tabbar-item>
+    <van-tabbar-item icon="shopping-cart-o">购物车</van-tabbar-item>
+    <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+  </van-tabbar>
+</view>

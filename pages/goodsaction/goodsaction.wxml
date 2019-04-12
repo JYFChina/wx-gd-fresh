@@ -1,4 +1,4 @@
-<van-nav-bar title="商品名称" left-text="返回" right-text="按钮" left-arrow bind:click-left="onClickLeft" bind:click-right="onClickRight" />
+
 <!-- baner图 -->
 <view class="page-section page-section-spacing swiper">
   <swiper style='height:60vh' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
@@ -12,7 +12,7 @@
 
 
 
-<view style='padding:20rpx 20rpx; background-color: #FFFFFF; margin-bottom: 10rpx;'>
+<view style='padding:20rpx 20rpx;  margin-bottom: 10rpx;'class='text-color'>
   <!-- 可变 -->
   <text style="color:red;font-weight:bold"><text>￥</text>商品单价 \n</text>
     <!-- 可变 -->
@@ -20,53 +20,53 @@
 </view>
 <!-- 商品信息 -->
 <view>
-  <view style='padding:15rpx 20rpx; background-color: #FFFFFF; margin-bottom: 5rpx;'>
+  <view style='padding:15rpx 20rpx;  margin-bottom: 5rpx;'class='text-color'>
     <text style='font-size:25rpx'><text style="color:red;font-weight:bold">|\t\t\t\t</text>商品信息</text>
     <view class="flex-row-1" style="display: flex;justify-content:space-around ;flex-wrap:wrap;font-size:20rpx; color:#8B8B83;">
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'>商品编号 ：
+      <view class="flex-view-item" class="sp-xinxin">商品编号 ：
       <!-- 可变 -->
         <text>JTY1111</text>
         <text></text>
       </view>
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'>商品名称 ：
+      <view class="flex-view-item" class="sp-xinxin">商品名称 ：
         <!-- 可变 -->
         <text>大闸蟹</text>
         <text></text>
       </view>
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'>商品单位 ：
+      <view class="flex-view-item" class="sp-xinxin">商品单位 ：
         <text>千克</text>
         <text>(KG)</text>
       </view>
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'>商品单价 ：
+      <view class="flex-view-item" class="sp-xinxin">商品单价 ：
         <!-- 可变 -->
         <text>12313</text>
         <text>元</text>
       </view>
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'>商品描述 ：
+      <view class="flex-view-item" class="sp-xinxin">商品描述 ：
         <!-- 可变 -->
         <text>描述信息</text>
       </view>
-      <view class="flex-view-item" style='border : 1px solid transparent;width:40vw;'></view>
+      <view class="flex-view-item" class="sp-xinxin"></view>
     </view>
 
   </view>
   <!-- 实拍照片 -->
   <view style='padding:15rpx 20rpx; background-color: #FFFFFF; margin-bottom: 10rpx;'>
-    <view style='width:100vw;height:50vh'>图片1</view>
-    <view style='width:100vw;height:50vh'>图片2</view>
-    <view style='width:100vw;height:50vh'>图片3</view>
+    <view class='sp-image'>图片1</view>
+    <view class='sp-image'>图片2</view>
+    <view class='sp-image'>图片3</view>
   </view>
-
+<navigator ></navigator>
 </view>
-<view style='height:10vh;border : 1px solid transparent;'>
+<view style='height:20vh;border : 1px solid transparent;'>
 
 </view>
 <view>
-  <van-goods-action>
+  <van-goods-action >
     <van-goods-action-icon icon="chat-o" text="客服" />
     <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
     <van-goods-action-icon icon="shop-o" text="店铺" />
     <van-goods-action-button text="加入购物车" type="warning" />
-    <van-goods-action-button text="立即购买" />
+    <van-goods-action-button text="立即购买" url=''/>
   </van-goods-action>
 </view>

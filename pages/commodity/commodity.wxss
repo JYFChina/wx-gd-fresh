@@ -1,0 +1,8 @@
+
+@import "../goodsaction/weui.wxss";
+@import "../goodsaction/goodsaction.wxss";
+
+.swiper-item{
+  display: block;
+  height: 40vh;
+}

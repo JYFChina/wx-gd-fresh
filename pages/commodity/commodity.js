@@ -1,6 +1,6 @@
 Page({
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    background: ['demo-text-1', 'demo-text-2', 'demo-text-3','demo-text-4'],
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -35,17 +35,6 @@ Page({
     this.setData({
       duration: e.detail.value
     })
-  }, onClickRight:function(){
-    wx.showToast({
-      title: '其他',
-      icon: 'succes',
-      duration: 1000,
-      mask: true
-    })
-    
-  }, onClickLeft:function(){
-    wx.navigateTo({
-      url: '../commodity/commodity',
-    })
   }
+  
 })

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/commodity/commodity",
     "pages/goodsaction/goodsaction",
     "pages/index/index",
     "pages/logs/logs"
@@ -15,8 +16,13 @@
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-nav-bar": "/miniprogram_npm/vant-weapp/nav-bar/index",
     "van-goods-action": "/miniprogram_npm/vant-weapp/goods-action/index",
-    "van-goods-action-icon":"/miniprogram_npm/vant-weapp/goods-action-icon/index",
+    "van-goods-action-icon": "/miniprogram_npm/vant-weapp/goods-action-icon/index",
     "van-goods-action-button": "/miniprogram_npm/vant-weapp/goods-action-button/index",
-    "van-panel": "/miniprogram_npm/vant-weapp/panel/index"
-    }
+    "van-panel": "/miniprogram_npm/vant-weapp/panel/index",
+    "van-search": "/miniprogram_npm/vant-weapp/search/index",
+    "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
+    "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
+      "van-row": "/miniprogram_npm/vant-weapp/row/index",
+      "van-col": "/miniprogram_npm/vant-weapp/col/index"
+  }
 }

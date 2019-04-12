@@ -1,5 +1,18 @@
 @import "./weui.wxss";
 
+.text-color {
+background-color: #FFFFFF;
+}
+
+
+.sp-xinxin{
+  border : 1px solid transparent;width:40vw;
+}
+.sp-image{
+  width:100vw;height:50vh
+}
+
+
 page {
   background-color: #F8F8F8;
   height: 100%;
