@@ -3,8 +3,8 @@
     "pages/commodity/commodity",
     "pages/goodsaction/goodsaction",
     "pages/index/index",
-    "pages/logs/logs"
-   
+    "pages/logs/logs",
+    "pages/commodity/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,7 +22,38 @@
     "van-search": "/miniprogram_npm/vant-weapp/search/index",
     "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
     "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
-      "van-row": "/miniprogram_npm/vant-weapp/row/index",
-      "van-col": "/miniprogram_npm/vant-weapp/col/index"
+    "van-row": "/miniprogram_npm/vant-weapp/row/index",
+    "van-col": "/miniprogram_npm/vant-weapp/col/index"
+  },
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "list": [
+      {
+       
+        "pagePath": "pages/commodity/commodity",
+        "text": "首页",
+        "iconPath": "./pages/image/index.png",
+        "selectedIconPath": "./pages/image/index.png"
+      },
+      {
+        
+        "pagePath": "pages/commodity/commodity",
+        "text": "搜索",
+        "iconPath": "./pages/image/icon-demo-1126.png",
+        "selectedIconPath": "./pages/image/icon-demo-1126.png"
+      },
+      {
+        "pagePath": "pages/commodity/test",
+        "text": "购物车",
+        "iconPath": "./pages/image/icon-demo-1126.png",
+        "selectedIconPath": "./pages/image/icon-demo-1126.png"
+      },
+      {
+        "pagePath": "pages/commodity/commodity",
+        "text": "我的",
+        "iconPath": "./pages/image/icon-demo-1126.png",
+        "selectedIconPath": "./pages/image/icon-demo-1126.png"
+      }
+    ]
   }
 }

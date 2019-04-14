@@ -1,8 +1,26 @@
 
 @import "../goodsaction/weui.wxss";
 @import "../goodsaction/goodsaction.wxss";
+/* 商品价格样式 */
+.sp-text-money-color{
+  color: red;
+}
 
+.sp-text{
+  padding-left:10px;
+}
 .swiper-item{
   display: block;
   height: 40vh;
+}
+/* 商品圆角边框 */
+.sp-radius{
+ border : 1px solid initial; height:50vh;border-radius:5px;text-align: left;
+ margin:0 5px ;
+ background-color:#FFFFFF;
+ margin-bottom:10px; 
+}
+/* 商品图片边框 */
+.sp-image{
+  border : 1px solid #F2F2F2; height:40vh; border-radius:5px;margin: 0 auto;width: 100%;background-color: yellow
 }
