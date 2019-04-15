@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/my-details/my-details",
     "pages/my-shopping-cart/my-shopping-cart",
-    "pages/all-search/all-search"
+    "pages/all-search/all-search",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -35,26 +36,26 @@
       {
         "pagePath": "pages/commodity/commodity",
         "text": "首页",
-        "iconPath": "./pages/image/index.png",
-        "selectedIconPath": "./pages/image/index-hou.png"
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index-hou.png"
       },
       {
         "pagePath": "pages/all-search/all-search",
         "text": "全部",
-        "iconPath": "./pages/image/quanbu-search.png",
-        "selectedIconPath": "./pages/image/quanbu-search-hou.png"
+        "iconPath": "images/quanbu-search.png",
+        "selectedIconPath": "images/quanbu-search-hou.png"
       },
       {
         "pagePath": "pages/my-shopping-cart/my-shopping-cart",
         "text": "购物车",
-        "iconPath": "./pages/image/shopping-cart.png",
-        "selectedIconPath": "./pages/image/shopping-cart-hou.png"
+        "iconPath": "images/shopping-cart.png",
+        "selectedIconPath": "images/shopping-cart-hou.png"
       },
       {
-        "pagePath": "pages/my-details/my-details",
+        "pagePath": "pages/user/user",
         "text": "我的",
-        "iconPath": "./pages/image/my.png",
-        "selectedIconPath": "./pages/image/my-hou.png"
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-hou.png"
       }
     ]
   }

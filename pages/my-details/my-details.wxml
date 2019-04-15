@@ -1,3 +1,12 @@
 <!--pages/my-details /my-details.wxml-->
-<text>pages/my-details /my-details.wxml</text>
-<text>我的详细信息</text>
+
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+<text>{{user.city}}</text>
+<view style='width:100vw'>
+  <image src='{{user.avatarUrl}}' class='image-user'></image>
+  <navigator>测试1         <van-icon name="arrow" style=': left'/></navigator>
+  <text>积分</text>
+    <navigator >测试1</navigator>
+      <navigator >测试1</navigator>
+      <van-icon name="close" />
+</view>

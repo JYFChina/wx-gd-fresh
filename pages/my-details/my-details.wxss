@@ -1,1 +1,7 @@
 /* pages/my-details /my-details.wxss */
+.image-user{
+  width: 100px;
+  height: 100px;
+  border-radius:50%; 
+ 
+}
