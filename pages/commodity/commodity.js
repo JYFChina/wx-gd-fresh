@@ -16,7 +16,7 @@ Page({
       wx.navigateTo({
         url: './test',
       })
-      
+
     }
     if (event.detail == 1) {
       console.log("搜索")
@@ -56,9 +56,12 @@ Page({
     })
   },
   go: function() {
-    wx.redirectTo({
-      url: '../goodsaction/goodsaction',
+    let a = 1;
+    let b = 2;
+    wx.navigateTo({
+      url: '../goodsaction/goodsaction?data=' + [a],
     })
+  
   }
 
 })

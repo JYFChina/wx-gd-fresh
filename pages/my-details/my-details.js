@@ -1,4 +1,4 @@
-// pages/commodity/test.js
+// pages/my-details /my-details.js
 Page({
 
   /**
