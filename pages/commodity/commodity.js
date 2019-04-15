@@ -10,25 +10,6 @@ Page({
     previousMargin: 0,
     nextMargin: 0
   },
-  onChange(event) {
-    if (event.detail == 0) {
-      console.log("主页面")
-      wx.navigateTo({
-        url: './test',
-      })
-
-    }
-    if (event.detail == 1) {
-      console.log("搜索")
-    }
-    if (event.detail == 2) {
-      console.log("购物车")
-    }
-    if (event.detail == 3) {
-      console.log("我的")
-    }
-    console.log(event.detail);
-  },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName
     var newData = {}
