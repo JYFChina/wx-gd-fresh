@@ -1,4 +1,5 @@
 /* pages/user/user.wxss */
+
 .me{
   height: 100%;
 }
@@ -6,7 +7,7 @@
   position: relative;
   width: 750rpx;
   height: 320rpx;
-  background: #008842;
+  background: #808080;
   color: #fff;
   display: flex;
   flex-direction: column;

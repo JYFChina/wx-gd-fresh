@@ -1,4 +1,5 @@
 {
+  
   "pages": [
     "pages/commodity/commodity",
     "pages/goodsaction/goodsaction",
@@ -15,6 +16,8 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
+  "debug":true
+  ,
   "usingComponents": {
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-nav-bar": "/miniprogram_npm/vant-weapp/nav-bar/index",
@@ -27,8 +30,8 @@
     "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
     "van-row": "/miniprogram_npm/vant-weapp/row/index",
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
-    "van-card": "/miniprogram_npm/vant-weapp/card/index"
-    
+    "van-card": "/miniprogram_npm/vant-weapp/card/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
   },
   "tabBar": {
     "selectedColor": "#1296db",
