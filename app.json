@@ -8,7 +8,10 @@
     "pages/my-details/my-details",
     "pages/my-shopping-cart/my-shopping-cart",
     "pages/all-search/all-search",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/user/dingdan",
+    "pages/user/shoucang",
+    "pages/user/tuihou"
   ],
   "window": {
     "backgroundTextStyle": "light",

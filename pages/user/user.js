@@ -37,30 +37,45 @@ Page({
   },
   onLoad: function(options) {
 
-
-
-  },
-  onGotUserInfo: function(e) {
-
-    console.log(e.detail.userInfo)
     wx.login({
       success: function(res) {
-        //后去登陆后的临时凭证
-        var code = res.code;
         console.log(res)
+        var code = res.code;
         wx.request({
-          url: 'http://192.168.43.5/wxlogin.do?code='+code,
-          method: "post",         
+          url: 'https://80222214.ngrok.io/wxlogin.do?code='+code,
+          method: 'GET',
+          data:{
+            
+          },
           success: function(result) {
-            console.log(result);
+            console.log(result)
           }
-
         })
       }
+
     })
-    this.setData({
-      "userInfo": e.detail.userInfo
+    wx.getSetting({
+      success: res => {
+
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+        wx.getUserInfo({
+          success: res => {
+            // 可以将 res 发送给后台解码出 unionId
+            this.userInfo = res.userInfo
+            this.setData({
+              "userInfo": res.userInfo
+            })
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            if (this.userInfoReadyCallback) {
+              this.userInfoReadyCallback(res)
+            }
+          }
+        })
+
+      }
     })
+
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
