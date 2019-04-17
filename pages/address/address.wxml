@@ -38,7 +38,7 @@
       <label></label>
     </view>
     <view class="btn-area">
-      <button formType="submit">保存地址s</button>
+      <button formType="submit">保存地址</button>
     </view>
   </form>
 </view>
