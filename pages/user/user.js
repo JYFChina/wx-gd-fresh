@@ -42,13 +42,18 @@ Page({
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://80222214.ngrok.io/wxlogin.do?code='+code,
+          url: 'https://60c73025.ngrok.io/wxlogin.do?code='+code,
           method: 'GET',
           data:{
             
           },
           success: function(result) {
-            console.log(result)
+            
+            if (result.statusCode=="404"){
+              console.log("没有找到你要访问的资源，路径问题")
+            }else{
+              console.log(result)
+            }
           }
         })
       }

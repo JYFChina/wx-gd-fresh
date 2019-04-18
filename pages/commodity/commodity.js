@@ -8,7 +8,38 @@ Page({
     interval: 2000,
     duration: 500,
     previousMargin: 0,
-    nextMargin: 0
+    nextMargin: 0,
+    prosList: [{
+      prosLists: [{
+        proName: "test1",
+        price:"15.1"
+      }, {
+        proName: "test2",
+          price: "15.2"
+      }, {
+        proName: "test3",
+          price: "15.3"
+      }, {
+        proName: "test4",
+          price: "15.4"
+      }],
+      title: "标题名1"
+    }, {
+        prosLists: [{
+          proName: "test1",
+          price: "15.1"
+        }, {
+          proName: "test2",
+          price: "15.2"
+        }, {
+          proName: "test3",
+          price: "15.3"
+        }, {
+          proName: "test4",
+          price: "15.4"
+        }],
+      title: "标题名2"
+    }]
   },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName
@@ -42,7 +73,7 @@ Page({
     wx.navigateTo({
       url: '../goodsaction/goodsaction?data=' + [a],
     })
-  
+
   }
 
 })

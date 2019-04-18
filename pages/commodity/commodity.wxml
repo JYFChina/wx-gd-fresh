@@ -17,143 +17,31 @@
 <view>
   <view style=''>
     <view style='width:100vw;text-align:center;background-color:#F2F2F2;'>
-      <view style='padding:20rpx 20rpx;'>
-        <text style='border : 1px solid red;'>标题</text>
-        <navigator style='text-align: right;' url='../goodsaction/goodsaction'>更多</navigator>
+      <!-- 根据标题分类查商品 -->
+      <view wx:for="{{prosList}}">
+        <view style='padding:20rpx 20rpx;'>
+          <text style='border : 1px solid red;'>{{item.title}}</text>
+          <navigator style='text-align: right;' url='../goodsaction/goodsaction' hover-class='none'>更多</navigator>
+        </view>
+        <view >
+          <van-row gutter="1">
+            <van-col span="12"wx:for="{{item.prosLists}}" wx:for-index="idx" wx:for-item="itemName">
+              <view class='sp-radius'>
+                <view class='sp-image' bindtap='go'>测试图片</view>
+                <view class='sp-text'>
+                  <text>{{itemName.proName}}\n</text>
+                  <text class='sp-text-money-color'>￥<text>{{itemName.price}}</text></text>
+                </view>
 
+              </view>
+            </van-col>
+
+          </van-row>
+        </view>
       </view>
-      <van-row gutter="1">
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image' bindtap='go'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-
-          </view>
-        </van-col>
-
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-      </van-row>
-      <view style='padding:20rpx 20rpx;'>
-        <text style='border : 1px solid red;'>测试2</text>
-        <navigator style='text-align: right;'>更多</navigator>
-      </view>
-      <van-row gutter="1">
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-      </van-row>
-      <view style='padding:20rpx 20rpx;'>
-        <text style='border : 1px solid red;'>测试3</text>
-        <navigator style='text-align: right;'>更多</navigator>
-      </view>
-      <van-row gutter="1">
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-        <van-col span="12">
-          <view class='sp-radius'>
-            <view class='sp-image'>测试图片</view>
-            <view class='sp-text'>
-              <text>商品名称\n</text>
-              <text class='sp-text-money-color'>￥<text>0.001</text></text>
-            </view>
-          </view>
-        </van-col>
-      </van-row>
     </view>
-
   </view>
   <view style='width:100vw;' margin-top='20rpx'>
 
   </view>
 </view>
-
-

@@ -29,7 +29,7 @@ Page({
       var that = this;
       //插入登录的用户的相关信息到数据库
       wx.request({
-        url: getApp().globalData.urlPath,
+        url: "",
         data: {
           openid: getApp().globalData.openid,
           nickName: e.detail.userInfo.nickName,
