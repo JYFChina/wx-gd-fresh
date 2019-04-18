@@ -42,7 +42,7 @@ Page({
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://60c73025.ngrok.io/wxlogin.do?code='+code,
+          url: 'https://3ad22a9b.ngrok.io/wxlogin.do?code='+code,
           method: 'GET',
           data:{
             

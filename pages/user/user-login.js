@@ -48,7 +48,7 @@ Page({
       });
       //授权成功后，跳转进入小程序首页
       wx.switchTab({
-        url: '/user'
+        url: 'user'
       })
     } else {
       //用户按了拒绝按钮

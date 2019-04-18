@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/commodity/commodity",
+   
     "pages/user/user-login",
-    
+    "pages/commodity/commodity",
     "pages/goodsaction/goodsaction",
     "pages/index/index",
     "pages/logs/logs",
@@ -35,7 +35,8 @@
     "van-row": "/miniprogram_npm/vant-weapp/row/index",
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
     "van-card": "/miniprogram_npm/vant-weapp/card/index",
-    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+    "van-tag": "/miniprogram_npm/vant-weapp/tag/index"
   },
   "tabBar": {
     "selectedColor": "#1296db",

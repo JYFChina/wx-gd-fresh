@@ -1,3 +1,4 @@
+var app=getApp();
 Page({
   data: {
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3', 'demo-text-4'],
@@ -12,32 +13,40 @@ Page({
     prosList: [{
       prosLists: [{
         proName: "test1",
-        price:"15.1"
+        price: "15.1",
+        proid: "1"
       }, {
         proName: "test2",
-          price: "15.2"
+        price: "15.2",
+        proid: "2"
       }, {
         proName: "test3",
-          price: "15.3"
+        price: "15.3",
+        proid: "3"
       }, {
         proName: "test4",
-          price: "15.4"
+        price: "15.4",
+        proid: "4"
       }],
       title: "标题名1"
     }, {
-        prosLists: [{
-          proName: "test1",
-          price: "15.1"
-        }, {
-          proName: "test2",
-          price: "15.2"
-        }, {
-          proName: "test3",
-          price: "15.3"
-        }, {
-          proName: "test4",
-          price: "15.4"
-        }],
+      prosLists: [{
+        proName: "test1",
+        price: "15.1",
+        proid: "1"
+      }, {
+        proName: "test2",
+        price: "15.2",
+        proid: "2"
+      }, {
+        proName: "test3",
+        price: "15.3",
+        proid: "3"
+      }, {
+        proName: "test4",
+        price: "15.4",
+        proid: "4"
+      }],
       title: "标题名2"
     }]
   },
@@ -67,11 +76,19 @@ Page({
       duration: e.detail.value
     })
   },
-  go: function() {
-    let a = 1;
-    let b = 2;
+  go: function(e) {
+    var id = e.currentTarget.id;
+    console.log(id)
+    app.globalData.category = "123";
+    wx.switchTab({
+      url: '../all-search/all-search'
+    })
+  },
+  swiperTap: function(e) {
+    var id = e.currentTarget.id;
+
     wx.navigateTo({
-      url: '../goodsaction/goodsaction?data=' + [a],
+      url: '../goodsaction/goodsaction?data=' + [id],
     })
 
   }
