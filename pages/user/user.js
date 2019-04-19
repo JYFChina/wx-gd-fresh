@@ -42,16 +42,16 @@ Page({
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://3ad22a9b.ngrok.io/wxlogin.do?code='+code,
+          url: 'https://3ad22a9b.ngrok.io/wxlogin.do?code=' + code,
           method: 'GET',
-          data:{
-            
+          data: {
+
           },
           success: function(result) {
-            
-            if (result.statusCode=="404"){
+
+            if (result.statusCode == "404") {
               console.log("没有找到你要访问的资源，路径问题")
-            }else{
+            } else {
               console.log(result)
             }
           }
@@ -83,7 +83,7 @@ Page({
     })
 
   },
-  
+
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
   },
@@ -92,6 +92,11 @@ Page({
   },
   loadOrderStatus: function() {
 
+  },
+  skipuserinfo : function() {
+    wx.navigateTo({
+      url: 'user-userinfo',
+    })
   },
   onShareAppMessage: function() {
     return {
