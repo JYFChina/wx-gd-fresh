@@ -12,11 +12,11 @@ Page({
     isStatus: 'pay', //10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,
-    orderList0: [],
-    orderList1: [],
-    orderList2: [],
-    orderList3: [],
-    orderList4: [],
+    orderList0: [{ photo_x: "图片地址", pid: "1", price_yh: "12.5", product_num: "12", pro_count: "1", price: "15", id: "2", order_sn: "dasda133", type:"weixin"}],//待付款
+    orderList1: [{ photo_x: "图片地址", pid: "1", price_yh: "12.5", product_num: "12", pro_count: "1", price: "15", id: "2", order_sn: "dasda133", type: "weixin" }],//待发货
+    orderList2: [],//待收货
+    orderList3: [],//已完成
+    orderList4: [],//退款/售后
   },
   onLoad: function(options) {
     this.initSystemInfo();

@@ -1,44 +1,23 @@
-<view class="container">
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="section">
-      <input type="text" hidden="true" value="{{mid}}" name="user_id"/>
-      <input type="text" name="name" placeholder="收货人姓名" />
-    </view>
-    <view class="section">
-      <input type="text" name="phone" placeholder="电话号码" />
-    </view>
-    <view class="section">
-      <picker bindchange="bindPickerChangeshengArr" value="{{shengIndex}}" range="{{shengArr}}" data-id="{{shengId[shengIndex]}}">
-        <view class="picker">
-          选择省份：{{shengArr[shengIndex]}}
-          <input hidden="true" name="province" value="{{shengArr[shengIndex]}}"/>
-        </view>
-      </picker>
-    </view>
-    <view class="section">
-      <picker bindchange="bindPickerChangeshiArr" value="{{shiIndex}}" range="{{shiArr}}">
-        <view class="picker">
-          选择城市：{{shiArr[shiIndex]}}
-          <input hidden="true" name="city" value="{{shiArr[shiIndex]}}"/>
-        </view>
-      </picker>
-    </view>
-    <view class="section">
-      <picker bindchange="bindPickerChangequArr" value="{{quIndex}}" range="{{quArr}}">
-        <view class="picker">
-          选择地区：{{quArr[quIndex]}}
-          <input hidden="true" name="town" value="{{quArr[quIndex]}}"/>
-        </view>
-      </picker>
-    </view>
-    <view class="section">
-      <input type="text" class="ww" name="address" placeholder="详细地址" />
-    </view>
+<!--pages/tanchu/tanchu.wxml-->
+<view>
+  <van-cell-group>
+    <van-field value="{{ name }}" required label="姓名" placeholder="请输入名称" bind:click-icon="onClickIcon" bind:change="nameChange" />
+    <van-field value="{{ phone }}" type='number' maxlength='11' label="手机" placeholder="请输入手机号" bind:change="telChange" required />
+    <van-field value="{{ email }}" label="邮箱" placeholder="请输入邮箱" bind:change="isEmail" required />
     <view>
-      <label></label>
+      <picker mode="region" value="{{region}}" bindchange="changeRegin">
+        <van-cell required title="地区" value="{{region}}" mode='region'>请选择地区：{{region[0]}} - {{region[1]}} - {{region[2]}}</van-cell>
+      </picker>
     </view>
-    <view class="btn-area">
-      <button formType="submit">保存地址</button>
-    </view>
-  </form>
+    <van-field value="{{ message }}" type="textarea" placeholder="请填写详细地址(必填)" autosize='50' border="{{ false }}" />
+  </van-cell-group>
+  <van-cell-group>
+    <van-cell title="设为默认">
+      <van-switch checked="{{ checked }}" size="22px" bind:change="onChange" /></van-cell>
+  </van-cell-group>
+</view>
+<view class='address-add'>
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="warn">
+    保存
+  </button>
 </view>

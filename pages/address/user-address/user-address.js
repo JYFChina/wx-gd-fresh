@@ -2,7 +2,7 @@
 var app = getApp()
 Page({
   data: {
-    address: [],
+    address: [{ id: "1", name: "狗蛋", tel: "110", address_xq: "洛阳市涧西区", is_default: 1 }, { id: "2", name: "狗蛋", tel: "110", address_xq: "洛阳市涧西区", is_default: 0 }],
     radioindex: '',
     pro_id:0,
     num:0,

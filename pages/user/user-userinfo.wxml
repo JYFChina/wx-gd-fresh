@@ -1,2 +1,20 @@
-<!--pages/user/user-userinfo.wxml-->
-<text>pages/user/user-userinfo.wxml</text>
+<!--pages/tanchu/tanchu.wxml-->
+<view>
+  <van-cell-group>
+    <van-field value="{{ userInfo.nickName }}" required label="用户名" placeholder="请输入名称(必填)" bind:click-icon="onClickIcon" bind:change="nameChange" />
+    <van-field value="{{ phone }}" type='number' maxlength='11' label="手机" placeholder="请输入手机号(必填)" bind:change="telChange" required />
+    <van-field value="{{ email }}" label="邮箱" placeholder="请输入邮箱(选填)" bind:change="isEmail" required />
+    <view>
+      <picker mode="region" value="{{region}}" bindchange="changeRegin">
+        <van-cell required title="地区" value="{{region}}" mode='region'>请选择地区：{{region[0]}} - {{region[1]}} - {{region[2]}}</van-cell>
+      </picker>
+    </view>
+    <van-field value="{{ message }}" type="textarea" placeholder="个性签名" autosize='50' border="{{ false }}" />
+  </van-cell-group>
+
+</view>
+<view class='address-add'>
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="warn">
+    保存
+  </button>
+</view>

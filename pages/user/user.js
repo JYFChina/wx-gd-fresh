@@ -97,7 +97,8 @@ Page({
     wx.navigateTo({
       url: 'user-userinfo',
     })
-  },
+  }
+  ,
   onShareAppMessage: function() {
     return {
       title: '宠物美容学校',
