@@ -1,0 +1,33 @@
+<!--pages/member-center/member-center.wxml-->
+<view>
+  <van-cell-group>
+    <view class='input'>
+      <van-field value="{{ username }}" required clearable label="会员卡账号" icon="question-o" placeholder="请输入会员卡账号" bind:click-icon="onClickIcon" />
+    </view>
+
+    <view class='input'>
+      <van-field value="{{ phone }}" label="手机号" placeholder="请输入手机号" error-message="{{phone_zz}}" border="{{ false }}" bind:change="telChange" />
+
+    </view>
+    <view class='input'>
+      <van-field value="{{ phone }}" label="充值" placeholder="请输入充值金额" error-message="{{phone_zz}}" border="{{ false }}" bind:change="telChange" />
+
+    </view>
+    <view class='input'>
+      <van-field value="{{ sms }}" center clearable label="短信验证码" placeholder="请输入短信验证码" border="{{ false }}" use-button-slot>
+        <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+      </van-field>
+    </view>
+    <view class='input'>
+      <van-panel title="*注意事项" status="*">
+        <view style='padding:5% 10%'>
+          <text> 1.请确认所要充值的会员卡帐号和手机号，一旦充值成功，系统将不提供充值修正服务。\n</text>
+          <text> 2.注册新帐号后，可立即充值。\n</text>
+          <text> 3.完成充值后请勿遗弃卡号密码或相关订单号，以备不时之需。\n</text>
+          <text> 4.请一定认清网址，以防山寨网站向不了解真相的玩家行骗，导致部分玩家财产损失。\n</text>
+        </view>
+      </van-panel>
+    </view>
+  </van-cell-group>
+  <van-button disabled="{{disabled}}" size="large" class='member-add'>点击绑定</van-button>
+</view>

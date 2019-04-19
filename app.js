@@ -1,5 +1,14 @@
 //app.js
 App({
+  d: {
+    hostUrl: 'https://wxplus.paoyeba.com/index.php',
+    hostImg: 'http://img.ynjmzb.net',
+    hostVideo: 'http://zhubaotong-file.oss-cn-beijing.aliyuncs.com',
+    userId: 1,
+    appId: "",
+    appKey: "",
+    ceshiUrl: 'https://wxplus.paoyeba.com/index.php',
+  },
   onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

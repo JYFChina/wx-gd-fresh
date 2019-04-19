@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/user/user-login",
-    "pages/user/dingdan",   
+    "pages/member-center/member-center",
+    "pages/my-shopping-cart/my-shopping-cart",
+    "pages/user/dingdan",
     "pages/address/user-address/user-address",
     "pages/address/address",
     "pages/commodity/commodity",
@@ -9,14 +11,12 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/my-details/my-details",
-    "pages/my-shopping-cart/my-shopping-cart",
     "pages/all-search/all-search",
     "pages/user/user",
-   
     "pages/user/shoucang",
     "pages/user/tuihou",
     "pages/user/user-userinfo"
-   
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,10 +41,9 @@
     "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
     "van-tag": "/miniprogram_npm/vant-weapp/tag/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index",
-      "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
-      "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
-      "van-switch": "/miniprogram_npm/vant-weapp/switch/index"
-    
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+    "van-switch": "/miniprogram_npm/vant-weapp/switch/index"
   },
   "tabBar": {
     "selectedColor": "#1296db",

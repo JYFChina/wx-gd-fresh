@@ -1,0 +1,22 @@
+/* pages/member-center/member-center.wxss */
+page{
+    background-color: #f2f3f5;
+}
+text{
+  font-size: 13px;
+  color: red;
+}
+
+.input{
+  margin-bottom: 1%;
+}
+.member-add {
+  position: fixed;
+  bottom: 5%;
+  width: 90%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+}
