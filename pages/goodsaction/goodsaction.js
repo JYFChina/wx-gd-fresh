@@ -19,20 +19,45 @@ Page({
   onLoad(options){
     let data = options.data;
     console.log(data);//得到的结果是  1,2  是一个字符串
+
+  var that=this;
+
+    wx.request({
+      url: 'https://edee2d67.ngrok.io/GdCommodityService/selOne?comdityId=' + data,
+      data: '',
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+
+        // 页面加载是更新成你所选中的商品
+        that.setData({
+          "detail.price": res.data.data.comdityprice,
+          "detail.miaoshu": res.data.data.comditydescribe,
+          "detail.bianhao": res.data.data.comdityId,
+          "detail.proName": res.data.data.comdityname,
+          "detail.danjia": res.data.data.comditydescribe,
+          "detail.image": [res.data.data.imagesurl, "image2", "image3"],
+          "background": [res.data.data.imagesurl, "image2", "image3"]
+        })
+    
+        console.log("返回结果")
+        console.log(res.data.data);
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+
+      },
+    })
+   
   }
   ,
   onShow() {
-   
-  // 页面加载是更新成你所选中的商品
-    this.setData({
-      "detail.price": 12.5,
-      "detail.miaoshu":"十四寸高清液晶钛合金不锈钢螃蟹",
-      "detail.bianhao":"XY0001",
-      "detail.proName":"阳澄湖大闸蟹",
-      "detail.danjia":"12.5",
-      "detail.image": ["image1", "image2", "image3"]
-    })
-  
+    
+ 
   },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName

@@ -1,5 +1,7 @@
-var app=getApp();
+var app = getApp();
+
 Page({
+
   data: {
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3', 'demo-text-4'],
     indicatorDots: true,
@@ -12,43 +14,55 @@ Page({
     nextMargin: 0,
     prosList: [{
       prosLists: [{
-        proName: "test1",
-        price: "15.1",
-        proid: "1"
+        comdityname: "test1",
+        comdityprice: "15.1",
+        comdityId: "1"
       }, {
-        proName: "test2",
-        price: "15.2",
-        proid: "2"
+        comdityname: "test2",
+        comdityprice: "15.2",
+        comdityId: "2"
       }, {
-        proName: "test3",
-        price: "15.3",
-        proid: "3"
+        comdityname: "test3",
+        comdityprice: "15.3",
+        comdityId: "3"
       }, {
-        proName: "test4",
-        price: "15.4",
-        proid: "4"
+        comdityname: "test4",
+        comdityprice: "15.4",
+        comdityId: "4"
       }],
-      title: "标题名1"
-    }, {
-      prosLists: [{
-        proName: "test1",
-        price: "15.1",
-        proid: "1"
-      }, {
-        proName: "test2",
-        price: "15.2",
-        proid: "2"
-      }, {
-        proName: "test3",
-        price: "15.3",
-        proid: "3"
-      }, {
-        proName: "test4",
-        price: "15.4",
-        proid: "4"
-      }],
-      title: "标题名2"
+      title: "热卖商品"
     }]
+  },
+  onLoad: function() {
+    var ss = this;
+    wx.request({
+      url: 'https://edee2d67.ngrok.io/GdCommodityService/selheadlineAll',
+      data: '',
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        var prosLists = "prosList[" + 0 + "].prosLists";
+        var title = "prosList[" + 0 + "].title";
+          ss.setData({
+            [prosLists]: res.data.data,
+            [title]:"促销"
+          })
+    
+
+        console.log("修改结果")
+        console.log(res.data.data.length)
+        console.log("返回结果")
+        console.log(res.data.data);
+      },
+      fail: function(res) {
+        console.log(res);
+      },
+      complete: function(res) {
+
+      },
+    })
   },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName

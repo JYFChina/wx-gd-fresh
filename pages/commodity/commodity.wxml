@@ -1,7 +1,9 @@
 <!--pages/commodity/commodity.wxml-->
 <!-- 搜索引擎 -->
 <view>
-  <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+ <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
 </view>
 <!-- 轮播图 -->
 <view class="page-section page-section-spacing swiper">
@@ -27,10 +29,10 @@
           <van-row gutter="1">
             <van-col span="12"wx:for="{{item.prosLists}}" wx:for-index="idx" wx:for-item="itemName">
               <view class='sp-radius'>
-                <view class='sp-image' bindtap='swiperTap' id='{{itemName.proid}}'>测试图片</view>
+                <view class='sp-image' bindtap='swiperTap' id='{{itemName.comdityId}}'><cover-image class="img" src="{{itemName.imagesurl}}" /></view>
                 <view class='sp-text'>
-                  <text>{{itemName.proName}}\n</text>
-                  <text class='sp-text-money-color'>￥<text>{{itemName.price}}</text></text>
+                  <text>{{itemName.comdityname}}\n</text>
+                  <text class='sp-text-money-color'>￥<text>{{itemName.comdityprice}}</text></text>
                 </view>
 
               </view>

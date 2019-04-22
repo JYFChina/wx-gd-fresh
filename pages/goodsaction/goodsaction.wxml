@@ -52,7 +52,7 @@
   <!-- 实拍照片 -->
   <view style='padding:15rpx 20rpx; background-color: #FFFFFF; margin-bottom: 10rpx;'>
     <view wx:for='{{detail.image}}'>
-      <view class='sp-image'> {{item}}</view>
+      <view class='sp-image'><cover-image class="img" src="{{item}}" /> {{item}}</view>
     </view>
 
   </view>

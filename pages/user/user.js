@@ -36,13 +36,13 @@ Page({
     loadingHidden: false,
   },
   onLoad: function(options) {
-
+    
     wx.login({
       success: function(res) {
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://4c86f633.ngrok.io/wxlogin.do?code=' + code,
+          url: 'https://47609302.ngrok.io/wxlogin.do?code=' + code,
           method: 'GET',
           data: {
 
@@ -76,9 +76,19 @@ Page({
             if (this.userInfoReadyCallback) {
               this.userInfoReadyCallback(res)
             }
+            wx.openSetting({
+              success(res) {
+                console.log(res.authSetting)
+                console.log("测试打开的权限")
+                res.authSetting = {
+                  "scope.userInfo": true,
+                  "scope.userLocation": true
+                }
+              }
+            })
           }
         })
-
+      
       }
     })
 
