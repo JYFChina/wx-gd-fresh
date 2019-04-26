@@ -1,15 +1,43 @@
 /* pages/member-center/member-center.wxss */
-page{
-    background-color: #f2f3f5;
+
+page {
+  background-color: #f2f3f5;
 }
-text{
+
+text {
   font-size: 13px;
   color: red;
 }
 
-.input{
-  margin-bottom: 1%;
+.label {
+  width: 30vw;
+  min-height: 1.4rem;
+  font-family: UICTFontTextStyleBody;
+  font-size: 15px;
+  display:flex;
+ 
 }
+
+label {
+  align-self:center;
+  margin: 0 auto;
+
+}
+
+.input input {
+  
+   border-radius:5px; 
+  width: 60vw;
+  font-size: 14px;
+}
+
+.input {
+  margin-bottom: 1%;
+  background-color: white;
+  padding: 10px;
+  display: flex;
+}
+
 .member-add {
   position: fixed;
   bottom: 5%;

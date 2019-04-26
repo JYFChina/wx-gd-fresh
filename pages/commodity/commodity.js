@@ -3,7 +3,7 @@ var app = getApp();
 Page({
 
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3', 'demo-text-4'],
+    background: [],
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -36,7 +36,7 @@ Page({
   onLoad: function() {
     var ss = this;
     wx.request({
-      url: 'https://edee2d67.ngrok.io/GdCommodityService/selheadlineAll',
+      url: 'http://zgw.nat300.top/GdCommodityService/selheadlineAll',
       data: '',
       header: {},
       method: 'GET',
@@ -49,12 +49,7 @@ Page({
             [prosLists]: res.data.data,
             [title]:"促销"
           })
-    
-
-        console.log("修改结果")
-        console.log(res.data.data.length)
-        console.log("返回结果")
-        console.log(res.data.data);
+  
       },
       fail: function(res) {
         console.log(res);
@@ -62,6 +57,10 @@ Page({
       complete: function(res) {
 
       },
+    })
+
+    wx.request({
+      url: '',
     })
   },
   changeProperty: function(e) {

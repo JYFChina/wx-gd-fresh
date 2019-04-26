@@ -3,7 +3,7 @@
   <swiper style='height:60vh' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
     <block wx:for="{{background}}" wx:key="*this">
       <swiper-item>
-        <view class="swiper-item {{item}}"></view>
+        <image src='{{item}}'></image>
       </swiper-item>
     </block>
   </swiper>
@@ -52,7 +52,7 @@
   <!-- 实拍照片 -->
   <view style='padding:15rpx 20rpx; background-color: #FFFFFF; margin-bottom: 10rpx;'>
     <view wx:for='{{detail.image}}'>
-      <view class='sp-image'><cover-image class="img" src="{{item}}" /> {{item}}</view>
+      <view class='sp-image'><cover-image class="img" src="{{item}}" /></view>
     </view>
 
   </view>

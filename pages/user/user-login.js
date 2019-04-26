@@ -1,3 +1,6 @@
+
+var app=getApp();
+
 Page({
   data: {
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
@@ -27,28 +30,33 @@ Page({
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
-      //插入登录的用户的相关信息到数据库
-      // wx.request({
-      //   url: "",
-      //   data: {
-      //     openid: getApp().globalData.openid,
-      //     nickName: e.detail.userInfo.nickName,
-      //     avatarUrl: e.detail.userInfo.avatarUrl,
-      //     province: e.detail.userInfo.province,
-      //     city: e.detail.userInfo.city
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success: function (res) {
-      //     //从数据库获取用户信息
-      //     that.queryUsreInfo();
-      //     console.log("插入小程序登录用户信息成功！");
-      //   }
-      // });
+      
+      console.log(e.detail.userInfo)
+     // 插入登录的用户的相关信息到数据库
+      wx.request({
+        url: "https://84541253..ngrok.io/GdWxUserService/wxsaveUser",
+        data: {
+          data:{
+            useraccount: app.globalData.openid,//微信用户唯一标识
+            username: e.detail.userInfo.nickName,//微信用户名
+            avatarUrl: e.detail.userInfo.avatarUrl//微信用户头像图片地址
+          }
+         
+        },
+        method:"POST"
+        ,
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          //从数据库获取用户信息
+          that.queryUsreInfo();
+          console.log("插入小程序登录用户信息成功！");
+        }
+      });
       //授权成功后，跳转进入小程序首页
       wx.switchTab({
-        url: 'user'
+        url: '../commodity/commodity'
       })
     } else {
       //用户按了拒绝按钮

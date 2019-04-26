@@ -16,7 +16,6 @@
     "pages/user/shoucang",
     "pages/user/tuihou",
     "pages/user/user-userinfo"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -73,5 +72,6 @@
         "selectedIconPath": "images/my-hou.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
