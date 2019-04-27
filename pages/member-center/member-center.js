@@ -1,4 +1,7 @@
 // pages/member-center/member-center.js
+
+var app = getApp();
+import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 Page({
 
   disabled: true,
@@ -13,8 +16,10 @@ Page({
     money: '',
     phone_zz: "手机号不能为空",
     phoneboder: "transparent",
-    huiyuan:'transparent',
-    huiyuannn:'会员卡账号不能为空'
+    huiyuan: 'transparent',
+    huiyuannn: '会员卡账号不能为空',
+    toastHidden: true, //吐司  
+    toastText: ''//吐司文本  
   },
 
   /**
@@ -31,11 +36,11 @@ Page({
     if (e.detail.value != '' && e.detail.value != null) {
       this.setData({
         isnoVip: e.detail.value,
-        disabled: false
+        disabled: true
       })
-    }else{
+    } else {
       this.setData({
-        
+
         disabled: true
       })
     }
@@ -83,25 +88,52 @@ Page({
       sms: e.detail.value
     })
   },
-  bindmember: function() {
+  onToastChanged: function () {
+    this.setData({
+      toastHidden: true
+    });
+  },
+  bindmember: function(e) {
     var that = this;
-    console.log(that.data.isnoVip)
-    wx.request({
-      url: 'https://0bf212f4.ngrok.io/GdWxUserService/wxbindMember',
-      method:"POST",
-      data:{
-        data:{
 
+
+
+    console.log(that.data.isnoVip + app.globalData.openid)
+    var useraccount = app.globalData.openid
+    wx.request({
+      url: 'https://a7888716.ngrok.io/GdWxUserService/wxbindMember',
+      method: "POST",
+      data: {
+        data: {
+          "useraccount": useraccount,
+          "phone": that.data.phone,
+          "vipbalance": that.data.money,
+          "vipId": that.data.isnoVip
         }
       },
-        success: function (result) {
+      success: function(result) {
 
         if (result.statusCode == "404") {
-          console.log("没有找到你要访问的资源，路径问题")
+          wx.showToast({
+            title: '没有你访问的资源',
+            icon: 'loading',
+            duration: 4000,
+            mask: true
+          })
+        
         } else {
 
-          that.globalData.openid = result.data.data.openid;
-          console.log(that.globalData.openid)
+          wx.showToast({
+            title: '请稍后........',
+            icon: 'loading',
+            duration: 4000,
+            mask: true
+          })
+          wx.navigateTo({
+
+            url: 'member-message',
+          })
+          console.log(result)
         }
       }
     })

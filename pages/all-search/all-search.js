@@ -7,7 +7,9 @@ Page({
    */
   data: {
 
-    prosLists: [] //商品信息
+    prosLists: [{
+      
+    }] //商品信息
 
   },
 

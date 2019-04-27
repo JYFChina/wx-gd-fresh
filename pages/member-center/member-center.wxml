@@ -34,3 +34,7 @@
   </van-cell-group>
   <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'>点击绑定</van-button>
 </view>
+
+<toast hidden="{{toastHidden}}" duration="1000" bindchange="onToastChanged">    
+        {{toastText}}    
+</toast>

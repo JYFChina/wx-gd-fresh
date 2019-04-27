@@ -22,7 +22,7 @@ App({
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://84541253.ngrok.io/GdWxUserService/wxlogin.do?code=' + code,
+          url: 'https://a7888716.ngrok.io/GdWxUserService/wxlogin.do?code=' + code,
           method: 'GET',
           data: {
 
