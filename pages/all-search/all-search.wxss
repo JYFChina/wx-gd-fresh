@@ -1,9 +1,9 @@
 /* pages/all-search/all-search.wxss */
 
-.card__footer {
-  padding-top: 5%;
-}
 
-.card__tags {
-  margin-right:30%;
+.shopCart{
+  width: 100vw;
+  height: 20vh;
+  border: white solid 1px;
+  background-color: #F7F7F7;
 }

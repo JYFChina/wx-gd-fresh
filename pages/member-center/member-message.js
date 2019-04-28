@@ -1,66 +1,51 @@
-// pages/member-center/member-message.js
+//index.js
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    code: '验证码输入结果',
+    membersdetail:{
+      vipId:"12621qweassda",
+      userId:"123123231",
+      createTime:"2013-1-1",
+      userphone:"13937900893",
+      vipintegral:"111",
+      vipbalance:"0"
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad: function() {
+    //选择组件对象
+    this.verifycode = this.selectComponent("#verifycode");
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  openVerifyCodeView: function() {
+    //弹出组件,此处必须把this重新赋予变量不然callback内部会提示找不到this
+    var _this = this;
+    _this.verifycode.showView({
+      phone: "15200000000",
+      inputSuccess: function(phoneCode) {
+        //调用组件关闭方法
+        _this.verifycode.closeView();
+        //设置数据
+        _this.setData({
+          code: phoneCode
+        });
+      }
+    });
   },
+  onmembersdetail: function() {
+    var that =this;
+    wx.request({
+      url: '',
+      method:"POST",
+      data:{
+        data :{
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+        }
+      },
+      success:function(res){
+        that.setData({
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+        })
+      }
+    })
   }
 })

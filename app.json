@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/member-center/member-message",
+    
     "pages/user/user-login",
     "pages/member-center/member-center",
     "pages/my-shopping-cart/my-shopping-cart",
@@ -16,6 +16,7 @@
     "pages/user/user",
     "pages/user/shoucang",
     "pages/user/tuihou",
+    "pages/member-center/member-message", 
     "pages/user/user-userinfo"
     
   ],

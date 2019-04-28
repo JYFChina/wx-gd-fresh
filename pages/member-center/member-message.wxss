@@ -1,1 +1,22 @@
 /* pages/member-center/member-message.wxss */
+
+.text view {
+  padding-left: 12px;
+  margin: 10% 0;
+}
+
+.text view text {
+  color: #919191;
+  margin-left: 10vw;
+}
+/**index.wxss**/
+.button-class{
+ 
+}
+.user-motto{
+  position: fixed;
+  bottom: 100rpx;
+  text-align: center;
+  width: 100%;
+  height: 40rpx;
+}

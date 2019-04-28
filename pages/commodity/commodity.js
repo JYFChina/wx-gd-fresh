@@ -3,7 +3,7 @@ var app = getApp();
 Page({
 
   data: {
-    background: [],
+    background: ["","",""],
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -36,7 +36,7 @@ Page({
   onLoad: function() {
     var ss = this;
     wx.request({
-      url: 'http://zgw.nat300.top/GdCommodityService/selheadlineAll',
+      url: app.d.hostUrl+'/GdCommodityService/selheadlineAll',
       data: '',
       header: {},
       method: 'GET',

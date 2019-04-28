@@ -1,2 +1,29 @@
 <!--pages/member-center/member-message.wxml-->
-<text>会员详情页面</text>
+
+<van-panel title="绑定用户信息" desc="{{membersdetail.vipId}}" status="状态" use-footer-slot>
+  <view class='text'>
+    <view>用户账号
+      <text>{{membersdetail.userId}}</text>
+    </view>
+    <view>创卡日期
+      <text>{{membersdetail.createTime}}</text>
+    </view>
+    <view>用户手机
+      <text>{{membersdetail.userphone}}</text>
+    </view>
+    <view>会员积分
+      <text>{{membersdetail.vipintegral}}</text>
+    </view>
+     <view>会员余额
+      <text>{{membersdetail.vipbalance}}<text>RMB</text></text>
+    </view>
+  </view>
+  <view slot="footer">
+    <van-button size="large" type="danger"  class='button-class' catchtap="openVerifyCodeView">解除绑定</van-button>
+  </view>
+ 
+  <text class="user-motto">{{code}}</text>
+
+  <!-- 验证码组件 -->
+  <verifycode id='verifycode' title="请输入验证码哈" content="已发送到手机:" />
+</van-panel>

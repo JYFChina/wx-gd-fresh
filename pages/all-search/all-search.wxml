@@ -7,17 +7,11 @@
 </view>
 
 <view>
-  <view wx:for="{{prosLists}}">
-    <van-card num="2" tag="{{title}}" price="{{comdityprice}}" origin-price="2123" desc="描述信息" title="{{comdityname}}" :thumb="{{imagesurl}}" thumb-link="跳转的连接">
+  <view wx:for="{{prosList}}">
+    <van-card  tag="促销" price="{{item.comdityprice}}" desc="{{item.comditydescribe}}" title="{{item.comdityname}}" thumb="{{ item.imagesurl }}" thumb-link="../goodsaction/goodsaction?data={{item.comdityId}}">
       <view slot="footer">
-        <view class='card__tags'>
-          <van-tag plain>标签</van-tag>
-          <van-tag plain>标签</van-tag>
-        </view>
-        <view class='card__footer'>
-          <van-button size="mini" click="">购买</van-button>
-          <van-button size="mini" click="">加入购物</van-button>
-        </view>
+        <van-button size="mini">立即购买</van-button>
+        <van-button size="mini">加入购物车</van-button>
       </view>
     </van-card>
   </view>

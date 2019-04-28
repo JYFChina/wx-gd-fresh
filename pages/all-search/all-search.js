@@ -7,9 +7,13 @@ Page({
    */
   data: {
 
-    prosLists: [{
+    prosList: [
+      {
+       
+      }
+    ]
       
-    }] //商品信息
+     //商品信息
 
   },
 
@@ -21,19 +25,18 @@ Page({
     var ss = this;
     var category = getApp().globalData.category
     wx.request({
-      url: 'http://zgw.nat300.top/GdCommodityService/selheadlineAll',
+      url: app.d.hostUrl + '/GdCommodityService/selheadlineAll',
       data: '',
       header: {},
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-
+        console.log(res.data.data)
         ss.setData({
-          prosLists: res.data.data,
-
+          'prosList': res.data.data,
         })
-
+        
       },
       fail: function(res) {
         console.log(res);
@@ -42,10 +45,11 @@ Page({
 
       },
     })
+    
   },
   onSearch: function() {
     wx.request({
-      url: 'http://zgw.nat300.top/GdCommodityService/selheadlineAll',
+      url: app.d.hostUrl + '/GdCommodityService/selheadlineAll',
       data: {
         // "商品的描述信息":'',
       },
@@ -54,8 +58,9 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-
+   
         ss.setData({
+          
           prosLists: res.data.data,
 
         })
