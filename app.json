@@ -1,24 +1,25 @@
 {
   "pages": [
-    
     "pages/user/user-login",
-    "pages/member-center/member-center",
-    "pages/my-shopping-cart/my-shopping-cart",
-    "pages/user/dingdan",
-    "pages/address/user-address/user-address",
-    "pages/address/address",
-    "pages/commodity/commodity",
-    "pages/goodsaction/goodsaction",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/my-details/my-details",
-    "pages/all-search/all-search",
     "pages/user/user",
     "pages/user/shoucang",
     "pages/user/tuihou",
-    "pages/member-center/member-message", 
-    "pages/user/user-userinfo"
-    
+    "pages/user/dingdan",
+    "pages/user/user-userinfo",
+    "pages/my-shopping-cart/my-shopping-cart",
+    "pages/my-details/my-details",
+    "pages/member-center/member-message",
+    "pages/member-center/member-center",
+    "pages/address/user-address/user-address",
+    "pages/address/address",
+    "pages/order/pay",
+    "pages/order/downline",
+    "pages/order/detil",
+    "pages/commodity/commodity",
+    "pages/goodsaction/goodsaction",
+    "pages/all-search/all-search",
+    "pages/index/index",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

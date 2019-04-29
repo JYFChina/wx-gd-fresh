@@ -3,7 +3,7 @@ var app = getApp();
 Page({
 
   data: {
-    background: ["","",""],
+    background: ['https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg','https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg'], //Baner图
     indicatorDots: true,
     vertical: false,
     autoplay: false,

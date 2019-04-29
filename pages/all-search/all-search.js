@@ -74,4 +74,17 @@ Page({
       },
     })
   }
+  ,
+  addCart:function(e){
+    console.log(e.currentTarget.id)
+    wx.switchTab({
+      url: '../my-shopping-cart/my-shopping-cart',
+    })
+  },
+  buyGoods:function(e){
+    console.log(e.currentTarget.id)
+    wx.navigateTo({
+      url: '../order/pay',
+    })
+  }
 })

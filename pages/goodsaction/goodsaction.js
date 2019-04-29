@@ -1,7 +1,6 @@
+var app = getApp();
 Page({
   data: {
-
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'], //Baner图
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -18,10 +17,7 @@ Page({
   },
   onLoad(options) {
     let data = options.data;
-    console.log(data); //得到的结果是  1,2  是一个字符串
-
     var that = this;
-
     wx.request({
       url: 'http://zgw.nat300.top/GdCommodityService/selOne?comdityId=' + data,
       data: '',
@@ -32,7 +28,7 @@ Page({
       success: function(res) {
         that.setData({
           background: [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
-        }) 
+        })
         // 页面加载是更新成你所选中的商品
         that.setData({
           "detail.price": res.data.data.comdityprice,
@@ -43,9 +39,6 @@ Page({
           "detail.image": [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
 
         })
-
-        console.log("返回结果")
-        console.log(res.data.data);
       },
       fail: function(res) {
         console.log(res);
@@ -54,10 +47,6 @@ Page({
 
       },
     })
-
-  },
-  onShow() {
-
 
   },
   changeProperty: function(e) {
@@ -99,5 +88,39 @@ Page({
     wx.navigateTo({
       url: '../commodity/commodity',
     })
+  },
+  //添加购物车
+  addCart: function(e) {
+    console.log(e.currentTarget.id)
+    wx.switchTab({
+      url: '../my-shopping-cart/my-shopping-cart',
+    })
+    // wx.request({
+    //   url: hostUrl + '',
+    //   method: "POST",
+    //   data: {
+    //     data: {
+    //       "comdityId": e.currentTarget.id,//商品编号
+    //       "openId": app.globalData.openid  //用户标识
+    //     }
+    //   }
+    // })
+  },
+  //立即购买
+  buyGood:function(e){
+    console.log(e.currentTarget.id)
+    wx.switchTab({
+       url: '../order/pay',
+    })
+  // wx.request({
+    //   url: hostUrl + '',
+    //   method: "POST",
+    //   data: {
+    //     data: {
+    //       "comdityId": e.currentTarget.id,//商品编号
+    //       "openId": app.globalData.openid  //用户标识
+    //     }
+    //   }
+    // })
   }
 })
