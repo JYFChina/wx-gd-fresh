@@ -36,7 +36,7 @@ Page({
   onLoad: function() {
     var ss = this;
     wx.request({
-      url: app.d.hostUrl+'/GdCommodityService/selheadlineAll',
+      url: app.d.shopUrl+'/GdCommodityService/selheadlineAll',
       data: '',
       header: {},
       method: 'GET',

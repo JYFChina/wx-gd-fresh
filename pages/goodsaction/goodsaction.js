@@ -16,16 +16,18 @@ Page({
 
   },
   onLoad(options) {
-    let data = options.data;
+  
+    var data = options.data;
+    console.log(data)
     var that = this;
     wx.request({
-      url: 'http://zgw.nat300.top/GdCommodityService/selOne?comdityId=' + data,
-      data: '',
+      url: app.d.shopUrl+'/GdCommodityService/selOne',
+      data: data,
       header: {},
-      method: 'GET',
+      contentType: 'application/json',
+      method: 'post',
       dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           background: [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
         })
@@ -40,42 +42,42 @@ Page({
 
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res);
       },
-      complete: function(res) {
+      complete: function (res) {
 
       },
     })
 
   },
-  changeProperty: function(e) {
+  changeProperty: function (e) {
     var propertyName = e.currentTarget.dataset.propertyName
     var newData = {}
     newData[propertyName] = e.detail.value
     this.setData(newData)
   },
-  changeIndicatorDots: function(e) {
+  changeIndicatorDots: function (e) {
     this.setData({
       indicatorDots: !this.data.indicatorDots
     })
   },
-  changeAutoplay: function(e) {
+  changeAutoplay: function (e) {
     this.setData({
       autoplay: !this.data.autoplay
     })
   },
-  intervalChange: function(e) {
+  intervalChange: function (e) {
     this.setData({
       interval: e.detail.value
     })
   },
-  durationChange: function(e) {
+  durationChange: function (e) {
     this.setData({
       duration: e.detail.value
     })
   },
-  onClickRight: function() {
+  onClickRight: function () {
     wx.showToast({
       title: '其他',
       icon: 'succes',
@@ -84,13 +86,13 @@ Page({
     })
 
   },
-  onClickLeft: function() {
+  onClickLeft: function () {
     wx.navigateTo({
       url: '../commodity/commodity',
     })
   },
   //添加购物车
-  addCart: function(e) {
+  addCart: function (e) {
     console.log(e.currentTarget.id)
     wx.switchTab({
       url: '../my-shopping-cart/my-shopping-cart',
@@ -107,12 +109,12 @@ Page({
     // })
   },
   //立即购买
-  buyGood:function(e){
+  buyGood: function (e) {
     console.log(e.currentTarget.id)
     wx.switchTab({
-       url: '../order/pay',
+      url: '../order/pay',
     })
-  // wx.request({
+    // wx.request({
     //   url: hostUrl + '',
     //   method: "POST",
     //   data: {

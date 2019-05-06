@@ -25,7 +25,7 @@ Page({
     var ss = this;
     var category = getApp().globalData.category
     wx.request({
-      url: app.d.hostUrl + '/GdCommodityService/selheadlineAll',
+      url: app.d.shopUrl + '/GdCommodityService/selheadlineAll',
       data: '',
       header: {},
       method: 'GET',

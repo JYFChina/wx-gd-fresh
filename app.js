@@ -2,13 +2,13 @@
 App({
   d: {
     hostUrl: 'http://zgw.nat300.top',
-    shopUrl:"",
-    hostImg: 'http://img.ynjmzb.net',
+    shopUrl:"http://zgw.nat300.top/gs",
+    orderUrl: 'http://zgw.nat300.top/os',
     hostVideo: 'http://zhubaotong-file.oss-cn-beijing.aliyuncs.com',
     userId: 1,
     appId: "",
     appKey: "",
-    ceshiUrl: 'https://wxplus.paoyeba.com/index.php',
+    ceshiUrl: 'http://zgw.nat300.top',
   },
   onLaunch: function() {
     // 展示本地存储能力
@@ -23,7 +23,7 @@ App({
         console.log(res)
         var code = res.code;
         wx.request({
-          url: 'https://a7888716.ngrok.io/GdWxUserService/wxlogin.do?code=' + code,
+          url: 'http://zgw.nat300.top/as/GdWxUserService/wxlogin.do?code=' + code,
           method: 'GET',
           data: {
 
