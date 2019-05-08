@@ -16,18 +16,18 @@ Page({
 
   },
   onLoad(options) {
-  
+
     var data = options.data;
     console.log(data)
     var that = this;
     wx.request({
-      url: app.d.shopUrl+'/GdCommodityService/selOne',
+      url: app.d.shopUrl + '/GdCommodityService/selOne',
       data: data,
       header: {},
       contentType: 'application/json',
       method: 'post',
       dataType: 'json',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           background: [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
         })
@@ -42,42 +42,42 @@ Page({
 
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res);
       },
-      complete: function (res) {
+      complete: function(res) {
 
       },
     })
 
   },
-  changeProperty: function (e) {
+  changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName
     var newData = {}
     newData[propertyName] = e.detail.value
     this.setData(newData)
   },
-  changeIndicatorDots: function (e) {
+  changeIndicatorDots: function(e) {
     this.setData({
       indicatorDots: !this.data.indicatorDots
     })
   },
-  changeAutoplay: function (e) {
+  changeAutoplay: function(e) {
     this.setData({
       autoplay: !this.data.autoplay
     })
   },
-  intervalChange: function (e) {
+  intervalChange: function(e) {
     this.setData({
       interval: e.detail.value
     })
   },
-  durationChange: function (e) {
+  durationChange: function(e) {
     this.setData({
       duration: e.detail.value
     })
   },
-  onClickRight: function () {
+  onClickRight: function() {
     wx.showToast({
       title: '其他',
       icon: 'succes',
@@ -86,30 +86,43 @@ Page({
     })
 
   },
-  onClickLeft: function () {
+  onClickLeft: function() {
     wx.navigateTo({
       url: '../commodity/commodity',
     })
   },
   //添加购物车
-  addCart: function (e) {
-    console.log(e.currentTarget.id)
-    wx.switchTab({
-      url: '../my-shopping-cart/my-shopping-cart',
+  addCart: function(e) {
+    wx.request({
+      url: app.d.orderUrl + '/ShoppingCartService/addCartGoods',
+      method: "post",
+      dataType: 'json',
+      data: {
+        data: {
+          comdityId: e.currentTarget.id, //商品编号
+          useraccount: app.globalData.openid, //用户唯一标识
+          num: 1 //商品数量默认为1
+        }
+      },
+       success: function (res) {
+         if(res.data.data=="1"){
+           wx.switchTab({
+             url: '../my-shopping-cart/my-shopping-cart',
+           })
+         }
+    
+      },
+      fail: function (res) {
+        if (res.statusCode=="500"){
+          this.addCart()
+        }
+      }
     })
-    // wx.request({
-    //   url: hostUrl + '',
-    //   method: "POST",
-    //   data: {
-    //     data: {
-    //       "comdityId": e.currentTarget.id,//商品编号
-    //       "openId": app.globalData.openid  //用户标识
-    //     }
-    //   }
-    // })
+  
+
   },
   //立即购买
-  buyGood: function (e) {
+  buyGood: function(e) {
     console.log(e.currentTarget.id)
     wx.switchTab({
       url: '../order/pay',

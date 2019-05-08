@@ -30,11 +30,10 @@ Page({
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
-      
       console.log(e.detail.userInfo)
      // 插入登录的用户的相关信息到数据库
       wx.request({
-        url: "https://84541253..ngrok.io/GdWxUserService/wxsaveUser",
+        url: app.d.userUrl+"/GdWxUserService/wxsaveUser",
         data: {
           data:{
             useraccount: app.globalData.openid,//微信用户唯一标识

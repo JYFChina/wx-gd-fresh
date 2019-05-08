@@ -59,9 +59,9 @@ Page({
       },
     })
 
-    wx.request({
-      url: '',
-    })
+    // wx.request({
+    //   url: '',
+    // })
   },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName

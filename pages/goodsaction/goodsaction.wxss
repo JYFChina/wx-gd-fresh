@@ -5,7 +5,9 @@ image{
 .text-color {
 background-color: #FFFFFF;
 }
-
+.img{
+  z-index:-1;
+}
 
 .sp-xinxin{
   border : 1px solid transparent;width:40vw;

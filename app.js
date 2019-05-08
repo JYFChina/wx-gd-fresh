@@ -4,11 +4,11 @@ App({
     hostUrl: 'http://zgw.nat300.top',
     shopUrl:"http://zgw.nat300.top/gs",
     orderUrl: 'http://zgw.nat300.top/os',
-    hostVideo: 'http://zhubaotong-file.oss-cn-beijing.aliyuncs.com',
+    userUrl: 'http://zgw.nat300.top/as',
     userId: 1,
     appId: "",
     appKey: "",
-    ceshiUrl: 'http://zgw.nat300.top',
+    vipUrl: 'http://zgw.nat300.top/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

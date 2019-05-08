@@ -5,129 +5,130 @@ Page({
     page: 1,
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
-    carts: [
-      
-    ]
+    carts: []
   },
 
-  bindMinus: function (e) {
+  bindMinus: function(e) {
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
-    var num = that.data.carts[index].num;
+    var num = that.data.carts[index].data.num;
     // 如果只有1件了，就不允许再减了
     if (num > 1) {
       num--;
     }
-    console.log(num);
-    var cart_id = e.currentTarget.dataset.cartid;
-    var augment  = 'carts[' + index + '].num';
+    var cardId = e.currentTarget.dataset.cartid;
+    var augment = 'carts[' + index + '].data.num';
     that.setData({
-      [augment ]: num
+      [augment]: num
     })
-    // wx.request({
-    //   url: app.d.ceshiUrl + '/Api/Shopping/up_cart',
-    //   method: 'post',
-    //   data: {
-    //     user_id: app.d.userId,
-    //     num: num,
-    //     cart_id: cart_id
-    //   },
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     var status = res.data.status;
-    //     if (status == 1) {
-    //       // 只有大于一件的时候，才能normal状态，否则disable状态
-    //       var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    //       // 购物车数据
-    //       var carts = that.data.carts;
-    //       carts[index].num = num;
-    //       // 按钮可用状态
-    //       var minusStatuses = that.data.minusStatuses;
-    //       minusStatuses[index] = minusStatus;
-    //       // 将数值与状态写回
-    //       that.setData({
-    //         minusStatuses: minusStatuses
-    //       });
-    //       that.sum();
-    //     } else {
-    //       wx.showToast({
-    //         title: '操作失败！',
-    //         duration: 2000
-    //       });
-    //     }
-    //   },
-    //   fail: function () {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
+    wx.request({
+      url: app.d.orderUrl + '/ShoppingCartService/updCartGoods',
+      method: 'post',
+      data: {
+        data: {
+          num: num,//商品数量
+          cartid: cardId,
+          comdityId: e.currentTarget.id, //商品编号
+          useraccount: app.globalData.openid //用户唯一标识
+          } 
+      },
+      success: function(res) {
+        var status = res.data.code;
+        if (status == 0) {
+          // 只有大于一件的时候，才能normal状态，否则disable状态
+          var minusStatus = num <= 1 ? 'disabled' : 'normal';
+          // 购物车数据
+          var carts = that.data.carts;
+          carts[index].num = num;
+          // 按钮可用状态
+          var minusStatuses = that.data.minusStatuses;
+          minusStatuses[index] = minusStatus;
+          // 将数值与状态写回
+          that.setData({
+            minusStatuses: minusStatuses
+          });
+          that.sum();
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
     that.sum();
   },
 
-  bindPlus: function (e) {
+  bindPlus: function(e) {
+
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
-    var num = that.data.carts[index].num;
+    console.log(e)
+    var num = that.data.carts[index].data.num;
     // 自增
     num++;
-    console.log(num);
-    var minus = 'carts[' + index + '].num';  
+    var minus = 'carts[' + index + '].data.num';
     that.setData({
       [minus]: num
     })
-    var cart_id = e.currentTarget.dataset.cartid;
-    // wx.request({
-    //   url: app.d.ceshiUrl + '/Api/Shopping/up_cart',
-    //   method: 'post',
-    //   data: {
-    //     user_id: app.d.userId,
-    //     num: num,
-    //     cart_id: cart_id
-    //   },
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     var status = res.data.status;
-    //     if (status == 1) {
-    //       // 只有大于一件的时候，才能normal状态，否则disable状态
-    //       var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    //       // 购物车数据
-    //       var carts = that.data.carts;
-    //       carts[index].num = num;
-    //       // 按钮可用状态
-    //       var minusStatuses = that.data.minusStatuses;
-    //       minusStatuses[index] = minusStatus;
-    //       // 将数值与状态写回
-    //       that.setData({
-    //         minusStatuses: minusStatuses
-    //       });
-    //       that.sum();
-    //     } else {
-    //       wx.showToast({
-    //         title: '操作失败！',
-    //         duration: 2000
-    //       });
-    //     }
-    //   },
-    //   fail: function () {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
+    var cardId = e.currentTarget.dataset.cartid;
+    console.log("购物车"+cardId)
+    wx.request({
+      url: app.d.orderUrl + '/ShoppingCartService/updCartGoods',
+      method: 'post',
+      data: {
+        data: {
+          num: num,//商品数量
+          "cartid": cardId,
+          comdityId: e.currentTarget.id, //商品编号
+          useraccount: app.globalData.openid //用户唯一标识
+          }
+        
+      },
+     
+      success: function (res) {
+        var status = res.data.code;
+        if (status == 0) {
+          // 只有大于一件的时候，才能normal状态，否则disable状态
+          var minusStatus = num <= 1 ? 'disabled' : 'normal';
+          // 购物车数据
+          var carts = that.data.carts;
+          carts[index].num = num;
+          // 按钮可用状态
+          var minusStatuses = that.data.minusStatuses;
+          minusStatuses[index] = minusStatus;
+          // 将数值与状态写回
+          that.setData({
+            minusStatuses: minusStatuses
+          });
+          that.sum();
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
 
     that.sum();
   },
 
-  bindCheckbox: function (e) {
+  bindCheckbox: function(e) {
     /*绑定点击事件，将checkbox样式改变为选中与非选中*/
     //拿到下标值，以在carts作遍历指示用
     var index = parseInt(e.currentTarget.dataset.index);
@@ -143,7 +144,7 @@ Page({
     this.sum()
   },
 
-  bindSelectAll: function () {
+  bindSelectAll: function() {
     // 环境中目前已选状态
     var selectedAllStatus = this.data.selectedAllStatus;
     // 取反操作
@@ -161,13 +162,13 @@ Page({
     this.sum()
   },
 
-  bindCheckout: function () {
+  bindCheckout: function() {
     // 初始化toastStr字符串
     var toastStr = '';
     // 遍历取出已勾选的cid
     for (var i = 0; i < this.data.carts.length; i++) {
       if (this.data.carts[i].selected) {
-        toastStr += this.data.carts[i].id;
+        toastStr += this.data.carts[i].data.comdityId;
         toastStr += ',';
       }
     }
@@ -184,19 +185,19 @@ Page({
     })
   },
 
-  bindToastChange: function () {
+  bindToastChange: function() {
     this.setData({
       toastHidden: true
     });
   },
 
-  sum: function () {
+  sum: function() {
     var carts = this.data.carts;
     // 计算总金额
     var total = 0;
     for (var i = 0; i < carts.length; i++) {
       if (carts[i].selected) {
-        total += carts[i].num * carts[i].price;
+        total += carts[i].data.num * carts[i].data.comdityprice;
       }
     }
     // 写回经点击修改后的数组
@@ -206,33 +207,32 @@ Page({
     });
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.loadProductData();
     this.sum();
   },
 
-  onShow: function () {
+  onShow: function() {
     // this.loadProductData();
   },
 
-  removeShopCard: function (e) {
-   
+  removeShopCard: function(e) {
+
   },
 
   // 数据案例
-  loadProductData: function () {
-    var that=this;
-   wx.request({
-     url: app.d.orderUrl + '/OrderService/selGwcByShopId',
+  loadProductData: function() {
+    var that = this;
+    wx.request({
+      url: app.d.orderUrl + '/OrderService/selGwcByShopId',
       method: 'post',
       data: app.globalData.openid,
-      success: function (res) {
-        console.log(res.data.data)
+      success: function(res) {
         that.setData({
-          "carts": res.data.data//[{ pro_name: "test1", id: "1", selected: "", photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg", price: "112", num: "11" }, { pro_name: "test1", id: "1", selected: "", photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg", price: "112", num: "11" }]
+          "carts": res.data.data 
         })
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -242,44 +242,55 @@ Page({
     });
 
   },
-  removeShopCard: function (e) {
-    // var that = this;
-    // var cardId = e.currentTarget.dataset.cartid;
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '你确认移除吗',
-    //   success: function (res) {
-    //     res.confirm && wx.request({
-    //       url: app.d.hostUrl + '/Api/Shopping/delete',
-    //       method: 'post',
-    //       data: {
-    //         cart_id: cardId,
-    //       },
-    //       header: {
-    //         'Content-Type': 'application/x-www-form-urlencoded'
-    //       },
-    //       success: function (res) {
-    //         //--init data
-    //         var data = res.data;
-    //         if (data.status == 1) {
-    //           //that.data.productData.length =0;
-    //           that.loadProductData();
-    //         } else {
-    //           wx.showToast({
-    //             title: '操作失败！',
-    //             duration: 2000
-    //           });
-    //         }
-    //       },
-    //     });
-    //   },
-    //   fail: function () {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
+  removeShopCard: function(e) {
+    var that = this;
+    var cardId = e.currentTarget.dataset.cartid;
+    wx.showModal({
+      title: '提示',
+      content: '你确认移除吗',
+      success: function(res) {
+        res.confirm && wx.request({
+          url: app.d.orderUrl + '/ShoppingCartService/delCartGoods',
+          method: 'post',
+          data: {
+            data: cardId
+          },
+          success: function(res) {
+            //--init data
+            var data = res.data;
+            console.log(data.code)
+            if (data.code == 0) {
+              //that.data.productData.length =0;
+              that.loadProductData();
+              wx.showToast({
+                title: '操作成功！',
+                duration: 2000
+              });
+            } else {
+              that.loadProductData();
+              wx.showToast({
+                title: '操作失败！',
+                duration: 2000
+              });
+            }
+          },
+        });
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+  swiperTap: function(e) {
+    var id = e.currentTarget.id;
+
+    wx.navigateTo({
+      url: '../goodsaction/goodsaction?data=' + [id],
+    })
+
   }
 })

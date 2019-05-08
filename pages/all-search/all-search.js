@@ -76,10 +76,32 @@ Page({
   }
   ,
   addCart:function(e){
-    console.log(e.currentTarget.id)
-    wx.switchTab({
-      url: '../my-shopping-cart/my-shopping-cart',
+    wx.request({
+      url: app.d.orderUrl + '/ShoppingCartService/addCartGoods',
+      method: "post",
+      dataType: 'json',
+      data: {
+        data: {
+          comdityId: e.currentTarget.id, //商品编号
+          useraccount: app.globalData.openid, //用户唯一标识
+          num: 1 //商品数量默认为1
+        }
+      },
+      success: function (res) {
+        if (res.data.data == "1") {
+          wx.switchTab({
+            url: '../my-shopping-cart/my-shopping-cart',
+          })
+        }
+
+      },
+      fail: function (res) {
+        if (res.statusCode == "500") {
+          this.addCart()
+        }
+      }
     })
+  
   },
   buyGoods:function(e){
     console.log(e.currentTarget.id)

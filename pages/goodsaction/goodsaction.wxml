@@ -50,9 +50,9 @@
 
   </view>
   <!-- 实拍照片 -->
-  <view style='padding:15rpx 20rpx; background-color: #FFFFFF; margin-bottom: 10rpx;'>
+  <view style=' background-color: #FFFFFF; margin-bottom: 10rpx;'>
     <view wx:for='{{detail.image}}'>
-      <view class='sp-image'><cover-image class="img" src="{{item}}" /></view>
+      <view class='sp-image'><image class="img" src="{{item}}"></image></view>
     </view>
 
   </view>

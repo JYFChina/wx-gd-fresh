@@ -29,7 +29,7 @@
           <van-row gutter="1">
             <van-col span="12"wx:for="{{item.prosLists}}" wx:for-index="idx" wx:for-item="itemName">
               <view class='sp-radius'>
-                <view class='sp-image' bindtap='swiperTap' id='{{itemName.comdityId}}'><cover-image class="img" src="{{itemName.imagesurl}}" /></view>
+                <view class='sp-image' bindtap='swiperTap' id='{{itemName.comdityId}}'><image class="img" src="{{itemName.imagesurl}}" /></view>
                 <view class='sp-text'>
                   <text>{{itemName.comdityname}}\n</text>
                   <text class='sp-text-money-color'>￥<text>{{itemName.comdityprice}}</text></text>
