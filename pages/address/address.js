@@ -8,12 +8,16 @@ Page({
     userInfo: {},
     checked: true,
 
-    disabled:true,
+    disabled: true,
 
     interval: 5000,
-
     duration: 1000,
-
+    address: {
+      phone: '',
+      consignee: '',
+      address: '',
+      useraccount: ''
+    },
     company: "",
     // 普通选择器列表设置,及初始化 
     countryList: ['中国', '美国', '英国', '日本', '韩国', '巴西', '德国'],
@@ -106,6 +110,9 @@ Page({
     if (name) {
       if (/^[\u4e00-\u9fa5]{2,6}$/.test(name)) {
         message = '';
+        that.setData({
+          "address.consignee": name
+        })
         disable = false;
       } else {
         message = '您输入的姓名有误';
@@ -129,11 +136,16 @@ Page({
 
   telChange: function(event) {
     const phone = event.detail || event;
+    var that = this;
     let message = '';
     let disable = '';
     if (phone) {
       if (/^1(3|4|5|7|8)\d{9}$/.test(phone)) {
         message = '';
+        console.log(phone)
+        that.setData({
+          "address.phone": phone
+        })
         disable = false;
       } else {
         message = '您输入的手机号码有误';
@@ -182,7 +194,19 @@ Page({
       return true;
     }
 
+  },
+  addAddress: function() {
+    wx.request({
+      url: '',
+      data: '',
+      header: {},
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
-
 
 })

@@ -2,26 +2,80 @@
 var app = getApp()
 Page({
   data: {
-    address: [{ id: "1", name: "狗蛋", tel: "110", address_xq: "洛阳市涧西区", is_default: 1 }, { id: "2", name: "狗蛋", tel: "110", address_xq: "洛阳市涧西区", is_default: 0 }],
+    address: [],
     radioindex: '',
-    pro_id:0,
-    num:0,
-    cartId:0
+    pro_id: 0,
+    num: 0,
+    cartId: 0
   },
-  onLoad: function (options) {
-   
+  onLoad: function() {
+    var that = this;
+    that.DataonLoad();
 
-    
   },
 
-  onReady: function () {
+  onReady: function() {
     // 页面渲染完成
   },
   setDefault: function(e) {
-   
-   
+    var that = this;
+    console.log(e + app.globalData.openid);
+    var addrId = e.currentTarget.dataset.id;
+
+    wx.request({
+      url: app.d.userUrl + '/GdWxUserService/updAddress',
+      data: {
+        data: {
+          useraccount: app.globalData.openid,
+          takedeliveryidid: addrId
+        }
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      success: function(res) {
+        // success
+        console.log(res)
+        if (res.data.status == "500" || res.data.status=="429"){
+          wx.showToast({
+            title: '操作过于频繁,20秒后重试',
+            duration: 15000
+          });
+        }
+        var status = res.data.data;
+        // var cartId = that.data.cartId;
+        if (status == 1) {
+          // if (cartId) {
+          //   wx.redirectTo({
+          //     url: '../../order/pay?cartId=' + cartId,
+          //   });
+          //   return false;
+          // }
+
+          wx.showToast({
+            title: '操作成功！',
+            duration: 2000,
+            success:function(){
+              that.DataonLoad();
+            }
+          });
+          
+        } else {
+          wx.showToast({
+            title: res.data.err,
+            duration: 2000
+          });
+        }
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    })
+
   },
-  delAddress: function (e) {
+  delAddress: function(e) {
     var that = this;
     var addrId = e.currentTarget.dataset.id;
     wx.showModal({
@@ -29,17 +83,15 @@ Page({
       content: '你确认移除吗',
       success: function(res) {
         res.confirm && wx.request({
-          url: app.d.ceshiUrl + '/Api/Address/del_adds',
+          url: app.d.userUrl + '/GdWxUserService/removeAddress',
           data: {
-            user_id:app.d.userId,
-            id_arr:addrId
+            useraccount: app.globalData.openid,
+            takedeliveryidid:addrId
           },
           method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-          header: {// 设置请求的 header
-            'Content-Type':  'application/x-www-form-urlencoded'
-          },
-          
+      
           success: function (res) {
+            console.log(res)
             // success
             var status = res.data.status;
             if(status==1){
@@ -63,27 +115,24 @@ Page({
     });
 
   },
-  DataonLoad: function () {
-    var that = this;
-    // 页面初始化 options为页面跳转所带来的参数
+  DataonLoad: function() {
+     var that = this;
+    //  页面初始化 options为页面跳转所带来的参数
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Address/index',
+      url: app.d.userUrl + '/GdWxUserService/userAddress',
+      contentType: 'application/json',
+      method: 'POST',
+      dataType: 'json',
       data: {
-        user_id:app.d.userId,
+        data: app.globalData.openid
       },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {// 设置请求的 header
-        'Content-Type':  'application/x-www-form-urlencoded'
-      },
-      
       success: function (res) {
-        // success
-        var address = res.data.adds;
+        var address = res.data.data;
         if (address == '') {
           var address = []
         }
         that.setData({
-          address: address,
+          address: res.data.data
         })
       },
       fail: function () {
@@ -94,6 +143,6 @@ Page({
         });
       }
     })
-    
+  
   },
 })

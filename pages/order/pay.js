@@ -9,8 +9,21 @@ Page({
     cartId:0,
     addrId:0,//收货地址//测试--
     btnDisabled:false,
-    productData:[],
-    address:{},
+    productData:[{
+      photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg",
+      name:"郭家恒版XXX",
+      price:"250.41",
+      num:"2"
+    }, {
+      photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg",
+        name: "郭家恒版XXX",
+        price: "250.41",
+        num: "2"}],
+    address:{
+      tel:'13937900894',
+      address_xq:"北京",
+      name:"郭家恒"
+      },
     total:0,
     vprice:0,
     vid:0,
@@ -27,36 +40,36 @@ Page({
   },
   loadProductDetail:function(){
     var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Payment/buy_cart',
-      method:'post',
-      data: {
-        cart_id: that.data.cartId,
-        uid: that.data.userId,
-      },
-      header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //that.initProductData(res.data);
-        var adds = res.data.adds;
-        if (adds){
-          var addrId = adds.id;
-          that.setData({
-            address: adds,
-            addrId: addrId
-          });
-        }
-        that.setData({
-          addemt: res.data.addemt,
-          productData:res.data.pro,
-          total: res.data.price,
-          vprice: res.data.price,
-          vou: res.data.vou,
-        });
-        //endInitData
-      },
-    });
+    // wx.request({
+    //   url: app.d.ceshiUrl + '/Api/Payment/buy_cart',
+    //   method:'post',
+    //   data: {
+    //     cart_id: that.data.cartId,
+    //     uid: that.data.userId,
+    //   },
+    //   header: {
+    //     'Content-Type':  'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     //that.initProductData(res.data);
+    //     var adds = res.data.adds;
+    //     if (adds){
+    //       var addrId = adds.id;
+    //       that.setData({
+    //         address: adds,
+    //         addrId: addrId
+    //       });
+    //     }
+    //     that.setData({
+    //       addemt: res.data.addemt,
+    //       productData:res.data.pro,
+    //       total: res.data.price,
+    //       vprice: res.data.price,
+    //       vou: res.data.vou,
+    //     });
+    //     //endInitData
+    //   },
+    // });
   },
 
   remarkInput:function(e){
@@ -101,57 +114,57 @@ Page({
 
   //确认订单
   createProductOrder:function(){
-    this.setData({
-      btnDisabled:false,
-    })
+    // this.setData({
+    //   btnDisabled:false,
+    // })
 
-    //创建订单
-    var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Payment/payment',
-      method:'post',
-      data: {
-        uid: that.data.userId,
-        cart_id: that.data.cartId,
-        type:that.data.paytype,
-        aid: that.data.addrId,//地址的id
-        remark: that.data.remark,//用户备注
-        price: that.data.total,//总价
-        vid: that.data.vid,//优惠券ID
-      },
-      header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data;
-        if(data.status == 1){
-          //创建订单成功
-          if(data.arr.pay_type == 'cash'){
-              wx.showToast({
-                 title:"请自行联系商家进行发货!",
-                 duration:3000
-              });
-              return false;
-          }
-          if(data.arr.pay_type == 'weixin'){
-            //微信支付
-            that.wxpay(data.arr);
-          }
-        }else{
-          wx.showToast({
-            title:"下单失败!",
-            duration:2500
-          });
-        }
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！err:createProductOrder',
-          duration: 2000
-        });
-      }
-    });
+    // //创建订单
+    // var that = this;
+    // wx.request({
+    //   url: app.d.ceshiUrl + '/Api/Payment/payment',
+    //   method:'post',
+    //   data: {
+    //     uid: that.data.userId,
+    //     cart_id: that.data.cartId,
+    //     type:that.data.paytype,
+    //     aid: that.data.addrId,//地址的id
+    //     remark: that.data.remark,//用户备注
+    //     price: that.data.total,//总价
+    //     vid: that.data.vid,//优惠券ID
+    //   },
+    //   header: {
+    //     'Content-Type':  'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     //--init data        
+    //     var data = res.data;
+    //     if(data.status == 1){
+    //       //创建订单成功
+    //       if(data.arr.pay_type == 'cash'){
+    //           wx.showToast({
+    //              title:"请自行联系商家进行发货!",
+    //              duration:3000
+    //           });
+    //           return false;
+    //       }
+    //       if(data.arr.pay_type == 'weixin'){
+    //         //微信支付
+    //         that.wxpay(data.arr);
+    //       }
+    //     }else{
+    //       wx.showToast({
+    //         title:"下单失败!",
+    //         duration:2500
+    //       });
+    //     }
+    //   },
+    //   fail: function (e) {
+    //     wx.showToast({
+    //       title: '网络异常！err:createProductOrder',
+    //       duration: 2000
+    //     });
+    //   }
+    // });
   },
   
   //调起微信支付

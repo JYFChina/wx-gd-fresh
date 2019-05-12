@@ -37,8 +37,7 @@ Page({
         data: {
           data:{
             useraccount: app.globalData.openid,//微信用户唯一标识
-            username: e.detail.userInfo.nickName,//微信用户名
-            avatarUrl: e.detail.userInfo.avatarUrl//微信用户头像图片地址
+            username: e.detail.userInfo.nickName//微信用户名            
           }
          
         },
@@ -74,19 +73,20 @@ Page({
   },
   //获取用户信息接口
   queryUsreInfo: function () {
-    // wx.request({
-    //   url: "" ,
-    //   data: {
-    //     openid: getApp().globalData.openid
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data);
-    //     getApp().globalData.userInfo = res.data;
-    //   }
-    // }) 
+    wx.request({
+      url:  app.d.userUrl+"/GdWxUserService/wxlogin.do" ,
+      data: {
+      
+        openid: getApp().globalData.openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+        getApp().globalData.userInfo = res.data;
+      }
+    }) 
   },
 
 })

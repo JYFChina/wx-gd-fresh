@@ -213,7 +213,7 @@ Page({
   },
 
   onShow: function() {
-    // this.loadProductData();
+  this.loadProductData();
   },
 
   removeShopCard: function(e) {

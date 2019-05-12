@@ -17,7 +17,7 @@
   </van-cell-group>
 </view>
 <view class='address-add'>
-  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="warn">
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" bindtap='addAddress' plain="{{plain}}" disabled="{{disabled}}" bindtap="warn">
     保存
   </button>
 </view>

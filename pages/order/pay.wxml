@@ -13,7 +13,7 @@
 			</view>
 		</view>		
 		
-		<view class="p_all bg_white mt10 font_14" wx:if="{{addemt==0}}">
+		<view class="p_all bg_white mt10 font_14" wx:if="{{addemt==1}}">
 		   <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
 			<view class="df">
 				<view class="df_1 c6">
@@ -53,10 +53,10 @@
 
 	<view class="zhifu mt10 tc">应共支付：<span class="font_20 red">¥ {{total}}</span></view>
 	<!-- <navigator url="##" hover-class="none" class="zhifu mt10">支付宝<image class="x_right" src="/images/x_right.png"></image></navigator> -->
-	<!-- <navigator url="##" hover-class="none" class="zhifu">银联支付<image class="x_right" src="/images/x_right.png"></image></navigator> -->
-	<!-- <navigator url="../order/downline" hover-class="none" class="zhifu">线下支付<image class="x_right" src="/images/x_right.png"></image></navigator>
+	<!-- <navigator url="##" hover-class="none" class="zhifu">银联支付<image class="x_right" src="/images/x_right.png"></image></navigator>
 	<navigator url="../order/downline" hover-class="none" class="zhifu">线下支付<image class="x_right" src="/images/x_right.png"></image></navigator>
- -->
+	<navigator url="../order/downline" hover-class="none" class="zhifu">线下支付<image class="x_right" src="/images/x_right.png"></image></navigator> -->
+
 	<view class="p_all mt10">
 		<view class="btnGreen">
 			<!-- <button type="primary" id="btnPay" formType="submit" loading="{{loading}}" disabled="{{disabled}}">微信支付</button> -->
