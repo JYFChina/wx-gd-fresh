@@ -17,7 +17,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
+    // 登录获取该校程序权限
     wx.login({
       success: function(res) {
         console.log(res)
@@ -32,10 +32,9 @@ App({
 
             if (result.statusCode == "404") {
               console.log("没有找到你要访问的资源，路径问题")
-            } else {
-              
+            } else {          
               that.globalData.openid = result.data.data.openid;
-              console.log(that.globalData.openid)
+              that.globalData.user.useraccount = result.data.data.openid
             }
           }
         })
@@ -53,7 +52,7 @@ App({
             // 可以将 res 发送给后台解码出 unionId
 
             that.globalData.userInfo = res.userInfo
-            console.log(that.globalData.userInfo)
+            console.log("微信提供的用户信息:" + that.globalData.userInfo)
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
             if (this.userInfoReadyCallback) {
@@ -78,7 +77,12 @@ App({
   globalData: {
     userInfo: null,
     category: '全部',
-    openid: 'oeZmf4sSH60bRl2URuUdmPf5qQcw'
+    openid: 'oeZmf4sSH60bRl2URuUdmPf5qQcw',
+    user:{
+      userid:"",
+      useraccount:"",
+      username:""
+    }
 
   }
 })

@@ -3,13 +3,13 @@
   <van-cell-group>
     <van-field value="{{ name }}" required label="姓名" placeholder="请输入名称" bind:click-icon="onClickIcon" bind:change="nameChange" />
     <van-field value="{{ phone }}" type='number' maxlength='11' label="手机" placeholder="请输入手机号" bind:change="telChange" required />
-    <van-field value="{{ email }}" label="邮箱" placeholder="请输入邮箱" bind:change="isEmail" required />
+    <!-- <van-field value="{{ email }}" label="邮箱" placeholder="请输入邮箱" bind:change="isEmail" required /> -->
     <view>
       <picker mode="region" value="{{region}}" bindchange="changeRegin">
         <van-cell required title="地区" value="{{region}}" mode='region'>请选择地区：{{region[0]}} - {{region[1]}} - {{region[2]}}</van-cell>
       </picker>
     </view>
-    <van-field value="{{ message }}" type="textarea" placeholder="请填写详细地址(必填)" autosize='50' border="{{ false }}" />
+    <van-field value="{{ message }}" type="textarea" placeholder="请填写详细地址(必填)" autosize='50' border="{{ false }}" bind:change="detailedChange" />
   </van-cell-group>
   <van-cell-group>
     <van-cell title="设为默认">
@@ -17,7 +17,7 @@
   </van-cell-group>
 </view>
 <view class='address-add'>
-  <button type="warn" size="{{warnSize}}" loading="{{loading}}" bindtap='addAddress' plain="{{plain}}" disabled="{{disabled}}" bindtap="warn">
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" bindtap='addAddress' plain="{{plain}}" disabled="{{disabled}}" >
     保存
   </button>
 </view>

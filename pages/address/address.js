@@ -1,4 +1,5 @@
 // pages/tanchu/tanchu.js
+var app =getApp();
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
 
     interval: 5000,
     duration: 1000,
-    address: {
+    userAddress: {
       phone: '',
       consignee: '',
       address: '',
@@ -39,24 +40,29 @@ Page({
 
   },
   changeCountry(e) {
+
     this.setData({
       countryIndex: e.detail.value
     });
   },
   // 选择省市区函数 
   changeRegin(e) {
+    console.log(e.detail.value)
     this.setData({
-      region: e.detail.value
+      region: e.detail.value,
+      address: e.detail.value
     });
   },
   // 选择二级联动 
   changeMultiPicker(e) {
+
     this.setData({
       multiIndex: e.detail.value
     })
   },
   // 选择三级联动 
   changeMultiPicker3(e) {
+
     this.setData({
       multiIndex3: e.detail.value
     })
@@ -105,35 +111,20 @@ Page({
 
   nameChange: function(event) {
     const name = event.detail || event;
-    let message = '';
-    let disable = '';
-    if (name) {
-      if (/^[\u4e00-\u9fa5]{2,6}$/.test(name)) {
-        message = '';
-        that.setData({
-          "address.consignee": name
-        })
-        disable = false;
-      } else {
-        message = '您输入的姓名有误';
-        disable = true;
-      }
-    } else {
-      message = '输入的姓名不能为空',
-        disable = true
-    }
-    this.setData({
-      nameMessage: message,
-      disabled: disable,
-      acc_name: name
-    });
-    if (this.data.disabled === true) {
-      return false;
-    } else {
-      return true;
-    }
-  },
+    var that = this;
+    that.setData({
+      "userAddress.name": name
+    })
 
+  },
+  detailedChange: function(event) {
+    var that = this;
+    var address = event.detail || event;
+    
+    that.setData({
+      "userAddress.address": address
+    })
+  },
   telChange: function(event) {
     const phone = event.detail || event;
     var that = this;
@@ -166,47 +157,50 @@ Page({
       return true;
     }
   },
-  isEmail: function(event) {
-
-    const email = event.detail || event;
-    let message = '';
-    let disable = '';
-    if (email) {
-      if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(email)) {
-        message = '';
-        disable = false;
-      } else {
-        message = '您输入的邮箱有误';
-        disable = true;
-      }
-    } else {
-      message = '输入的邮箱不能为空',
-        disable = true
-    }
-    this.setData({
-      telMessage: message,
-      disabled: disable,
-      txn_tel: email
-    });
-    if (this.data.disabled === true) {
-      return false;
-    } else {
-      return true;
-    }
-
-  },
   addAddress: function() {
-    wx.request({
-      url: '',
-      data: '',
-      header: {},
-      method: 'POST',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+    var that = this;
+    var userid = app.globalData.user.userid;
+    var consignee = that.data.userAddress.name;
+    var phone = that.data.userAddress.phone;
+    var updatedBy= app.globalData.user.username;
+    var useraccount= app.globalData.user.useraccount;
+    var address = that.data.region[0] + "-" + that.data.region[1] + "-" + that.data.region[0] + "-" + that.data.userAddress.address;
+    var status=1
+    if (that.data.checked){
+      status=1
+    }else{
+      status=0   
+    }
+    if(address==""||address!=null||phone!=""||phone!=null){
+      wx.showToast({
+        title: '地址地区,手机,姓名不能为空',
+        duration: 3000
+      });
+    }else{
+      wx.request({
+
+        url: app.d.userUrl + '/GdWxUserService/addAddress',
+        data: {
+          data: {
+            userid: userid,
+            phone: phone,
+            consignee: consignee,
+            updatedBy: username,
+            useraccount: useraccount,
+            address: address,
+            status: status
+          }
+        },
+        header: {},
+        method: 'POST',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
+    
   }
 
 })

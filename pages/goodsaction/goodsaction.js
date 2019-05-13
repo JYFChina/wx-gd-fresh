@@ -101,6 +101,7 @@ Page({
         data: {
           comdityId: e.currentTarget.id, //商品编号
           useraccount: app.globalData.openid, //用户唯一标识
+          userid:app.globalData.user.userId,
           num: 1 //商品数量默认为1
         }
       },

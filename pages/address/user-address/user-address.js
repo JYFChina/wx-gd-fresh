@@ -34,7 +34,7 @@ Page({
       success: function(res) {
         // success
         console.log(res)
-        if (res.data.status == "500" || res.data.status=="429"){
+        if (res.data.status == "500" || res.data.status == "429") {
           wx.showToast({
             title: '操作过于频繁,20秒后重试',
             duration: 15000
@@ -53,11 +53,11 @@ Page({
           wx.showToast({
             title: '操作成功！',
             duration: 2000,
-            success:function(){
+            success: function() {
               that.DataonLoad();
             }
           });
-          
+
         } else {
           wx.showToast({
             title: res.data.err,
@@ -78,6 +78,7 @@ Page({
   delAddress: function(e) {
     var that = this;
     var addrId = e.currentTarget.dataset.id;
+    console.log(addrId)
     wx.showModal({
       title: '提示',
       content: '你确认移除吗',
@@ -85,25 +86,28 @@ Page({
         res.confirm && wx.request({
           url: app.d.userUrl + '/GdWxUserService/removeAddress',
           data: {
-            useraccount: app.globalData.openid,
-            takedeliveryidid:addrId
+            data: {
+              useraccount: app.globalData.openid,
+              takedeliveryidid: addrId
+            }
           },
           method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      
-          success: function (res) {
+
+          success: function(res) {
             console.log(res)
             // success
             var status = res.data.status;
-            if(status==1){
+            if (status == 1) {
               that.DataonLoad();
-            }else{
+            } else {
               wx.showToast({
                 title: res.data.err,
                 duration: 2000
               });
             }
+            that.DataonLoad();
           },
-          fail: function () {
+          fail: function() {
             // fail
             wx.showToast({
               title: '网络异常！',
@@ -116,7 +120,7 @@ Page({
 
   },
   DataonLoad: function() {
-     var that = this;
+    var that = this;
     //  页面初始化 options为页面跳转所带来的参数
     wx.request({
       url: app.d.userUrl + '/GdWxUserService/userAddress',
@@ -126,7 +130,7 @@ Page({
       data: {
         data: app.globalData.openid
       },
-      success: function (res) {
+      success: function(res) {
         var address = res.data.data;
         if (address == '') {
           var address = []
@@ -135,7 +139,7 @@ Page({
           address: res.data.data
         })
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -143,6 +147,6 @@ Page({
         });
       }
     })
-  
+
   },
 })
