@@ -1,5 +1,5 @@
 // pages/tanchu/tanchu.js
-var app =getApp();
+var app = getApp();
 Page({
 
   /**
@@ -120,7 +120,7 @@ Page({
   detailedChange: function(event) {
     var that = this;
     var address = event.detail || event;
-    
+
     that.setData({
       "userAddress.address": address
     })
@@ -135,7 +135,7 @@ Page({
         message = '';
         console.log(phone)
         that.setData({
-          "address.phone": phone
+          "userAddress.phone": phone
         })
         disable = false;
       } else {
@@ -162,30 +162,31 @@ Page({
     var userid = app.globalData.user.userid;
     var consignee = that.data.userAddress.name;
     var phone = that.data.userAddress.phone;
-    var updatedBy= app.globalData.user.username;
-    var useraccount= app.globalData.user.useraccount;
+    
+    var updatedBy = app.globalData.user.username;
+    var useraccount = app.globalData.user.useraccount;
     var address = that.data.region[0] + "-" + that.data.region[1] + "-" + that.data.region[0] + "-" + that.data.userAddress.address;
-    var status=1
-    if (that.data.checked){
-      status=1
-    }else{
-      status=0   
+    var status = 1
+    if (that.data.checked) {
+      status = 1
+    } else {
+      status = 0
     }
-    if(address==""||address!=null||phone!=""||phone!=null){
+    if (phone == "" && userid == "" && consignee=="") {
       wx.showToast({
         title: '地址地区,手机,姓名不能为空',
         duration: 3000
       });
-    }else{
+    } else {
       wx.request({
 
         url: app.d.userUrl + '/GdWxUserService/addAddress',
         data: {
           data: {
             userid: userid,
-            phone: phone,
+            phone: that.data.userAddress.phone,
             consignee: consignee,
-            updatedBy: username,
+            updatedBy: updatedBy,
             useraccount: useraccount,
             address: address,
             status: status
@@ -195,12 +196,16 @@ Page({
         method: 'POST',
         dataType: 'json',
         responseType: 'text',
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
+        success: function(res) {
+          console.log(res.data);
+        },
+        fail: function(res) {
+
+        },
+        complete: function(res) {},
       })
     }
-    
+
   }
 
 })

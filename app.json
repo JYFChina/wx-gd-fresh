@@ -19,7 +19,8 @@
     "pages/goodsaction/goodsaction",
     "pages/all-search/all-search",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/catalog/catalog"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -60,8 +61,8 @@
         "selectedIconPath": "images/index-hou.png"
       },
       {
-        "pagePath": "pages/all-search/all-search",
-        "text": "全部",
+        "pagePath": "pages/catalog/catalog",
+        "text": "分类",
         "iconPath": "images/quanbu-search.png",
         "selectedIconPath": "images/quanbu-search-hou.png"
       },
