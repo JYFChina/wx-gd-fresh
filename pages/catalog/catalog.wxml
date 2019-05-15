@@ -8,19 +8,20 @@
 <view class="section">
     <!-- 左侧类型 -->
     <scroll-view scroll-y="true" class="left">
-        <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.comditytypeId}}" bindtap="tapType" class="{{item.comditytypeId == currType ? 'active' : ''}}" style="font-size:23rpx">
-            {{item.typename}}
+        <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.comditytypeId}}" bindtap="tapType" class="{{item.comditytypeId == currType ? 'active' : ''}}" style="font-size:23rpx"  wx:if="{{item.parent==0}}">
+        <text class='catalogONE'>{{item.typename}}</text>
+           
         </view>
     </scroll-view>
 
     <!-- 右侧数据 -->
     <scroll-view scroll-y="true" class="right">
         <view class="typeTree">
-            <view  class="brand" wx:for="{{typeTree}}" wx:for-item="data">
-                <navigator url="../all-search/all-search?cat_id={{data.id}}&title={{data.name}}" wx:key="typeId" class="item">
-                   <button class='catalogTWO'>{{data.name}}</button>
+            <view  class="brand" wx:for="{{typeTree}}" wx:for-item="data" wx:if="{{data.parent==currType}}">
+                <navigator url="../all-search/all-search?cat_id={{data.comditytypeId}}&title={{data.typename}}" wx:key="typeId" class="item" >
+                   <button class='catalogTWO'>{{data.typename}}</button>
                 </navigator>
-                    
+                   
             </view>
         </view>
     </scroll-view>

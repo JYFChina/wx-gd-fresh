@@ -9,19 +9,7 @@ Page({
     currType: 0,
     // 当前类型
     types: [],
-    typeTree: [{
-      id: "1",
-      name: "蔬菜时蔬",
-      bz_1: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg"
-    }, {
-      id: "2",
-      name: "海鲜",
-      bz_1: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg"
-    }, {
-      id: "3",
-      name: "饮品",
-      bz_1: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg"
-    }],
+    typeTree: [],
   },
 
   onLoad: function(option) {
@@ -33,18 +21,10 @@ Page({
 
       success: function(res) {
         console.log(res.data.data)
-        var length = res.data.data.length
-        for (let i = 0; i < length; i++) {
-          var parent = res.data.data[i].parent
-          if (parent==0){
-            var one=res.data.data[i]
-            console.log(one)
-            that.setData({
-              types: [one]
-            })
-            console.log(parent)
-          }
-        }
+
+        that.setData({
+          types: res.data.data
+        })
         console.log(that.data.types)
         //--init data 
         // var status = res.data.status;
@@ -86,7 +66,19 @@ Page({
     that.setData({
       currType: currType
     });
-    console.log(currType);
+    that.setData({
+      typeTree: that.data.types
+    })
+    // console.log(currType);
+    // for (let i = 0; i < that.data.types.length; i++) {
+    //   console.log(that.data.types[i].parent == currType);
+    //   if (that.data.types[i].parent == currType){
+    //    
+
+    //   }
+
+    // }
+    // console.log(that.data.typeTree);
     // wx.request({
     //   url: app.d.ceshiUrl + '/Api/Category/getcat',
     //   method: 'post',

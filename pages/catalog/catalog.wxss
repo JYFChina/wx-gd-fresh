@@ -1,23 +1,117 @@
-.section{ position: absolute; width: 100%; height: 100% ; overflow: hidden;}
-.left{ position: absolute; left: 0; top: 0; height: 100%; width: 20vw; background: #F6F6F6; text-align: center;}
-.left::before{ content: ""; position: absolute; background: #dcdcdc; right: 0; top: 0; height: 100%; }
-.left view.active{ background: #FFF; position: relative; z-index: 2;}
-.left view{ display: block; height: 60px; line-height: 60px; border-bottom: 0px solid #dcdcdc;}
-
-.right{ margin-left: 22vw; height: 100%; overflow: hidden; width: auto;background: #fff;}
-.right text{ font-size: 25rpx;}
-.typeTree{ padding-top: 10px;width: 100%}
-.typeTree .item{  text-align: center; display: inline-block; vertical-align: top;}
-.typeTree .brand,
-.typeTree .category{ flex-wrap: wrap; overflow: hidden;display: inline-block;width: 40%;margin-left: 6%}
-.typeTree .title{ padding: 10px 0; display: block; color: #333;}
-.typeTree image { width: 100px; margin: 0 auto;}
-.typeTree .brand image{ height: 100px;}
-.typeTree .category image{ height: 85px;}
-.typeTree .category{ padding-bottom: 10px;}
-.item text{ padding-bottom: 10px; display: block;}
-
-.catalogTWO{
-  width: 30vw;
+.section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
+.left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20vw;
+  background: #f6f6f6;
+  text-align: center;
+}
+
+.left::before {
+  content: "";
+  position: absolute;
+  background: #dcdcdc;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.left view.active {
+  background: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.left view {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 0px solid #dcdcdc;
+}
+
+.right {
+  margin-left: 22vw;
+  height: 100%;
+  overflow: hidden;
+  width: auto;
+  background: #fff;
+}
+
+.right text {
+  font-size: 25rpx;
+}
+
+.typeTree {
+  padding-top: 10px;
+  width: 100%;
+}
+
+.typeTree .item {
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.typeTree .brand, .typeTree .category {
+  flex-wrap: wrap;
+  overflow: hidden;
+  display: inline-block;
+  width: 40%;
+  margin-left: 6%;
+}
+
+.typeTree .title {
+  padding: 10px 0;
+  display: block;
+  color: #333;
+}
+
+.typeTree image {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.typeTree .brand image {
+  height: 100px;
+}
+
+.typeTree .category image {
+  height: 85px;
+}
+
+.typeTree .category {
+  padding-bottom: 10px;
+}
+
+.item text {
+  padding-bottom: 10px;
+  display: block;
+}
+
+.catalogTWO {
+  margin:10px 0; 
+  width: 30vw;
+  height: 33px;
+  font-size: 25rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.catalogONE {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;padding: 0px 10px;
+}

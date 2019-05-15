@@ -1,7 +1,7 @@
 <!--pages/commodity/commodity.wxml-->
 <!-- 搜索引擎 -->
 <view>
- <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
+  <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
     <view slot="action" bind:tap="onSearch">搜索</view>
   </van-search>
 </view>
@@ -20,16 +20,20 @@
   <view style=''>
     <view style='width:100vw;text-align:center;background-color:#F2F2F2;'>
       <!-- 根据标题分类查商品 -->
-      <view wx:for="{{prosList}}">
+
+  
+      <view wx:for="{{atitle}}">
         <view style='padding:20rpx 20rpx;'>
-          <text style='border : 1px solid red;'>{{item.title}}</text>
-          <view style='text-align: right;' bindtap='go' id='{{item.title}}' hover-class='none'> 更多</view>
+          <text style='border : 1px solid red;'>{{item.activityname}}</text>
+          <view style='text-align: right;' bindtap='go' id='{{item.activityId}}' hover-class='none'> 更多</view>
         </view>
-        <view >
-          <van-row gutter="1">
-            <van-col span="12"wx:for="{{item.prosLists}}" wx:for-index="idx" wx:for-item="itemName">
+        <view>
+           <van-row gutter="1" class="nb">
+            <van-col span="12" wx:for="{{list}}" wx:for-index="idx" wx:for-item="itemName" wx:if="{{item.activityId==itemName.activityId}}">
               <view class='sp-radius'>
-                <view class='sp-image' bindtap='swiperTap' id='{{itemName.comdityId}}'><image class="img" src="{{itemName.imagesurl}}" /></view>
+                <view class='sp-image' bindtap='swiperTap' id='{{itemName.comdityId}}'>
+                  <image lazy-load="true" class="img" src="{{itemName.imagesurl}}" />
+                </view>
                 <view class='sp-text'>
                   <text>{{itemName.comdityname}}\n</text>
                   <text class='sp-text-money-color'>￥<text>{{itemName.comdityprice}}</text></text>
@@ -41,9 +45,11 @@
           </van-row>
         </view>
       </view>
+
+      
     </view>
   </view>
-  <view style='width:100vw;' margin-top='20rpx'>
+  <view style='width:100vw;height:5vh' margin-top='20rpx'>
 
   </view>
 </view>

@@ -3,7 +3,7 @@ var app = getApp();
 Page({
 
   data: {
-    background: ['https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg','https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg'], //Baner图
+    background: ['https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg'], //Baner图
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -12,44 +12,35 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    prosList: [{
-      prosLists: [{
-        comdityname: "test1",
-        comdityprice: "15.1",
-        comdityId: "1"
-      }, {
-        comdityname: "test2",
-        comdityprice: "15.2",
-        comdityId: "2"
-      }, {
-        comdityname: "test3",
-        comdityprice: "15.3",
-        comdityId: "3"
-      }, {
-        comdityname: "test4",
-        comdityprice: "15.4",
-        comdityId: "4"
-      }],
-      title: "热卖商品"
-    }]
+    atitle: [],
+    list: [],
+
   },
   onLoad: function() {
+
+    var ss = this;
+    ss.bindActivities();
+    ss.bindGoods();
+    // wx.request({
+    //   url: '',
+    // })
+  },
+  bindGoods: function() {
     var ss = this;
     wx.request({
-      url: app.d.shopUrl+'/GdCommodityService/selheadlineAll',
+      // url: app.d.shopUrl+'/GdCommodityService/selheadlineAll',
+      url: app.d.shopUrl + '/GDActicitesdetailService/queryGoods',
       data: '',
       header: {},
-      method: 'GET',
+      method: 'POST',
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        var prosLists = "prosList[" + 0 + "].prosLists";
-        var title = "prosList[" + 0 + "].title";
-          ss.setData({
-            [prosLists]: res.data.data,
-            [title]:"促销"
-          })
-  
+        console.log(res.data)
+        ss.setData({
+          list: res.data.data
+        })
+
       },
       fail: function(res) {
         console.log(res);
@@ -58,11 +49,34 @@ Page({
 
       },
     })
-
-    // wx.request({
-    //   url: '',
-    // })
   },
+  bindActivities: function() {
+      var ss = this;
+      wx.request({
+        url: app.d.shopUrl + '/GDActicitesdetailService/queryActivities',
+        data: '',
+        header: {},
+        method: 'POST',
+        dataType: 'json',
+        responseType: 'text',
+        success: function(res) {
+          console.log(res.data)
+          ss.setData({
+            atitle: res.data.data
+          })
+
+        },
+        fail: function(res) {
+          console.log(res);
+        },
+        complete: function(res) {
+
+        },
+      })
+    }
+
+
+    ,
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName
     var newData = {}
