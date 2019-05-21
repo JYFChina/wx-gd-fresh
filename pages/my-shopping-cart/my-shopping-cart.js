@@ -8,7 +8,7 @@ Page({
     carts: []
   },
 
-  bindMinus: function (e) {
+  bindMinus: function(e) {
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
     var num = that.data.carts[index].data.num;
@@ -26,13 +26,13 @@ Page({
       method: 'post',
       data: {
         data: {
-          num: num,//商品数量
+          num: num, //商品数量
           cartid: cardId,
           comdityId: e.currentTarget.id, //商品编号
           useraccount: app.globalData.openid //用户唯一标识
         }
       },
-      success: function (res) {
+      success: function(res) {
         var status = res.data.code;
         if (status == 0) {
           // 只有大于一件的时候，才能normal状态，否则disable状态
@@ -55,7 +55,7 @@ Page({
           });
         }
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -66,7 +66,7 @@ Page({
     that.sum();
   },
 
-  bindPlus: function (e) {
+  bindPlus: function(e) {
 
     var that = this;
     var index = parseInt(e.currentTarget.dataset.index);
@@ -85,7 +85,7 @@ Page({
       method: 'post',
       data: {
         data: {
-          num: num,//商品数量
+          num: num, //商品数量
           "cartid": cardId,
           comdityId: e.currentTarget.id, //商品编号
           useraccount: app.globalData.openid //用户唯一标识
@@ -93,7 +93,7 @@ Page({
 
       },
 
-      success: function (res) {
+      success: function(res) {
         var status = res.data.code;
         if (status == 0) {
           // 只有大于一件的时候，才能normal状态，否则disable状态
@@ -116,7 +116,7 @@ Page({
           });
         }
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -128,7 +128,7 @@ Page({
     that.sum();
   },
 
-  bindCheckbox: function (e) {
+  bindCheckbox: function(e) {
     /*绑定点击事件，将checkbox样式改变为选中与非选中*/
     //拿到下标值，以在carts作遍历指示用
     var index = parseInt(e.currentTarget.dataset.index);
@@ -144,7 +144,7 @@ Page({
     this.sum()
   },
 
-  bindSelectAll: function () {
+  bindSelectAll: function() {
     // 环境中目前已选状态
     var selectedAllStatus = this.data.selectedAllStatus;
     // 取反操作
@@ -162,7 +162,8 @@ Page({
     this.sum()
   },
 
-  bindCheckout: function () {
+  bindCheckout: function() {
+    var that = this;
     // 初始化toastStr字符串
     var toastStr = '';
     // 遍历取出已勾选的cid
@@ -179,19 +180,69 @@ Page({
       });
       return false;
     }
+
+    var arr = [];
+    for (var i = 0; i < that.data.carts.length; i++) {
+      var obj = {}
+      obj = that.data.carts[i].data;
+      arr.push(obj)
+      console.log(arr)
+
+    }
+    console.log(that.data.total)
+
+    var userid = app.globalData.user.userId;
+    //进行结算
+    wx.request({
+      url: app.d.orderUrl + '/OrderService/insertOrder',
+      method: 'post',
+      data: {
+        data: {
+          userId: userid,
+          tableData: arr,
+          ordermeans: 0, // 交易手段 ,
+          storeid: 1, //TODO:店铺编号 获取当前店铺编号
+          ordertype: 0, //交易类型 (0-消费 1-退款)
+          orderscene: 2, //交易场景
+          ordermoney: that.total //总价
+          //orderStat: 挂单中  已完成
+        }
+      },
+
+      success: function(res) {
+        var status = res.data.code;
+        if (status == 0) {
+
+          that.sum();
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+
     //存回data
     wx.navigateTo({
       url: '../order/pay?cartId=' + toastStr,
     })
   },
 
-  bindToastChange: function () {
+  bindToastChange: function() {
     this.setData({
       toastHidden: true
     });
   },
 
-  sum: function () {
+  sum: function() {
     var carts = this.data.carts;
     // 计算总金额
     var total = 0;
@@ -203,34 +254,36 @@ Page({
     // 写回经点击修改后的数组
     this.setData({
       carts: carts,
-      total: '¥ ' + total
+      total: total
     });
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.loadProductData();
     this.sum();
   },
 
-  onShow: function () {
+  onShow: function() {
     this.loadProductData();
   },
 
 
   // 数据案例
-  loadProductData: function () {
+  loadProductData: function() {
     var that = this;
-    console.log(app.globalData.user) 
+    console.log(app.globalData.user)
     wx.request({
       url: app.d.orderUrl + '/OrderService/selGwcByShopId',
       method: 'post',
-      data: { data: app.globalData.user.userId},
-      success: function (res) {
+      data: {
+        data: app.globalData.user.userId
+      },
+      success: function(res) {
         that.setData({
           "carts": res.data.data
         })
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -240,20 +293,20 @@ Page({
     });
 
   },
-  removeShopCard: function (e) {
+  removeShopCard: function(e) {
     var that = this;
     var cardId = e.currentTarget.dataset.cartid;
     wx.showModal({
       title: '提示',
       content: '你确认移除吗',
-      success: function (res) {
+      success: function(res) {
         res.confirm && wx.request({
           url: app.d.orderUrl + '/ShoppingCartService/delCartGoods',
           method: 'post',
           data: {
             data: cardId
           },
-          success: function (res) {
+          success: function(res) {
             //--init data
             var data = res.data;
             console.log(data.code)
@@ -274,7 +327,7 @@ Page({
           },
         });
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -283,7 +336,7 @@ Page({
       }
     });
   },
-  swiperTap: function (e) {
+  swiperTap: function(e) {
     var id = e.currentTarget.id;
 
     wx.navigateTo({

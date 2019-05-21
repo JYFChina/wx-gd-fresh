@@ -49,7 +49,7 @@
         <icon wx:else type="circle" size="24" />
         
         <text>全选</text>
-        <text class="reds">{{total}}</text>
+        <text class="reds">¥ {{total}}</text>
    </view>
        <view class="button" bindtap='bindCheckout'>立即结算             </view>
 </view>

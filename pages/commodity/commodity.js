@@ -30,7 +30,12 @@ Page({
     wx.request({
       // url: app.d.shopUrl+'/GdCommodityService/selheadlineAll',
       url: app.d.shopUrl + '/GDActicitesdetailService/queryGoods',
-      data: '',
+      data:{
+        data:{
+          activityId: '',
+          activityname:''
+        }
+      },
       header: {},
       method: 'POST',
       dataType: 'json',
@@ -107,8 +112,8 @@ Page({
     var id = e.currentTarget.id;
     console.log(id)
     app.globalData.category = "123";
-    wx.switchTab({
-      url: '../all-search/all-search'
+    wx.navigateTo({
+      url: '../all-search/all-search?ativ=' + [id]
     })
   },
   swiperTap: function(e) {
