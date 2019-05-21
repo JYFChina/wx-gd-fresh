@@ -198,6 +198,7 @@ Page({
       method: 'post',
       data: {
         data: {
+          status:1,
           userId: userid,
           tableData: arr,
           ordermeans: 0, // 交易手段 ,
@@ -231,9 +232,9 @@ Page({
     });
 
     //存回data
-    wx.navigateTo({
-      url: '../order/pay?cartId=' + toastStr,
-    })
+    // wx.navigateTo({
+    //   url: '../order/pay?cartId=' + toastStr,
+    // })
   },
 
   bindToastChange: function() {

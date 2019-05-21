@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    binding:1,//0：已绑定，1：未绑定
     sms: "",
     isnoVip: null,
     phone: '',
@@ -19,7 +20,7 @@ Page({
     huiyuan: 'transparent',
     huiyuannn: '会员卡账号不能为空',
     toastHidden: true, //吐司  
-    toastText: ''//吐司文本  
+    toastText: '' //吐司文本  
   },
 
   /**
@@ -29,22 +30,6 @@ Page({
     this.setData({
       disabled: true
     })
-  },
-  //获取用户输入的会员卡号
-  onInput: function(e) {
-
-    if (e.detail.value != '' && e.detail.value != null) {
-      this.setData({
-        isnoVip: e.detail.value,
-        disabled: true
-      })
-    } else {
-      this.setData({
-
-        disabled: true
-      })
-    }
-
   },
   //获取用户输入的手机号
   phoneWdInput: function(e) {
@@ -88,15 +73,13 @@ Page({
       sms: e.detail.value
     })
   },
-  onToastChanged: function () {
+  onToastChanged: function() {
     this.setData({
       toastHidden: true
     });
-  },
+  }, //绑定会员
   bindmember: function(e) {
     var that = this;
-
-
 
     console.log(that.data.isnoVip + app.globalData.openid)
     var useraccount = app.globalData.openid
@@ -120,7 +103,47 @@ Page({
             duration: 4000,
             mask: true
           })
-        
+
+        } else {
+
+          wx.showToast({
+            title: '请稍后........',
+            icon: 'loading',
+            duration: 4000,
+            mask: true
+          })
+          wx.navigateTo({
+
+            url: 'member-message',
+          })
+          console.log(result)
+        }
+      }
+    })
+  },
+  //已绑定
+  isBinding: function() {
+    wx.request({
+      url: 'https://a7888716.ngrok.io/GdWxUserService/wxbindMember',
+      method: "POST",
+      data: {
+        data: {
+          "useraccount": useraccount,
+          "phone": that.data.phone,
+          "vipbalance": that.data.money,
+          "vipId": that.data.isnoVip
+        }
+      },
+      success: function (result) {
+
+        if (result.statusCode == "404") {
+          wx.showToast({
+            title: '没有你访问的资源',
+            icon: 'loading',
+            duration: 4000,
+            mask: true
+          })
+
         } else {
 
           wx.showToast({
@@ -138,5 +161,4 @@ Page({
       }
     })
   }
-
 })

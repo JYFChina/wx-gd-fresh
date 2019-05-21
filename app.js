@@ -11,14 +11,14 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://kyd3ay.natappfree.cc',
-    shopUrl: "http://kyd3ay.natappfree.cc/gs",
-    orderUrl: 'http://kyd3ay.natappfree.cc/os',
-    userUrl: 'http://kyd3ay.natappfree.cc/as',
-    userId: 1,
+    hostUrl: 'http://v38g7v.natappfree.cc',
+    shopUrl: "http://v38g7v.natappfree.cc/gs",
+    orderUrl: 'http://v38g7v.natappfree.cc/os',
+    userUrl: 'http://v38g7v.natappfree.cc/as',
+    userId:'',
     appId: "",
     appKey: "",
-    vipUrl: 'http://kyd3ay.natappfree.cc/vs',
+    vipUrl: 'http://v38g7v.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

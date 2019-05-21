@@ -1,13 +1,10 @@
 <!--pages/member-center/member-center.wxml-->
 <view>
   <van-cell-group>
-    <view class='input'>
-      <view class='label'> <label>会员卡号</label></view><input  placeholder="{{huiyuannn}}" bindinput='onInput'></input>
-    </view>
 
     <view class='input'>
     <view class='label'> <label>手机号</label></view>
-     <input  placeholder="{{phone_zz}}"  bindinput='phoneWdInput'type="digit" maxlength="15"style=' border: 1px {{phoneboder}} solid;' ></input>
+     <input  placeholder="{{phone_zz}}"  bindinput='phoneWdInput'type="digit" disabled="{{true}}"  maxlength="15"style=' border: 1px {{phoneboder}} solid;' ></input>
     </view>
    
 
@@ -24,7 +21,7 @@
     <view class='input'>
       <van-panel title="*注意事项" status="*">
         <view style='padding:5% 10%'>
-          <text> 1.请确认所要充值的会员卡帐号和手机号，一旦充值成功，系统将不提供充值修正服务。\n</text>
+          <text> 1.请确认所要充值的会员卡帐号是与手机号绑定，一旦充值成功，系统将不提供充值修正服务。\n</text>
           <text> 2.注册新帐号后，可立即充值。\n</text>
           <text> 3.完成充值后请勿遗弃卡号密码或相关订单号，以备不时之需。\n</text>
           <text> 4.请一定认清网址，以防山寨网站向不了解真相的玩家行骗，导致部分玩家财产损失。\n</text>
@@ -32,7 +29,8 @@
       </van-panel>
     </view>
   </van-cell-group>
-  <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'>点击绑定</van-button>
+  <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'wx:if="{{binding==1}}">点击绑定</van-button>
+  <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'wx:if="{{binding==0}}">解除绑定</van-button>
 </view>
 
 <toast hidden="{{toastHidden}}" duration="1000" bindchange="onToastChanged">    
