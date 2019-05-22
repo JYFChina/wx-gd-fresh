@@ -8,7 +8,7 @@
 
 <view>
   <view wx:for="{{prosList}}">
-    <van-card  tag="促销" price="{{item.comdityprice}}" desc="{{item.comditydescribe}}" title="{{item.comdityname}}" thumb="{{ item.imagesurl }}" thumb-link="../goodsaction/goodsaction?data={{item.comdityId}}">
+    <van-card  tag="{{item.activityname}}" price="{{item.comdityprice}}" desc="{{item.comditydescribe}}" title="{{item.comdityname}}" thumb="{{ item.imagesurl }}" thumb-link="../goodsaction/goodsaction?data={{item.comdityId}}">
       <view slot="footer">
         <van-button size="mini" bindtap='buyGoods' id='{{item.comdityId}}'>立即购买</van-button>
         <van-button size="mini"  bindtap='addCart' id='{{item.comdityId}}'>加入购物车</van-button>

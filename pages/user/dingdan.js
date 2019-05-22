@@ -36,30 +36,195 @@ Page({
   },
 
   //取消订单
-  removeOrder: function(e) {
+  removeOrder: function (e) {
+    // var that = this;
+    // var orderId = e.currentTarget.dataset.orderId;
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '你确定要取消订单吗？',
+    //   success: function (res) {
+    //     res.confirm && wx.request({
+    //       url: app.d.ceshiUrl + '/Api/Order/orders_edit',
+    //       method: 'post',
+    //       data: {
+    //         id: orderId,
+    //         type: 'cancel',
+    //       },
+    //       header: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       },
+    //       success: function (res) {
+    //         //--init data
+    //         var status = res.data.status;
+    //         if (status == 1) {
+    //           wx.showToast({
+    //             title: '操作成功！',
+    //             duration: 2000
+    //           });
+    //           that.loadOrderList();
+    //         } else {
+    //           wx.showToast({
+    //             title: res.data.err,
+    //             duration: 2000
+    //           });
+    //         }
+    //       },
+    //       fail: function () {
+    //         // fail
+    //         wx.showToast({
+    //           title: '网络异常！',
+    //           duration: 2000
+    //         });
+    //       }
+    //     });
 
+    //   }
+    // });
   },
 
   //确认收货
-  recOrder: function(e) {
+  recOrder: function (e) {
+    // var that = this;
+    // var orderId = e.currentTarget.dataset.orderId;
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '你确定已收到宝贝吗？',
+    //   success: function (res) {
+    //     res.confirm && wx.request({
+    //       url: app.d.ceshiUrl + '/Api/Order/orders_edit',
+    //       method: 'post',
+    //       data: {
+    //         id: orderId,
+    //         type: 'receive',
+    //       },
+    //       header: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       },
+    //       success: function (res) {
+    //         //--init data
+    //         var status = res.data.status;
+    //         if (status == 1) {
+    //           wx.showToast({
+    //             title: '操作成功！',
+    //             duration: 2000
+    //           });
+    //           that.loadOrderList();
+    //         } else {
+    //           wx.showToast({
+    //             title: res.data.err,
+    //             duration: 2000
+    //           });
+    //         }
+    //       },
+    //       fail: function () {
+    //         // fail
+    //         wx.showToast({
+    //           title: '网络异常！',
+    //           duration: 2000
+    //         });
+    //       }
+    //     });
 
+    //   }
+    // });
   },
 
-  loadOrderList: function() {
-
+  loadOrderList: function () {
+    var that = this;
+    wx.request({
+      url: app.d.orderUrl + '/OrderService/selOrderPage',
+      method: 'post',
+      data: {
+        userId: app.globalData.user.userId,
+        orderscene: "2",
+      },
+      success: function (res) {
+        console.log(res.data)
+        //--init data        
+        // var status = res.data.status;
+        // var list = res.data.ord;
+        // switch (that.data.currentTab) {
+        //   case 0:
+        //     that.setData({
+        //       orderList0: list,
+        //     });
+        //     break;
+        //   case 1:
+        //     that.setData({
+        //       orderList1: list,
+        //     });
+        //     break;
+        //   case 2:
+        //     that.setData({
+        //       orderList2: list,
+        //     });
+        //     break;
+        //   case 3:
+        //     that.setData({
+        //       orderList3: list,
+        //     });
+        //     break;
+        //   case 4:
+        //     that.setData({
+        //       orderList4: list,
+        //     });
+        //     break;
+        // }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
   },
 
-  loadReturnOrderList: function() {
-
+  loadReturnOrderList: function () {
+    // var that = this;
+    // wx.request({
+    //   url: app.d.ceshiUrl + '/Api/Order/order_refund',
+    //   method: 'post',
+    //   data: {
+    //     uid: app.d.userId,
+    //     page: that.data.refundpage,
+    //   },
+    //   header: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     //--init data        
+    //     var data = res.data.ord;
+    //     var status = res.data.status;
+    //     if (status == 1) {
+    //       that.setData({
+    //         orderList4: that.data.orderList4.concat(data),
+    //       });
+    //     } else {
+    //       wx.showToast({
+    //         title: res.data.err,
+    //         duration: 2000
+    //       });
+    //     }
+    //   },
+    //   fail: function () {
+    //     // fail
+    //     wx.showToast({
+    //       title: '网络异常！',
+    //       duration: 2000
+    //     });
+    //   }
+    // });
   },
 
   // returnProduct:function(){
   // },
-  initSystemInfo: function() {
+  initSystemInfo: function () {
     var that = this;
 
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
@@ -67,43 +232,41 @@ Page({
       }
     });
   },
-  bindChange: function(e) {
+  bindChange: function (e) {
     var that = this;
-    that.setData({
-      currentTab: e.detail.current
-    });
+    that.setData({ currentTab: e.detail.current });
   },
-  swichNav: function(e) {
-    var that = this;
-    if (that.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      var current = e.target.dataset.current;
-      that.setData({
-        currentTab: parseInt(current),
-        // isStatus: e.target.dataset.otype,
-      });
+  swichNav: function (e) {
+    // var that = this;
+    // if (that.data.currentTab === e.target.dataset.current) {
+    //   return false;
+    // } else {
+    //   var current = e.target.dataset.current;
+    //   that.setData({
+    //     currentTab: parseInt(current),
+    //     isStatus: e.target.dataset.otype,
+    //   });
 
-      //没有数据就进行加载
-      switch (that.data.currentTab) {
-        case 0:
-          !that.data.orderList0.length && that.loadOrderList();
-          break;
-        case 1:
-          !that.data.orderList1.length && that.loadOrderList();
-          break;
-        case 2:
-          !that.data.orderList2.length && that.loadOrderList();
-          break;
-        case 3:
-          !that.data.orderList3.length && that.loadOrderList();
-          break;
-        case 4:
-          that.data.orderList4.length = 0;
-          that.loadReturnOrderList();
-          break;
-      }
-    };
+    //   //没有数据就进行加载
+    //   switch (that.data.currentTab) {
+    //     case 0:
+    //       !that.data.orderList0.length && that.loadOrderList();
+    //       break;
+    //     case 1:
+    //       !that.data.orderList1.length && that.loadOrderList();
+    //       break;
+    //     case 2:
+    //       !that.data.orderList2.length && that.loadOrderList();
+    //       break;
+    //     case 3:
+    //       !that.data.orderList3.length && that.loadOrderList();
+    //       break;
+    //     case 4:
+    //       that.data.orderList4.length = 0;
+    //       that.loadReturnOrderList();
+    //       break;
+    //   }
+    // };
   },
   /**
    * 微信支付订单

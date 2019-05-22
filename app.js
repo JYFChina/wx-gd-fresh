@@ -11,14 +11,14 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://ti25t6.natappfree.cc',
-    shopUrl: "http://ti25t6.natappfree.cc/gs",
-    orderUrl: 'http://ti25t6.natappfree.cc/os',
-    userUrl: 'http://ti25t6.natappfree.cc/as',
+    hostUrl: 'http://n3bf4p.natappfree.cc',
+    shopUrl: "http://n3bf4p.natappfree.cc/gs",
+    orderUrl: 'http://n3bf4p.natappfree.cc/os',
+    userUrl: 'http://n3bf4p.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    vipUrl: 'http://ti25t6.natappfree.cc/vs',
+    vipUrl: 'http://n3bf4p.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

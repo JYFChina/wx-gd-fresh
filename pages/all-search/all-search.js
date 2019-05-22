@@ -8,9 +8,7 @@ Page({
   data: {
 
     prosList: [
-      {
-       
-      }
+     
     ]
       
      //商品信息
@@ -21,27 +19,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //活动的id
     let atv = options.ativ;
+    console.log("hhhhh"+atv)
     var that=this;
     that.onSearch(atv);
     
   },
   onSearch: function (event) {
     var ss = this;
-    console.log(event.detail)
     var category = getApp().globalData.category
     wx.request({
       url: app.d.shopUrl + '/GDActicitesdetailService/queryGoods',
       data: {
         data:{
-          activityId: atv,
+          activityId: event,
           activityname:""
         }
       },
-      header: {},
-      method: 'GET',
+      method: 'POST',
       dataType: 'json',
-      responseType: 'text',
       success: function (res) {
         console.log(res.data.data)
         ss.setData({
