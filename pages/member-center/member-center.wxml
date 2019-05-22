@@ -4,7 +4,7 @@
 
     <view class='input'>
     <view class='label'> <label>手机号</label></view>
-     <input  placeholder="{{phone_zz}}"  bindinput='phoneWdInput'type="digit" disabled="{{true}}"  maxlength="15"style=' border: 1px {{phoneboder}} solid;' ></input>
+     <input  placeholder="{{phone_zz}}"  bindinput='phoneWdInput'type="digit" disabled="{{bindbool}}"  maxlength="15"style=' border: 1px {{phoneboder}} solid;' ></input>
     </view>
    
 
@@ -15,7 +15,7 @@
      
        <view class='label'> <label>短信验证码</label></view><input value="{{ sms }}" bindinput='smsWdInput' placeholder="请输入短信验证码" style='width:30vw ; margin-right:30px;'/>
      
-        <van-button slot="button" size="small" type="primary" bindconfirm='telChange' >发送验证码</van-button>
+        <van-button slot="button" size="small" type="primary" bindtap='telChange'>发送验证码</van-button>
       
     </view>
     <view class='input'>
@@ -30,9 +30,14 @@
     </view>
   </van-cell-group>
   <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'wx:if="{{binding==1}}">点击绑定</van-button>
-  <van-button disabled="{{disabled}}" size="large" class='member-add' bindtap='bindmember'wx:if="{{binding==0}}">解除绑定</van-button>
+  <button class='member-add' catchtap="openVerifyCodeView"  disabled="{{disabled}}" wx:if="{{binding==0}}"> 解除绑定 </button>
 </view>
 
+
+<text class="user-motto">{{code}}</text>
+
+<!-- 验证码组件 -->
+<verifycode id='verifycode' title="请输入验证码哈" content="已发送到手机:" />
 <toast hidden="{{toastHidden}}" duration="1000" bindchange="onToastChanged">    
         {{toastText}}    
 </toast>

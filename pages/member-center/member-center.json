@@ -1,3 +1,6 @@
 {
- "navigationBarTitleText": "会员管理"
+  "usingComponents": {
+    "verifycode": "/components/verifycode"
+  },
+  "navigationBarTitleText": "会员管理"
 }
