@@ -1,15 +1,17 @@
 <!--pay.wxml-->
 <view class="w100">
-		<view class="p_all bg_white df item" wx:for="{{productData}}">
+	<view class="p_all bg_white df item" wx:for="{{proData}}">
 			<view class="cp_photo">			
-				<image src="{{item.photo_x}}"></image>
+				<image src="{{item.gdImagesDTO.imagesurl}}"></image>
 			</view>
 			<view class="df_1">	
 				<view class="font_14 mt5 ovh1">
-		           {{item.name}}
-		        </view>
-			<text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
-			<text class="gm_ovh_1h pt10">数量：{{item.num}}</text>
+		      {{item.comdityname}}
+		    </view>
+			  <text class="gm_ovh_1h red pt10">¥{{item.comdityprice}}</text>
+			  <view class="sl">
+		        数量：{{item.comdnum}}
+		    </view>
 			</view>
 		</view>		
 		
@@ -17,8 +19,8 @@
 		   <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
 			<view class="df">
 				<view class="df_1 c6">
-				<view class="l_h20">收货人：{{address.name}}<text class="fl_r mr10">{{address.tel}}</text></view>
-				<view class="l_h20 mt5">地址：{{address.address_xq}}</view>
+				<view class="l_h20">收货人：{{addRess.consignee}}<text class="fl_r mr10">{{addRess.phone}}</text></view>
+				<view class="l_h20 mt5">地址：{{addRess.address}}</view>
 				</view>
 				<image class="x_right mt15" src="/images/x_right.png"></image>			
 			</view>

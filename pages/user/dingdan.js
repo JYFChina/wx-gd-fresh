@@ -12,11 +12,11 @@ Page({
     isStatus: 'pay', //10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,
-    orderList0: [{ photo_x: "图片地址", pid: "1", price_yh: "12.5", product_num: "12", pro_count: "1", price: "15", id: "2", order_sn: "dasda133", type:"weixin"}],//待付款
-    orderList1: [{ photo_x: "图片地址", pid: "1", price_yh: "12.5", product_num: "12", pro_count: "1", price: "15", id: "2", order_sn: "dasda133", type: "weixin" }],//待发货
-    orderList2: [],//待收货
-    orderList3: [],//已完成
-    orderList4: [],//退款/售后
+    orderList0: [], //待付款
+    orderList1: [], //待发货
+    orderList2: [], //待收货
+    orderList3: [], //已完成
+    orderList4: [], //退款/售后
   },
   onLoad: function(options) {
     this.initSystemInfo();
@@ -36,7 +36,7 @@ Page({
   },
 
   //取消订单
-  removeOrder: function (e) {
+  removeOrder: function(e) {
     // var that = this;
     // var orderId = e.currentTarget.dataset.orderId;
     // wx.showModal({
@@ -83,7 +83,7 @@ Page({
   },
 
   //确认收货
-  recOrder: function (e) {
+  recOrder: function(e) {
     // var that = this;
     // var orderId = e.currentTarget.dataset.orderId;
     // wx.showModal({
@@ -129,49 +129,59 @@ Page({
     // });
   },
 
-  loadOrderList: function () {
+  loadOrderList: function() {
     var that = this;
     wx.request({
-      url: app.d.orderUrl + '/OrderService/selOrderPage',
+      url: app.d.orderUrl + '/OrderService/userOrderQuery',
       method: 'post',
       data: {
-        userId: app.globalData.user.userId,
-        orderscene: "2",
+        data: {
+          userId: app.globalData.user.userId,
+          orderScene: "2",
+        }
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
         //--init data        
-        // var status = res.data.status;
-        // var list = res.data.ord;
-        // switch (that.data.currentTab) {
-        //   case 0:
-        //     that.setData({
-        //       orderList0: list,
-        //     });
-        //     break;
-        //   case 1:
-        //     that.setData({
-        //       orderList1: list,
-        //     });
-        //     break;
-        //   case 2:
-        //     that.setData({
-        //       orderList2: list,
-        //     });
-        //     break;
-        //   case 3:
-        //     that.setData({
-        //       orderList3: list,
-        //     });
-        //     break;
-        //   case 4:
-        //     that.setData({
-        //       orderList4: list,
-        //     });
-        //     break;
-        // }
+        var status = res.data.status;
+        var list = res.data.data;
+        var orderlist0 = [];
+        var orderlist1 = [];
+        var orderlist2 = [];
+        var orderlist3 = [];
+        var orderlist4 = [];
+        for (var i = 0; i < res.data.data.length; i++) {
+          console.log(res.data.data[i])
+          if (res.data.data[i].orderStat == "0") {
+            res.data.data[i].num= res.data.data[i].table.length          
+            orderlist0.push(res.data.data[i])
+          } else if (res.data.data[i].orderStat == "1") {
+            res.data.data[i].num = res.data.data[i].table.length          
+            orderlist1.push(res.data.data[i])
+          } else
+          if (res.data.data[i].orderStat == "3") {
+            res.data.data[i].num = res.data.data[i].table.length     
+            orderlist2.push(res.data.data[i])
+          } else
+          if (res.data.data[i].orderStat == "4") {
+            res.data.data[i].num = res.data.data[i].table.length      
+            orderlist3.push(res.data.data[i])
+          } else
+          if (res.data.data[i].orderStat == "5") {
+            res.data.data[i].num = res.data.data[i].table.length
+            orderlist4.push(res.data.data[i])
+          }
+        }
+        // 订单状态  0: 待付款   1: 已付款 / 待发货   2: 已取消  3: 已发货 / 待确认  4: 已完成 ，5：申请退款, 6: 挂单中 7：已退款 8：到店支付
+        that.setData({
+          orderList0: orderlist0, //待付
+          orderList1: orderlist1, //待发
+          orderList2: orderlist2, //待收
+          orderList3: orderlist3, //完成
+          orderList4: orderlist4 //退款
+        })
       },
-      fail: function () {
+      fail: function() {
         // fail
         wx.showToast({
           title: '网络异常！',
@@ -181,7 +191,7 @@ Page({
     });
   },
 
-  loadReturnOrderList: function () {
+  loadReturnOrderList: function() {
     // var that = this;
     // wx.request({
     //   url: app.d.ceshiUrl + '/Api/Order/order_refund',
@@ -220,11 +230,11 @@ Page({
 
   // returnProduct:function(){
   // },
-  initSystemInfo: function () {
+  initSystemInfo: function() {
     var that = this;
 
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
@@ -232,11 +242,13 @@ Page({
       }
     });
   },
-  bindChange: function (e) {
+  bindChange: function(e) {
     var that = this;
-    that.setData({ currentTab: e.detail.current });
+    that.setData({
+      currentTab: e.detail.current
+    });
   },
-  swichNav: function (e) {
+  swichNav: function(e) {
     // var that = this;
     // if (that.data.currentTab === e.target.dataset.current) {
     //   return false;

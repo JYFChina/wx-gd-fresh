@@ -6,24 +6,13 @@ Page({
     userId:0,
     paytype:'weixin',//0线下1微信
     remark:'',
-    cartId:0,
+    orderid:'',
     addrId:0,//收货地址//测试--
     btnDisabled:false,
-    productData:[{
-      photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg",
-      name:"郭家恒版XXX",
-      price:"250.41",
-      num:"2"
-    }, {
-      photo_x: "https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg",
-        name: "郭家恒版XXX",
-        price: "250.41",
-        num: "2"}],
-    address:{
-      tel:'13937900894',
-      address_xq:"北京",
-      name:"郭家恒"
-      },
+    proData:[],
+    addRess:{
+    
+    },
     total:0,
     vprice:0,
     vid:0,
@@ -31,45 +20,59 @@ Page({
     vou:[]
   },
   onLoad:function(options){
-    var uid = app.d.userId;
+    var uid = app.globalData.user.userId;
     this.setData({
-      cartId: options.cartId,
+      orderid: options.orderid,
       userId: uid
     });
     this.loadProductDetail();
   },
+  onShow:function(){
+    this.loadProductDetail();
+  },
   loadProductDetail:function(){
     var that = this;
-    // wx.request({
-    //   url: app.d.ceshiUrl + '/Api/Payment/buy_cart',
-    //   method:'post',
-    //   data: {
-    //     cart_id: that.data.cartId,
-    //     uid: that.data.userId,
-    //   },
-    //   header: {
-    //     'Content-Type':  'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     //that.initProductData(res.data);
-    //     var adds = res.data.adds;
-    //     if (adds){
-    //       var addrId = adds.id;
-    //       that.setData({
-    //         address: adds,
-    //         addrId: addrId
-    //       });
-    //     }
-    //     that.setData({
-    //       addemt: res.data.addemt,
-    //       productData:res.data.pro,
-    //       total: res.data.price,
-    //       vprice: res.data.price,
-    //       vou: res.data.vou,
-    //     });
-    //     //endInitData
-    //   },
-    // });
+    wx.request({
+      url: app.d.orderUrl + '/GDOrderShopService/selOrderShopByIdTWO',
+      method:'post',
+      data: {
+        data: that.data.orderid
+      },
+      success: function (res) {
+        console.log(res.data)
+        //that.initProductData(res.data);
+        var adds = res.data.data.ads;
+        
+        if (adds){
+          var addrId = adds.takedeliveryidid;
+          that.setData({
+            addRess: res.data.data.ads,
+            addrId: addrId
+          });
+          console.log(that.data.addRess)
+        }
+        var pro=[]
+        for (var i = 0; i < res.data.data.comList.length; i++) {
+
+          for (var j = 0; j < res.data.data.ordList.length; j++) {
+            if (res.data.data.comList[i].comdityId == res.data.data.ordList[j].comdityId) {
+              res.data.data.comList[i].comdnum = res.data.data.ordList[j].num
+            }
+          }
+
+          pro.push(res.data.data.comList[i])
+        }
+
+        that.setData({
+          addemt: "1",
+          proData: pro,
+          total: res.data.data.ordx[0].ordermoney,
+          vprice: res.data.data.ordx[0].ordermoney,
+          vou: res.data.data.vou,
+        });
+        //endInitData
+      },
+    });
   },
 
   remarkInput:function(e){

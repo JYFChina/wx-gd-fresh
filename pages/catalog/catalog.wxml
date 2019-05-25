@@ -9,7 +9,7 @@
     <!-- 左侧类型 -->
     <scroll-view scroll-y="true" class="left">
         <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.comditytypeId}}" bindtap="tapType" class="{{item.comditytypeId == currType ? 'active' : ''}}" style="font-size:23rpx"  wx:if="{{item.parent==0}}">
-        <image url="https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg"></image>
+       
         <text class='catalogONE'>{{item.typename}}</text>
            
         </view>

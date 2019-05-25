@@ -15,6 +15,7 @@
     "pages/order/pay",
     "pages/order/downline",
     "pages/order/detil",
+    "pages/order/detail",
     "pages/commodity/commodity",
     "pages/goodsaction/goodsaction",
     "pages/all-search/all-search",

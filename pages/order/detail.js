@@ -5,6 +5,7 @@ Page({
     orderId:0,
     orderData:{},
     proData:[],
+    ordx:{}
   },
   onLoad:function(options){
     this.setData({
@@ -15,24 +16,35 @@ Page({
   loadProductDetail:function(){
     var that = this;
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Order/order_details',
+      url: app.d.orderUrl + '/GDOrderShopService/selOrderShopByIdTWO',
       method:'post',
       data: {
-        order_id: that.data.orderId,
-      },
-      header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
+        data: that.data.orderId,
       },
       success: function (res) {
-
-        var status = res.data.status;
+        console.log(res)
+        var pro =[];  
+        var status = 1;
         if(status==1){
-          var pro = res.data.pro;
-          var ord = res.data.ord;
+          for (var i = 0; i < res.data.data.comList.length;i++){
+            
+            for (var j = 0; j < res.data.data.ordList.length;j++){
+              if (res.data.data.comList[i].comdityId == res.data.data.ordList[j].comdityId){
+                res.data.data.comList[i].comdnum = res.data.data.ordList[j].num
+              }
+            }
+           
+            pro.push(res.data.data.comList[i])
+          }
+         
+          var ord = res.data.data.ordList;
+          console.log(res.data.data.ordx)
           that.setData({
             orderData: ord,
-            proData:pro
+            proData:pro,
+            ordx: res.data.data. ordx
           });
+          console.log(that.data.ordx)
         }else{
           wx.showToast({
             title: res.data.err,

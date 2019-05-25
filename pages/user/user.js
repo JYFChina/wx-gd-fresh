@@ -57,37 +57,37 @@ Page({
   loadOrderStatus: function() {
     //获取用户订单数据
     var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/User/getorder',
-      method: 'post',
-      data: {
-        userId: app.d.userId,
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var status = res.data.status;
-        if (status == 1) {
-          var orderInfo = res.data.orderInfo;
-          that.setData({
-            orderInfo: orderInfo
-          });
-        } else {
-          wx.showToast({
-            title: '非法操作.',
-            duration: 2000
-          });
-        }
-      },
-      error: function (e) {
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      }
-    });
+    // wx.request({
+    //   url: app.d.ceshiUrl + '/Api/User/getorder',
+    //   method: 'post',
+    //   data: {
+    //     userId: app.d.userId,
+    //   },
+    //   header: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     //--init data        
+    //     var status = res.data.status;
+    //     if (status == 1) {
+    //       var orderInfo = res.data.orderInfo;
+    //       that.setData({
+    //         orderInfo: orderInfo
+    //       });
+    //     } else {
+    //       wx.showToast({
+    //         title: '非法操作.',
+    //         duration: 2000
+    //       });
+    //     }
+    //   },
+    //   error: function (e) {
+    //     wx.showToast({
+    //       title: '网络异常！',
+    //       duration: 2000
+    //     });
+    //   }
+    // });
   },
   skipuserinfo : function() {
     wx.navigateTo({
