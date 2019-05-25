@@ -11,14 +11,14 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://jvcucs.natappfree.cc',
-    shopUrl: "http://jvcucs.natappfree.cc/gs",
-    orderUrl: 'http://jvcucs.natappfree.cc/os',
-    userUrl: 'http://jvcucs.natappfree.cc/as',
+    hostUrl: 'http://eg438y.natappfree.cc',
+    shopUrl: "http://eg438y.natappfree.cc/gs",
+    orderUrl: 'http://eg438y.natappfree.cc/os',
+    userUrl: 'http://eg438y.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    vipUrl: 'http://jvcucs.natappfree.cc/vs',
+    vipUrl: 'http://eg438y.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力
@@ -38,8 +38,8 @@ App({
           },
           success: function(result) {
             that.globalData.openid = result.data.data.openid;
-            that.globalData.user.useraccount = result.data.data.openid
-            console.log(that.globalData.openid);
+            that.globalData.user.useraccount = result.data.data.openid;
+           
           }
         })
 

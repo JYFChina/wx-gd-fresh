@@ -21,6 +21,7 @@ Page({
     that.setData({
       [augment]: num
     })
+    console.log(app.globalData.user.useraccount)
     wx.request({
       url: app.d.orderUrl + '/ShoppingCartService/updCartGoods',
       method: 'post',
@@ -29,7 +30,7 @@ Page({
           num: num, //商品数量
           cartid: cardId,
           comdityId: e.currentTarget.id, //商品编号
-          useraccount: app.globalData.openid //用户唯一标识
+          useraccount: app.globalData.user.useraccount //用户唯一标识
         }
       },
       success: function(res) {
@@ -187,55 +188,54 @@ Page({
       obj = that.data.carts[i].data;
       arr.push(obj)
     }
-    console.log(that.data.total)
     var userid = app.globalData.user.userId;
     //进行结算
-    // wx.request({
-    //   url: app.d.orderUrl + '/OrderService/insertOrder',
-    //   method: 'post',
-    //   data: {
-    //     data: {
-    //       status: 1,
-    //       userId: userid,
-    //       tableData: arr,
-    //       vipId: "18376645457", //vi手机号
-    //       ordermeans: 4, // 交易手段 ,
-    //       storeid: 1, //TODO:店铺编号 获取当前店铺编号
-    //       ordertype: 0, //交易类型 (0-消费 1-退款)
-    //       orderscene: 2, //交易场景
-    //       ordermoney: that.data.total //总价
-    //       //orderStat: 挂单中  已完成
-    //     }
-    //   },
+    wx.request({
+      url: app.d.orderUrl + '/OrderService/insertOrder',
+      method: 'post',
+      data: {
+        data: {
+          status: 1,
+          userId: userid,
+          tableData: arr,
+          vipId: "18376645457", //vi手机号
+          ordermeans: 4, // 交易手段 ,
+          storeid: 1, //TODO:店铺编号 获取当前店铺编号
+          ordertype: 0, //交易类型 (0-消费 1-退款)
+          orderscene: 2, //交易场景
+          ordermoney: that.data.total //总价
+          //orderStat: 挂单中  已完成
+        }
+      },
 
-    //   success: function(res) {
-    //     console.log(res.data)
-    //     var status = res.data.code;
-    //     if (status == 0) {
-    //       that.sum();
-    //       var msg=""
-    //       //存回data
-    //       wx.navigateTo({
-    //         url: '../order/pay?orderid=' + msg,
-    //       })
-    //     } else {
-    //       wx.showToast({
-    //         title: '操作失败！',
-    //         duration: 2000
-    //       });
-    //     }
-    //   },
-    //   fail: function() {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
-    wx.navigateTo({
-      url: '../order/pay',
-    })
+      success: function(res) {
+        console.log(res.data.msg)
+        var status = 0;
+        if (status == 0) {
+          that.sum();
+        
+          //存回data
+          wx.navigateTo({
+            url: '../order/pay?orderid=' + res.data.msg,
+          })
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+    // wx.navigateTo({
+    //   url: '../order/pay',
+    // })
 
   },
 

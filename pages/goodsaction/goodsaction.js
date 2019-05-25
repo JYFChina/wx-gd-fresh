@@ -10,8 +10,7 @@ Page({
     previousMargin: 0,
     nextMargin: 0,
     detail: {
-      proName: "测试数据",
-      miaoshu: "66666666"
+
     } //商品描述
 
   },
@@ -93,6 +92,7 @@ Page({
   },
   //添加购物车
   addCart: function(e) {
+    console.log(app.globalData.user.userId)
     wx.request({
       url: app.d.orderUrl + '/ShoppingCartService/addCartGoods',
       method: "post",
