@@ -31,10 +31,13 @@
       <text class="font_12">待付款<text style="color:red">({{orderInfo.pay_num}})</text></text>
     </navigator>
 
-    <!-- <navigator class="df_1" url="../user/dingdan" hover-class="none" >
-      <view><image src="/images/dfh.png"></image>{{orderInfo.HasSum}}</view>
-        <text class="font_12">待发货</text>      
-      </navigator> -->
+    <navigator class="df_1" url="../user/dingdan" hover-class="none">
+      <view>
+        <image src="/images/dfh.png"></image>
+   
+      </view>
+      <text class="font_12">待发货 <text style="color:red">({{orderInfo.HasSum}})</text></text>
+    </navigator>
 
     <navigator class="df_1" url="../user/dingdan?currentTab=2&otype=receive" hover-class="none">
       <view>
@@ -71,14 +74,14 @@
     </navigator>
   </view>
 
-    <view class="qbdd mt10">
+  <view class="qbdd mt10">
     <navigator url="../member-center/member-center" hover-class='none'>
       <span class="font_14 c3">绑定会员</span>
       <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
     </navigator>
   </view>
   <view class="qbdd mt110" style='  padding-bottom: 10%;'>
- 
+
     <span class="font_14 c33">联系客服</span>
     <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
 

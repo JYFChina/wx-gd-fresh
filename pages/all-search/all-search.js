@@ -27,7 +27,7 @@ Page({
     
   },
   onSearch: function (event) {
-    var ss = this;
+    var ss = this; console.log(event.detail)
     var category = getApp().globalData.category
     wx.request({
       url: app.d.shopUrl + '/GDActicitesdetailService/queryGoods',
@@ -82,6 +82,36 @@ Page({
       }
     })
   
+  },
+  searchValueInput: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      searchValue: value,
+    });
+    if (!value && this.data.productData.length == 0) {
+      this.setData({
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+    }
+  },
+  doSearch: function () {
+    var searchKey = this.data.searchValue;
+    console.log(searchKey)
+    if (!searchKey) {
+      this.setData({
+        focus: true,
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+      return;
+    };
+
+    this.setData({
+      hotKeyShow: false,
+      historyKeyShow: false,
+    })
+
   },
   buyGoods:function(e){
     console.log(e.currentTarget.id)

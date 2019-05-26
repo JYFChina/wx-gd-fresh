@@ -9,16 +9,26 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
+    count: "0",
     detail: {
 
     } //商品描述
 
   },
   onLoad(options) {
-
+    var that = this;
     var data = options.data;
+    this.loadShow(data)
+    that.cartCount()
+  },
+  onShow: function() {
+    var that = this;
+    that.cartCount();
+  },
+  loadShow: function(data) {
     console.log(data)
     var that = this;
+    that.cartCount()
     wx.request({
       url: app.d.shopUrl + '/GdCommodityService/selOne',
       data: data,
@@ -48,7 +58,6 @@ Page({
 
       },
     })
-
   },
   changeProperty: function(e) {
     var propertyName = e.currentTarget.dataset.propertyName
@@ -92,6 +101,7 @@ Page({
   },
   //添加购物车
   addCart: function(e) {
+    var that=this;
     console.log(app.globalData.user.userId)
     wx.request({
       url: app.d.orderUrl + '/ShoppingCartService/addCartGoods',
@@ -101,25 +111,20 @@ Page({
         data: {
           comdityId: e.currentTarget.id, //商品编号
           useraccount: app.globalData.openid, //用户唯一标识
-          userid:app.globalData.user.userId,
+          userid: app.globalData.user.userId,
           num: 1 //商品数量默认为1
         }
       },
-       success: function (res) {
-         if(res.data.data=="1"){
-           wx.switchTab({
-             url: '../my-shopping-cart/my-shopping-cart',
-           })
-         }
-    
+      success: function(res) {
+        that.cartCount();
       },
-      fail: function (res) {
-        if (res.statusCode=="500"){
+      fail: function(res) {
+        if (res.statusCode == "500") {
           this.addCart()
         }
       }
     })
-  
+
 
   },
   //立即购买
@@ -138,5 +143,34 @@ Page({
     //     }
     //   }
     // })
+  },
+  cartCount: function() {
+    var that=this;
+    wx.request({
+      url: app.d.orderUrl + '/ShoppingCartService/cartCount',
+      method: "post",
+      dataType: 'json',
+      data: {
+        data: app.globalData.user.userId
+      },
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          count: res.data.data
+        })
+
+
+      },
+      fail: function(res) {
+        if (res.statusCode == "500") {
+          this.addCart()
+        }
+      }
+    })
+  },
+  onClickIcon: function() {
+    wx.switchTab({
+      url: '../my-shopping-cart/my-shopping-cart',
+    })
   }
 })

@@ -10,6 +10,37 @@ Page({
     // 当前类型
     types: [],
     typeTree: [],
+    value: "asda"
+  },
+  searchValueInput: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      searchValue: value,
+    });
+    if (!value && this.data.productData.length == 0) {
+      this.setData({
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+    }
+  },
+  doSearch: function() {
+    var searchKey = this.data.searchValue;
+    console.log(searchKey)
+    if (!searchKey) {
+      this.setData({
+        focus: true,
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+      return;
+    };
+
+    this.setData({
+      hotKeyShow: false,
+      historyKeyShow: false,
+    })
+   
   },
 
   onLoad: function(option) {

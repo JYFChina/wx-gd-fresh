@@ -64,7 +64,7 @@
 <view>
   <van-goods-action>
     <van-goods-action-icon icon="chat-o" text="客服" />
-    <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+    <van-goods-action-icon icon="cart-o" text="购物车"  bind:click="onClickIcon" info="{{count}}" />
    
     <van-goods-action-button text="加入购物车" type="warning" bindtap='addCart' id='{{detail.bianhao}}' />
     <van-goods-action-button text="立即购买" bindtap='buyGood' id='{{detail.bianhao}}' />

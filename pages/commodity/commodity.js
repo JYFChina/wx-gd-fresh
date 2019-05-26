@@ -14,6 +14,7 @@ Page({
     nextMargin: 0,
     atitle: [],
     list: [],
+    value:"asd"
 
   },
   onLoad: function() {
@@ -26,35 +27,15 @@ Page({
     // })
   },
   bindGoods: function() {
-    var ss = this;
-    wx.request({
-      // url: app.d.shopUrl+'/GdCommodityService/selheadlineAll',
-      url: app.d.shopUrl + '/GDActicitesdetailService/queryGoods',
-      data:{
-        data:{
-          activityId: '',
-          activityname:''
-        }
-      },
-      header: {},
-      method: 'POST',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        console.log(res.data)
-        ss.setData({
-          list: res.data.data
-        })
-
-      },
-      fail: function(res) {
-        console.log(res);
-      },
-      complete: function(res) {
-
-      },
-    })
+    
+   
   },
+  onSearch(event) {
+    // event.detail 为当前输入的值
+    console.log(event.detail);
+  },
+
+
   bindActivities: function() {
       var ss = this;
       wx.request({

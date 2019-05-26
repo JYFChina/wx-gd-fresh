@@ -8,14 +8,14 @@
 				<view class="font_14 mt5 ovh1">
 		      {{item.comdityname}}
 		    </view>
-			  <text class="gm_ovh_1h red pt10">¥{{item.ordermoney}}</text>
+			  <text class="gm_ovh_1h red pt10">¥{{item.comdityprice}}</text>
 			  <view class="sl">
 		        数量：{{item.comdnum}}
 		    </view>
 			</view>
 		</view>		
 		
-		<view class="p_all bg_white mt10 font_14">
+		<view class="p_all bg_white mt10 font_14" wx:if="{{ordx[0].takedeliveryidid!=null}}">
 			<view class="df">
 				<view class="df_1 c6">
 				<view class="l_h20">收货人：{{ordx[0].recipients}}<text class="fl_r mr10">{{ordx[0].phone}}</text></view>
@@ -45,7 +45,7 @@
 			<textarea class="min_60" auto-height name="remark" disabled="{{true}}" placeholder="订单备注" value="{{orderData.remark?orderData.remark:'未备注'}}"/> 
 		</view>	
 
-	<view class="zhifu mt10 tc">金额：<span class="font_20 red">¥ {{ordx[0].ordermoney}}</span></view>
+	<view class="zhifu mt10 tc">金额：<span class="font_20 red">¥ {{ordx[0].comditytrueprice}}</span></view>
         
 
 	<view class="p_all mt10">

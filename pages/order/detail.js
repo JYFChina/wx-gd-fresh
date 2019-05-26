@@ -5,7 +5,7 @@ Page({
     orderId:0,
     orderData:{},
     proData:[],
-    ordx:{}
+    ordx:[]
   },
   onLoad:function(options){
     this.setData({
@@ -22,7 +22,6 @@ Page({
         data: that.data.orderId,
       },
       success: function (res) {
-        console.log(res)
         var pro =[];  
         var status = 1;
         if(status==1){
@@ -38,11 +37,10 @@ Page({
           }
          
           var ord = res.data.data.ordList;
-          console.log(res.data.data.ordx)
           that.setData({
             orderData: ord,
             proData:pro,
-            ordx: res.data.data. ordx
+            ordx: res.data.data.ordx
           });
           console.log(that.data.ordx)
         }else{

@@ -1,6 +1,14 @@
 @import "../goodsaction/weui.wxss";
 @import "../goodsaction/goodsaction.wxss";
 
+.label {
+  width: 100vw;
+  min-height: 1.4rem;
+  font-family: UICTFontTextStyleBody;
+  font-size: 15px;
+  display:flex;
+ 
+}
 .nb {
   height: 102vh;
   overflow: hidden;

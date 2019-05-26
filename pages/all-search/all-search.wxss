@@ -1,4 +1,4 @@
-/* pages/all-search/all-search.wxss */
+@import "../catalog/catalog.wxss";
 
 
 .shopCart{

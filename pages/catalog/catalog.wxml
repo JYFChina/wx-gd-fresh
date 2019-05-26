@@ -1,29 +1,33 @@
-
 <view>
-  <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
-    <view slot="action" bind:tap="onSearch">搜索</view>
-  </van-search>
+
+  <view class="search df">
+  <label><text>搜索</text></label>
+    <input class="df_1" placeholder="请输入你有搜索的内容" auto-focus focus="{{focus}}" value="{{searchValue}}" bindinput="searchValueInput" />
+    <button bindtap="doSearch">
+      <image class="searchcion" src="/images/sousuo.png"></image>
+    </button>
+  </view>
 </view>
 
 <view class="section">
-    <!-- 左侧类型 -->
-    <scroll-view scroll-y="true" class="left">
-        <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.comditytypeId}}" bindtap="tapType" class="{{item.comditytypeId == currType ? 'active' : ''}}" style="font-size:23rpx"  wx:if="{{item.parent==0}}">
-       
-        <text class='catalogONE'>{{item.typename}}</text>
-           
-        </view>
-    </scroll-view>
+  <!-- 左侧类型 -->
+  <scroll-view scroll-y="true" class="left">
+    <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.comditytypeId}}" bindtap="tapType" class="{{item.comditytypeId == currType ? 'active' : ''}}" style="font-size:23rpx" wx:if="{{item.parent==0}}">
 
-    <!-- 右侧数据 -->
-    <scroll-view scroll-y="true" class="right">
-        <view class="typeTree">
-            <view  class="brand" wx:for="{{typeTree}}" wx:for-item="data" wx:if="{{data.parent==currType}}">
-                <navigator url="../all-search/all-search?cat_id={{data.comditytypeId}}&title={{data.typename}}" wx:key="typeId" class="item" >
-                   <button class='catalogTWO'>{{data.typename}}</button>
-                </navigator>
-                   
-            </view>
-        </view>
-    </scroll-view>
+      <text class='catalogONE'>{{item.typename}}</text>
+
+    </view>
+  </scroll-view>
+
+  <!-- 右侧数据 -->
+  <scroll-view scroll-y="true" class="right">
+    <view class="typeTree">
+      <view class="brand" wx:for="{{typeTree}}" wx:for-item="data" wx:if="{{data.parent==currType}}">
+        <navigator url="../all-search/all-search?cat_id={{data.comditytypeId}}&title={{data.typename}}" wx:key="typeId" class="item">
+          <button class='catalogTWO'>{{data.typename}}</button>
+        </navigator>
+
+      </view>
+    </view>
+  </scroll-view>
 </view>

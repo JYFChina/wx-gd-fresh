@@ -37,96 +37,89 @@ Page({
 
   //取消订单
   removeOrder: function(e) {
-    // var that = this;
-    // var orderId = e.currentTarget.dataset.orderId;
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '你确定要取消订单吗？',
-    //   success: function (res) {
-    //     res.confirm && wx.request({
-    //       url: app.d.ceshiUrl + '/Api/Order/orders_edit',
-    //       method: 'post',
-    //       data: {
-    //         id: orderId,
-    //         type: 'cancel',
-    //       },
-    //       header: {
-    //         'Content-Type': 'application/x-www-form-urlencoded'
-    //       },
-    //       success: function (res) {
-    //         //--init data
-    //         var status = res.data.status;
-    //         if (status == 1) {
-    //           wx.showToast({
-    //             title: '操作成功！',
-    //             duration: 2000
-    //           });
-    //           that.loadOrderList();
-    //         } else {
-    //           wx.showToast({
-    //             title: res.data.err,
-    //             duration: 2000
-    //           });
-    //         }
-    //       },
-    //       fail: function () {
-    //         // fail
-    //         wx.showToast({
-    //           title: '网络异常！',
-    //           duration: 2000
-    //         });
-    //       }
-    //     });
+    var that = this;
+    var orderId = e.currentTarget.dataset.orderId;
+    wx.showModal({
+      title: '提示',
+      content: '你确定要取消订单吗？',
+      success: function (res) {
+        res.confirm && wx.request({
+          url: app.d.orderUrl + '/OrderService/removeOrder',
+          method: 'post',
+          data: {
+            data: orderId,
+           
+          },
+          success: function (res) {
+            //--init data
+            var status = res.data.code;
+            if (status == 1) {
+              wx.showToast({
+                title: '操作成功！',
+                duration: 2000
+              });
+              that.loadOrderList();
+            } else {
+              wx.showToast({
+                title: res.data.err,
+                duration: 2000
+              });
+            }
+          },
+          fail: function () {
+            // fail
+            wx.showToast({
+              title: '网络异常！',
+              duration: 2000
+            });
+          }
+        });
 
-    //   }
-    // });
+      }
+    });
   },
 
   //确认收货
   recOrder: function(e) {
-    // var that = this;
-    // var orderId = e.currentTarget.dataset.orderId;
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '你确定已收到宝贝吗？',
-    //   success: function (res) {
-    //     res.confirm && wx.request({
-    //       url: app.d.ceshiUrl + '/Api/Order/orders_edit',
-    //       method: 'post',
-    //       data: {
-    //         id: orderId,
-    //         type: 'receive',
-    //       },
-    //       header: {
-    //         'Content-Type': 'application/x-www-form-urlencoded'
-    //       },
-    //       success: function (res) {
-    //         //--init data
-    //         var status = res.data.status;
-    //         if (status == 1) {
-    //           wx.showToast({
-    //             title: '操作成功！',
-    //             duration: 2000
-    //           });
-    //           that.loadOrderList();
-    //         } else {
-    //           wx.showToast({
-    //             title: res.data.err,
-    //             duration: 2000
-    //           });
-    //         }
-    //       },
-    //       fail: function () {
-    //         // fail
-    //         wx.showToast({
-    //           title: '网络异常！',
-    //           duration: 2000
-    //         });
-    //       }
-    //     });
+    var that = this;
+    var orderId = e.currentTarget.dataset.orderId;
+    wx.showModal({
+      title: '提示',
+      content: '你确定已收到宝贝吗？',
+      success: function (res) {
+        res.confirm && wx.request({
+          url: app.d.orderUrl + '/OrderService/updOrderStartOK',
+          method: 'post',
+          data: {
+            data: orderId,
+          },
+          success: function (res) {
+            //--init data
+            var status = res.data.status;
+            if (status == 1) {
+              wx.showToast({
+                title: '操作成功！',
+                duration: 2000
+              });
+              that.loadOrderList();
+            } else {
+              wx.showToast({
+                title: res.data.err,
+                duration: 2000
+              });
+            }
+          },
+          fail: function () {
+            // fail
+            wx.showToast({
+              title: '网络异常！',
+              duration: 2000
+            });
+          }
+        });
 
-    //   }
-    // });
+      }
+    });
   },
 
   loadOrderList: function() {
@@ -141,7 +134,6 @@ Page({
         }
       },
       success: function(res) {
-        console.log(res.data)
         //--init data        
         var status = res.data.status;
         var list = res.data.data;

@@ -10,6 +10,7 @@ Page({
     addrId:0,//收货地址//测试--
     btnDisabled:false,
     proData:[],
+    odrx:[],
     addRess:{
     
     },
@@ -66,7 +67,7 @@ Page({
         that.setData({
           addemt: "1",
           proData: pro,
-          total: res.data.data.ordx[0].ordermoney,
+          total: res.data.data.ordx[0].comditytrueprice,
           vprice: res.data.data.ordx[0].ordermoney,
           vou: res.data.data.vou,
         });

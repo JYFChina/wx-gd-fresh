@@ -1,7 +1,52 @@
+/* 搜索样式 */
+
+.search {
+  padding: 1vh 3vw;
+  background: #f6f6f6;
+}
+
+.search label {
+  
+  width: 15vw;
+  font-size: 35rpx;
+  text-align: center;
+  padding-top: 1vh;
+}
+.search image{
+  padding-top:1vh; 
+}
+.search input {
+  width: 75vw;
+  border-radius: 13px;
+  background: #fff;
+  border: none;
+  font-size: 12px;
+  padding: 1vh 2.5vw;
+  margin-right: 5px;
+}
+
+.search button {
+  line-height: 30px;
+  background: none;
+  text-align: center;
+  border: none;
+  padding: 3px;
+}
+
+.search button::after {
+  content: none;
+}
+
+.searchcion {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+}
+
 .section {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -9,7 +54,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
+  height: 100vh;
   width: 20vw;
   background: #f6f6f6;
   text-align: center;
@@ -21,7 +66,7 @@
   background: #dcdcdc;
   right: 0;
   top: 0;
-  height: 100%;
+  height: 100vh;
 }
 
 .left view.active {
@@ -39,7 +84,7 @@
 
 .right {
   margin-left: 22vw;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   width: auto;
   background: #fff;
@@ -51,7 +96,7 @@
 
 .typeTree {
   padding-top: 10px;
-  width: 100%;
+  width: 100vw;
 }
 
 .typeTree .item {
@@ -97,7 +142,7 @@
 }
 
 .catalogTWO {
-  margin:10px 0; 
+  margin: 10px 0;
   width: 30vw;
   height: 33px;
   font-size: 25rpx;
@@ -113,5 +158,6 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;padding: 0px 10px;
+  -webkit-box-orient: vertical;
+  padding: 0px 10px;
 }

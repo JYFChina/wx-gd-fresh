@@ -26,7 +26,7 @@
             <view class="sp_tit ovh1">{{item.orderid}}</view>
           </navigator>
           <view class="sp_neb"> 产品：×{{item.num}}</view>
-          <view class="sp_jg">¥：{{item.ordermoney}}</view>
+          <view class="sp_jg">¥：{{item.comditytrueprice}}</view>
          
           <navigator class="font_12 red fl_r" url="../order/pay?orderid={{item.orderid}}" >余额支付</navigator>
 
@@ -54,7 +54,7 @@
             <view class="sp_tit ovh1">{{item.orderid}}</view>
           </navigator>
           <view class="sp_neb"> 产品：×{{item.num}}</view>
-          <view class="sp_jg">¥：{{item.ordermoney}}</view>
+          <view class="sp_jg">¥：{{item.comditytrueprice}}</view>
 
           
           <navigator class="font_12 red fl_r" url="tuihuo?orderId={{item.orderid}}">申请退款</navigator>
@@ -80,7 +80,7 @@
             <view class="sp_tit ovh1">{{item.orderid}}</view>
           </navigator>
           <view class="sp_neb"> 产品：×{{item.num}}</view>
-          <view class="sp_jg">¥：{{item.ordermoney}}</view>
+          <view class="sp_jg">¥：{{item.comditytrueprice}}</view>
           <navigator class="font_12 red fl_r" url="tuihuo?orderId={{item.orderid}}">申请退款</navigator>
           <view class="font_12 red fl_r mr_5" bindtap="recOrder" data-order-id="{{item.orderid}}">确认收货</view>
           <navigator url="../order/detail?orderId={{item.orderid}}" class="font_12 red fl_r mr_5">订单详情</navigator>
@@ -105,7 +105,7 @@
             <view class="sp_tit ovh1">{{item.orderid}}</view>
           </navigator>
           <view class="sp_neb"> 产品：×{{item.num}}</view>
-          <view class="sp_jg">¥：{{item.ordermoney}}</view>
+          <view class="sp_jg">¥：{{item.comditytrueprice}}</view>
           <navigator url="../order/detail?orderId={{item.orderid}}" class="font_12 red fl_r mr_5">订单详情</navigator>
         </view>
       </view>
@@ -129,7 +129,7 @@
             <view class="sp_tit ovh1">{{item.orderid}}</view>
           </navigator>
           <view class="sp_neb"> 产品：×{{item.num}}</view>
-          <view class="sp_jg">¥：{{item.ordermoney}}</view>
+          <view class="sp_jg">¥：{{item.comditytrueprice}}</view>
           <view class="font_12 red fl_r">{{item.desc}}</view>
           <!--<navigator url="../order/detail?orderId={{item.id}}" class="font_12 red fl_r mr_5">订单详情</navigator>-->
         </view>

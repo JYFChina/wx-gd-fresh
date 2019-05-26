@@ -5,7 +5,8 @@ Page({
     page: 1,
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
-    carts: []
+    carts: [],
+    vipId: "18376645457", 
   },
 
   bindMinus: function(e) {
@@ -189,6 +190,7 @@ Page({
       arr.push(obj)
     }
     var userid = app.globalData.user.userId;
+   
     //进行结算
     wx.request({
       url: app.d.orderUrl + '/OrderService/insertOrder',
@@ -198,12 +200,13 @@ Page({
           status: 1,
           userId: userid,
           tableData: arr,
-          vipId: "18376645457", //vi手机号
+          vipId: that.data.vipId, //vi手机号
           ordermeans: 4, // 交易手段 ,
           storeid: 1, //TODO:店铺编号 获取当前店铺编号
           ordertype: 0, //交易类型 (0-消费 1-退款)
           orderscene: 2, //交易场景
-          ordermoney: that.data.total //总价
+          ordermoney: that.data.total, //总价
+          comditytrueprice: that.data.total
           //orderStat: 挂单中  已完成
         }
       },

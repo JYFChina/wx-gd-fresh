@@ -11,14 +11,14 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://eg438y.natappfree.cc',
-    shopUrl: "http://eg438y.natappfree.cc/gs",
-    orderUrl: 'http://eg438y.natappfree.cc/os',
-    userUrl: 'http://eg438y.natappfree.cc/as',
+    hostUrl: 'http://f6kj9x.natappfree.cc',
+    shopUrl: "http://f6kj9x.natappfree.cc/gs",
+    orderUrl: 'http://f6kj9x.natappfree.cc/os',
+    userUrl: 'http://f6kj9x.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    vipUrl: 'http://eg438y.natappfree.cc/vs',
+    vipUrl: 'http://f6kj9x.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力
