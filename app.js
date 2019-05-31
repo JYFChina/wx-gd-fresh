@@ -4,6 +4,7 @@ App({
     userInfo: null,
     category: '全部',
     openid: '',
+    storeid: "1",
     user: {
       userId: "",
       useraccount: "",
@@ -11,14 +12,15 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://f6kj9x.natappfree.cc',
-    shopUrl: "http://f6kj9x.natappfree.cc/gs",
-    orderUrl: 'http://f6kj9x.natappfree.cc/os',
-    userUrl: 'http://f6kj9x.natappfree.cc/as',
+    hostUrl: 'http://t74t44.natappfree.cc',
+    shopUrl: "http://t74t44.natappfree.cc/gs",
+    orderUrl: 'http://t74t44.natappfree.cc/os',
+    userUrl: 'http://t74t44.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    vipUrl: 'http://f6kj9x.natappfree.cc/vs',
+   
+    vipUrl: 'http://t74t44.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

@@ -10,12 +10,7 @@
     </view>
 
 
-    <view class='input'>
-      <view class='label'>
-        <label>充值金额</label>
-      </view>
-      <input placeholder="请输入充值的金额" bindinput='moneyWdInput'></input>
-    </view>
+  
     <view class='input' wx:if="{{binding==1}}">
 
       <view class='label'>

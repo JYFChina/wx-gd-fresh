@@ -2,7 +2,7 @@
 <view class="w100">
 		<view class="p_all bg_white df item" wx:for="{{proData}}">
 			<view class="cp_photo">			
-				<image src="{{item.gdImagesDTO.imagesurl}}"></image>
+				<image src="{{item.imagesurl}}"></image>
 			</view>
 			<view class="df_1">	
 				<view class="font_14 mt5 ovh1">

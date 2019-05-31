@@ -6,7 +6,9 @@ Page({
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
     carts: [],
-    vipId: "18376645457", 
+    vipId: "18238817862",
+    viplv: "",
+    vipdiscount: ""
   },
 
   bindMinus: function(e) {
@@ -81,7 +83,6 @@ Page({
       [minus]: num
     })
     var cardId = e.currentTarget.dataset.cartid;
-    console.log("购物车" + cardId)
     wx.request({
       url: app.d.orderUrl + '/ShoppingCartService/updCartGoods',
       method: 'post',
@@ -190,7 +191,7 @@ Page({
       arr.push(obj)
     }
     var userid = app.globalData.user.userId;
-   
+
     //进行结算
     wx.request({
       url: app.d.orderUrl + '/OrderService/insertOrder',
@@ -206,7 +207,8 @@ Page({
           ordertype: 0, //交易类型 (0-消费 1-退款)
           orderscene: 2, //交易场景
           ordermoney: that.data.total, //总价
-          comditytrueprice: that.data.total
+          comditytrueprice: that.data.total,
+          orderStat: "0"
           //orderStat: 挂单中  已完成
         }
       },
@@ -216,7 +218,7 @@ Page({
         var status = 0;
         if (status == 0) {
           that.sum();
-        
+
           //存回data
           wx.navigateTo({
             url: '../order/pay?orderid=' + res.data.msg,
@@ -249,12 +251,26 @@ Page({
   },
 
   sum: function() {
+    var that = this;
     var carts = this.data.carts;
     // 计算总金额
     var total = 0;
+    console.log(carts)
     for (var i = 0; i < carts.length; i++) {
+      var price = 0;
+      var zhek = 1;
+      if (that.data.vipdiscount != "") {
+        zhek = that.data.vipdiscount
+      }
+      if (carts[i].data.discount < carts[i].data.comdityprice) {
+        price = carts[i].data.comdityprice * zhek
+      } else {
+
+        price = carts[i].data.discount * zhek
+
+      }
       if (carts[i].selected) {
-        total += carts[i].data.num * carts[i].data.comdityprice;
+        total += carts[i].data.num * price;
       }
     }
     // 写回经点击修改后的数组
@@ -267,17 +283,60 @@ Page({
   onLoad: function(options) {
     this.loadProductData();
     this.sum();
+    this.vipBool()
   },
 
   onShow: function() {
     this.loadProductData();
+    this.vipBool()
   },
 
+  vipBool: function() {
+      var that = this;
+      wx.request({
+        url: app.d.vipUrl + '/VipService/selVipByVipPhoneAndUserId',
+        method: 'post',
+        data: {
+          data: {
+            userId: app.globalData.user.userId
+          }
+        },
+        success: function(res) {
+          console.log(res.data.data.viplv)
+          //that.initProductData(res.data);
+          that.setData({
+            viplv: res.data.data.viplv
+          })
+          if (that.data.viplv != "") {
+            that.vipBool2()
+          }
 
+        },
+      });
+    }
+
+    ,
+  vipBool2: function() {
+    var that = this;
+    wx.request({
+      url: app.d.vipUrl + '/VipLvService/selVipLvByViplv',
+      method: 'post',
+      data: {
+        data: that.data.viplv
+      },
+      success: function(res) {
+        console.log(res.data)
+
+        that.setData({
+          vipdiscount: res.data.data.vipdiscount
+        })
+        //endInitData
+      },
+    });
+  },
   // 数据案例
   loadProductData: function() {
     var that = this;
-    console.log(app.globalData.user)
     wx.request({
       url: app.d.orderUrl + '/OrderService/selGwcByShopId',
       method: 'post',
@@ -285,6 +344,7 @@ Page({
         data: app.globalData.user.userId
       },
       success: function(res) {
+        console.log(res.data.data)
         that.setData({
           "carts": res.data.data
         })

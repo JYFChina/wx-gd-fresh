@@ -18,6 +18,9 @@ Page({
     orderList3: [], //已完成
     orderList4: [], //退款/售后
   },
+  onShow:function(){
+   this. loadOrderList();
+  },
   onLoad: function(options) {
     this.initSystemInfo();
     this.setData({
@@ -53,7 +56,7 @@ Page({
           success: function (res) {
             //--init data
             var status = res.data.code;
-            if (status == 1) {
+            if (status == 0) {
               wx.showToast({
                 title: '操作成功！',
                 duration: 2000
@@ -99,9 +102,12 @@ Page({
             if (status == 1) {
               wx.showToast({
                 title: '操作成功！',
-                duration: 2000
+                duration: 2000,
+                success:function(){
+                  that.loadOrderList(); 
+                }
               });
-              that.loadOrderList();
+             
             } else {
               wx.showToast({
                 title: res.data.err,
@@ -142,8 +148,12 @@ Page({
         var orderlist2 = [];
         var orderlist3 = [];
         var orderlist4 = [];
+        
+        app.globalData.storeid=res.data.data[0].storeid;
+        
         for (var i = 0; i < res.data.data.length; i++) {
-          console.log(res.data.data[i])
+         
+
           if (res.data.data[i].orderStat == "0") {
             res.data.data[i].num= res.data.data[i].table.length          
             orderlist0.push(res.data.data[i])
@@ -184,44 +194,8 @@ Page({
   },
 
   loadReturnOrderList: function() {
-    // var that = this;
-    // wx.request({
-    //   url: app.d.ceshiUrl + '/Api/Order/order_refund',
-    //   method: 'post',
-    //   data: {
-    //     uid: app.d.userId,
-    //     page: that.data.refundpage,
-    //   },
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     //--init data        
-    //     var data = res.data.ord;
-    //     var status = res.data.status;
-    //     if (status == 1) {
-    //       that.setData({
-    //         orderList4: that.data.orderList4.concat(data),
-    //       });
-    //     } else {
-    //       wx.showToast({
-    //         title: res.data.err,
-    //         duration: 2000
-    //       });
-    //     }
-    //   },
-    //   fail: function () {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
+  
   },
-
-  // returnProduct:function(){
-  // },
   initSystemInfo: function() {
     var that = this;
 
@@ -240,50 +214,8 @@ Page({
       currentTab: e.detail.current
     });
   },
-  swichNav: function(e) {
-    // var that = this;
-    // if (that.data.currentTab === e.target.dataset.current) {
-    //   return false;
-    // } else {
-    //   var current = e.target.dataset.current;
-    //   that.setData({
-    //     currentTab: parseInt(current),
-    //     isStatus: e.target.dataset.otype,
-    //   });
-
-    //   //没有数据就进行加载
-    //   switch (that.data.currentTab) {
-    //     case 0:
-    //       !that.data.orderList0.length && that.loadOrderList();
-    //       break;
-    //     case 1:
-    //       !that.data.orderList1.length && that.loadOrderList();
-    //       break;
-    //     case 2:
-    //       !that.data.orderList2.length && that.loadOrderList();
-    //       break;
-    //     case 3:
-    //       !that.data.orderList3.length && that.loadOrderList();
-    //       break;
-    //     case 4:
-    //       that.data.orderList4.length = 0;
-    //       that.loadReturnOrderList();
-    //       break;
-    //   }
-    // };
-  },
-  /**
-   * 微信支付订单
-   */
-  // payOrderByWechat: function(event){
-  //   var orderId = event.currentTarget.dataset.orderId;
-  //   this.prePayWechatOrder(orderId);
-  //   var successCallback = function(response){
-  //     console.log(response);
-  //   }
-  //   common.doWechatPay("prepayId", successCallback);
-  // },
-
+ 
+ 
   payOrderByWechat: function(e) {
     var order_id = e.currentTarget.dataset.orderId;
     var order_sn = e.currentTarget.dataset.ordersn;
@@ -349,20 +281,5 @@ Page({
     })
   },
 
-  /**
-   * 调用服务器微信统一下单接口创建一笔微信预订单
-   */
-  //   prePayWechatOrder: function(orderId){
-  //     var uri = "/ztb/userZBT/GetWxOrder";
-  //     var method = "post";
-  //     var dataMap = {
-  //       SessionId: app.globalData.userInfo.sessionId,
-  //       OrderNo: orderId
-  //     }
-  //     console.log(dataMap);
-  //     var successCallback = function (response) {
-  //       console.log(response);
-  //     };
-  //     common.sentHttpRequestToServer(uri, dataMap, method, successCallback);
-  //   }
+
 })

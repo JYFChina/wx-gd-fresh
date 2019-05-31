@@ -122,6 +122,7 @@
     </view>
 
     <view class="shop df" wx:for="{{orderList4}}">
+     
       <image class="sh_slt" src="{{item.table[0].imageUrl}}"></image>
       <view class="df_1">
         <view class="sp_text">

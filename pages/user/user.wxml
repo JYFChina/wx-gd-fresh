@@ -36,14 +36,14 @@
         <image src="/images/dfh.png"></image>
    
       </view>
-      <text class="font_12">待发货 <text style="color:red">({{orderInfo.HasSum}})</text></text>
+      <text class="font_12">待发货 <text style="color:red">({{orderInfo.rec_num}})</text></text>
     </navigator>
 
     <navigator class="df_1" url="../user/dingdan?currentTab=2&otype=receive" hover-class="none">
       <view>
         <image src="/images/dpl.png"></image>
       </view>
-      <text class="font_12">待收货<text style="color:red">({{orderInfo.rec_num}})</text></text>
+      <text class="font_12">待收货<text style="color:red">({{orderInfo.HasSum}})</text></text>
     </navigator>
 
     <navigator class="df_1" url="../user/dingdan?currentTab=3&otype=finish" hover-class="none">
@@ -67,12 +67,6 @@
       <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
     </navigator>
   </view>
-  <view class="qbdd mt10">
-    <navigator url="../rituall/rituall" hover-class='none'>
-      <span class="font_14 c3">优惠劵</span>
-      <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
-    </navigator>
-  </view>
 
   <view class="qbdd mt10">
     <navigator url="../member-center/member-center" hover-class='none'>
@@ -80,13 +74,6 @@
       <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
     </navigator>
   </view>
-  <view class="qbdd mt110" style='  padding-bottom: 10%;'>
-
-    <span class="font_14 c33">联系客服</span>
-    <span class="fl_r c9 font_12 l_h20" hover-class="none"> ></span>
-
-  </view>
-
 
 
 </view>

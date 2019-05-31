@@ -1,7 +1,7 @@
 <!--pages/user/user-login.wxml-->
 <view wx:if="{{canIUse}}">
 <view class='header'>
-<image src='/images/shopping-cart.png'></image>
+<image src='/images/ming.png'></image>
 </view>
 
 <view class='content'>

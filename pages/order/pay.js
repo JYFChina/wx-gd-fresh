@@ -1,58 +1,64 @@
 var app = getApp();
 // pages/order/downline.js
 Page({
-  data:{
-    itemData:{},
-    userId:0,
-    paytype:'weixin',//0线下1微信
-    remark:'',
-    orderid:'',
-    addrId:0,//收货地址//测试--
-    btnDisabled:false,
-    proData:[],
-    odrx:[],
-    addRess:{
-    
+  data: {
+    itemData: {},
+    userId: 0,
+    paytype: 'weixin', //0线下1微信
+    remark: '',
+    orderid: '',
+    addrId: 0, //收货地址//测试--
+    btnDisabled: false,
+    proData: [],
+    odrx: [],
+    vipbalance: "",
+    vipphone:"",
+    addRess: {
+
     },
-    total:0,
-    vprice:0,
-    vid:0,
-    addemt:1,
-    vou:[]
+    total: 0,
+    vprice: 0,
+    vipdiscount: "",
+    vid: 0,
+    viplv: "0",
+    addemt: 1,
+    vou: []
   },
-  onLoad:function(options){
+  onLoad: function(options) {
+    console.log(options.orderid)
     var uid = app.globalData.user.userId;
     this.setData({
       orderid: options.orderid,
       userId: uid
     });
     this.loadProductDetail();
+    this.vipBool();
   },
-  onShow:function(){
+  onShow: function() {
     this.loadProductDetail();
+    this.vipBool();
   },
-  loadProductDetail:function(){
+  loadProductDetail: function() {
     var that = this;
     wx.request({
       url: app.d.orderUrl + '/GDOrderShopService/selOrderShopByIdTWO',
-      method:'post',
+      method: 'post',
       data: {
         data: that.data.orderid
       },
-      success: function (res) {
-        console.log(res.data)
+      success: function(res) {
         //that.initProductData(res.data);
         var adds = res.data.data.ads;
-        
-        if (adds){
+
+        if (adds) {
           var addrId = adds.takedeliveryidid;
           that.setData({
             addRess: res.data.data.ads,
             addrId: addrId
           });
-          console.log(that.data.addRess)
+
         }
-        var pro=[]
+        var pro = []
         for (var i = 0; i < res.data.data.comList.length; i++) {
 
           for (var j = 0; j < res.data.data.ordList.length; j++) {
@@ -69,21 +75,63 @@ Page({
           proData: pro,
           total: res.data.data.ordx[0].comditytrueprice,
           vprice: res.data.data.ordx[0].ordermoney,
-          vou: res.data.data.vou,
+
         });
         //endInitData
       },
     });
   },
+  vipBool: function() {
+      var that = this;
+      wx.request({
+        url: app.d.vipUrl + '/VipService/selVipByVipPhoneAndUserId',
+        method: 'post',
+        data: {
+          data: {
+            userId: app.globalData.user.userId
+          }
+        },
+        success: function(res) {
+          that.setData({
+            viplv: res.data.data.viplv,
+            vipbalance: res.data.data.vipbalance,
+            vipphone: res.data.data.vipphone
+          })
+          if (that.data.viplv != "") {
+            that.vipBool2()
+          }
 
-  remarkInput:function(e){
+        },
+      });
+    }
+
+    ,
+  vipBool2: function() {
+    var that = this;
+    var s = that.vipBool
+    console.log(s);
+    wx.request({
+      url: app.d.vipUrl + '/VipLvService/selVipLvByViplv',
+      method: 'post',
+      data: {
+        data: that.data.viplv
+      },
+      success: function(res) {
+        console.log(res.data)
+
+
+        //endInitData
+      },
+    });
+  },
+  remarkInput: function(e) {
     this.setData({
       remark: e.detail.value,
     })
   },
 
- //选择优惠券
-  getvou:function(e){
+  //选择优惠券
+  getvou: function(e) {
     var vid = e.currentTarget.dataset.id;
     var price = e.currentTarget.dataset.price;
     var zprice = this.data.vprice;
@@ -92,140 +140,85 @@ Page({
       total: cprice,
       vid: vid
     })
-  }, 
+  },
 
-//微信支付
-  createProductOrderByWX:function(e){
+  //微信支付
+  createProductOrderByWX: function(e) {
     this.setData({
       paytype: 'weixin',
     });
+    var that = this;
+    if (that.data.vipbalance < that.data.total) {
+      wx.showToast({
+        title: "会员账户余额不足，请到店充值!",
+        duration: 3000
+      });
+    } else {
+      this.wxpay(that.data.orderid)
+    }
 
-    this.createProductOrder();
+
   },
 
   //线下支付
-  createProductOrderByXX:function(e){
+  createProductOrderByXX: function(e) {
     this.setData({
       paytype: 'cash',
     });
     wx.showToast({
-      title: "线下支付开通中，敬请期待!",
-      duration: 3000
+      title: "凭订单号到店提货付款!",
+      duration: 3000,
+      success: function() {
+        wx.showToast({
+          title: "请在营业时间取货!",
+          duration: 3000
+        });
+      }
     });
     return false;
-    this.createProductOrder();
+ 
   },
 
-  //确认订单
-  createProductOrder:function(){
-    // this.setData({
-    //   btnDisabled:false,
-    // })
+ 
 
-    // //创建订单
-    // var that = this;
-    // wx.request({
-    //   url: app.d.ceshiUrl + '/Api/Payment/payment',
-    //   method:'post',
-    //   data: {
-    //     uid: that.data.userId,
-    //     cart_id: that.data.cartId,
-    //     type:that.data.paytype,
-    //     aid: that.data.addrId,//地址的id
-    //     remark: that.data.remark,//用户备注
-    //     price: that.data.total,//总价
-    //     vid: that.data.vid,//优惠券ID
-    //   },
-    //   header: {
-    //     'Content-Type':  'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     //--init data        
-    //     var data = res.data;
-    //     if(data.status == 1){
-    //       //创建订单成功
-    //       if(data.arr.pay_type == 'cash'){
-    //           wx.showToast({
-    //              title:"请自行联系商家进行发货!",
-    //              duration:3000
-    //           });
-    //           return false;
-    //       }
-    //       if(data.arr.pay_type == 'weixin'){
-    //         //微信支付
-    //         that.wxpay(data.arr);
-    //       }
-    //     }else{
-    //       wx.showToast({
-    //         title:"下单失败!",
-    //         duration:2500
-    //       });
-    //     }
-    //   },
-    //   fail: function (e) {
-    //     wx.showToast({
-    //       title: '网络异常！err:createProductOrder',
-    //       duration: 2000
-    //     });
-    //   }
-    // });
-  },
-  
   //调起微信支付
-  wxpay: function(order){
-      wx.request({
-        url: app.d.ceshiUrl + '/Api/Wxpay/wxpay',
+  wxpay: function(orderid) {
+    var that=this;
+    wx.request({
+      url: app.d.orderUrl + '/OrderService/payOrder',
+      data: {
         data: {
-          order_id:order.order_id,
-          order_sn:order.order_sn,
-          uid:this.data.userId,
-        },
-        method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        header: {
-          'Content-Type':  'application/x-www-form-urlencoded'
-        }, // 设置请求的 header
-        success: function(res){
-          if(res.data.status==1){
-            var order=res.data.arr;
-            wx.requestPayment({
-              timeStamp: order.timeStamp,
-              nonceStr: order.nonceStr,
-              package: order.package,
-              signType: 'MD5',
-              paySign: order.paySign,
-              success: function(res){
-                wx.showToast({
-                  title:"支付成功!",
-                  duration:2000,
-                });
-                setTimeout(function(){
-                  wx.navigateTo({
-                    url: '../user/dingdan?currentTab=1&otype=deliver',
-                  });
-                },2500);
-              },
-              fail: function(res) {
-                wx.showToast({
-                  title:res,
-                  duration:3000
-                })
-              }
-            })
-          }else{
-            wx.showToast({
-              title: res.data.err,
-              duration: 2000
-            });
-          }
-        },
-        fail: function() {
-          // fail
-          wx.showToast({
-            title: '网络异常！err:wxpay',
-            duration: 2000
-          });
+          orderid: orderid,
+          address: that.data.addRess.address,
+          recipients: that.data.addRess.recipients,
+          phone: that.data.vipphone,
+          ordermoney: that.data.total,
+          userId:app.globalData.user.userId,
+          storeid: app.globalData.storeid
         }
-      })
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      success: function(res) {
+      
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          success:function(){
+            wx.navigateTo({
+              url: '../user/dingdan',
+            })
+          }
+        });
+      
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！err:wxpay',
+          duration: 2000
+        });
+      }
+    })
   },
 
 

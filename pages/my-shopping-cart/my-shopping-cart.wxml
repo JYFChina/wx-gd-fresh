@@ -15,13 +15,13 @@
          <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
      <!--img-->
      <view bindtap='swiperTap' id='{{item.data.comdityId}}'>
-         <image class="carts-image" src="{{item.data.imagesurl}}" mode="aspectFill" />
+         <image class="carts-image" src="{{item.data.gdImagesDTO.imagesurl}}" mode="aspectFill" />
     </view>
     <!--文字-->
    <view class="carts-text">
        <text class="carts-title">{{item.data.comdityname}}</text>
     <view class="carts-subtitle">
-        <text class="carts-price">¥ {{item.data.comdityprice}}</text>
+        <text class="carts-price">¥ {{item.data.discount}}</text>
     </view>
      </view>
 <!--右边-->
@@ -49,7 +49,9 @@
         <icon wx:else type="circle" size="24" />
         
         <text>全选</text>
-        <text class="reds">¥ {{total}}</text>
+        <text class="reds">¥ {{total}} <text wx:if="{{vipdiscount!=''}}"
+        >享有会员折扣</text><text wx:if="{{vipdiscount==''}}"
+        >未享有会员折扣</text></text>
    </view>
        <view class="button" bindtap='bindCheckout'>立即结算             </view>
 </view>

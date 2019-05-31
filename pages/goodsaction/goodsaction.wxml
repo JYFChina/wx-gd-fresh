@@ -36,9 +36,9 @@
         <text>千克</text>
         <text>(KG)</text>
       </view>
-      <view class="flex-view-item" class="sp-xinxin">商品单价 ：
+      <view class="flex-view-item" class="sp-xinxin">商品原价 ：
         <!-- 可变 -->
-        <text>12313</text>
+        <text>{{detail.oldprice}}</text>
         <text>元</text>
       </view>
       <view class="flex-view-item" class="sp-xinxin">商品描述 ：

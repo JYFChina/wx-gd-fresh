@@ -198,6 +198,9 @@ Page({
         responseType: 'text',
         success: function(res) {
           console.log(res.data);
+          wx.navigateTo({
+            url: '../address/address',
+          })
         },
         fail: function(res) {
 

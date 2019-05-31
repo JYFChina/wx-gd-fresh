@@ -8,7 +8,10 @@
     </button>
   </view>
 </view>
-
+<view class="search_no" wx:if="{{!!searchValue && !productData.length}}">
+    <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+    <text>没有找到您要的宝贝/(ㄒoㄒ)/~~</text>
+</view>
 <view>
   <view wx:for="{{prosList}}">
     <van-card tag="{{item.activityname}}" price="{{item.comdityprice}}" desc="{{item.comditydescribe}}" title="{{item.comdityname}}" thumb="{{ item.imagesurl }}" thumb-link="../goodsaction/goodsaction?data={{item.comdityId}}">

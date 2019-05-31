@@ -20,12 +20,12 @@
 
       <view wx:for="{{atitle}}">
         <view style='padding:20rpx 20rpx;'>
-          <text style='border : 1px solid red;'>{{item.activityname}}</text>
+          <text>{{item.activityname}}</text>
           <view style='text-align: right;' bindtap='go' id='{{item.activityId}}' hover-class='none'> 更多</view>
         </view>
         <view>
           <van-row gutter="1" class="nb">
-            <van-col span="12" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName">
+            <van-col span="12" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName" >
               <view class='sp-radius'>
                 <view class='sp-image' bindtap='swiperTap' id='{{itemName.commodityId}}'>
                   <image lazy-load="true" class="img" src="{{itemName.imagesurl}}" />

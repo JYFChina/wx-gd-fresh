@@ -22,6 +22,7 @@ Page({
         data: that.data.orderId,
       },
       success: function (res) {
+        console.log(res)
         var pro =[];  
         var status = 1;
         if(status==1){

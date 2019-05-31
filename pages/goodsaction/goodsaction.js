@@ -30,24 +30,35 @@ Page({
     var that = this;
     that.cartCount()
     wx.request({
-      url: app.d.shopUrl + '/GdCommodityService/selOne',
-      data: data,
-      header: {},
+      url: app.d.shopUrl + '/GdCommodityService/selOnes',
+      data: {
+        data:{
+          comdityId:data,
+          storeid:1
+        }
+      },
+
       contentType: 'application/json',
       method: 'post',
       dataType: 'json',
       success: function(res) {
+        console.log(res.data)
         that.setData({
-          background: [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
+          background: [res.data.data.gdImagesDTO.imagesurl, res.data.data.gdImagesDTO.imagesDTOS[0].imagesurl, res.data.data.gdImagesDTO.imagesDTOS[1].imagesurl]
         })
+        var arr=[]
+        for (var i = 0; i < res.data.data.gdImagesDTO.imagesDTOS.length;i++){
+          arr.push(res.data.data.gdImagesDTO.imagesDTOS[i].imagesurl) 
+        }
         // 页面加载是更新成你所选中的商品
         that.setData({
-          "detail.price": res.data.data.comdityprice,
+          "detail.price": res.data.data.discount,
+          "detail.oldprice": res.data.data.comdityprice,
           "detail.miaoshu": res.data.data.comditydescribe,
           "detail.bianhao": res.data.data.comdityId,
           "detail.proName": res.data.data.comdityname,
           "detail.danjia": res.data.data.comditydescribe,
-          "detail.image": [res.data.data.imagesurl, res.data.data.imagesurl, res.data.data.imagesurl]
+          "detail.image": arr
 
         })
       },
