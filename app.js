@@ -8,19 +8,22 @@ App({
     user: {
       userId: "",
       useraccount: "",
-      username: ""
+      username: "",
+      vipphone:"",
+      vipdiscount:"0.0",
+      viplv:""    
     }
   },
   d: {
-    hostUrl: 'http://t74t44.natappfree.cc',
-    shopUrl: "http://t74t44.natappfree.cc/gs",
-    orderUrl: 'http://t74t44.natappfree.cc/os',
-    userUrl: 'http://t74t44.natappfree.cc/as',
+    hostUrl: 'http://azgrtq.natappfree.cc',
+    shopUrl: "http://azgrtq.natappfree.cc/gs",
+    orderUrl: 'http://azgrtq.natappfree.cc/os',
+    userUrl: 'http://azgrtq.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
    
-    vipUrl: 'http://t74t44.natappfree.cc/vs',
+    vipUrl: 'http://azgrtq.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

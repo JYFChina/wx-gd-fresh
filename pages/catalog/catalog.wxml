@@ -23,7 +23,7 @@
   <scroll-view scroll-y="true" class="right">
     <view class="typeTree">
       <view class="brand" wx:for="{{typeTree}}" wx:for-item="data" wx:if="{{data.parent==currType}}">
-        <navigator url="../all-search/all-search?cat_id={{data.comditytypeId}}&title={{data.typename}}" wx:key="typeId" class="item">
+        <navigator url="../all-search/all-search?comditytypeId={{data.comditytypeId}}" wx:key="typeId" class="item">
           <button class='catalogTWO'>{{data.typename}}</button>
         </navigator>
 

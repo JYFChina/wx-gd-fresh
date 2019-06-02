@@ -13,9 +13,7 @@ Page({
     odrx: [],
     vipbalance: "",
     vipphone:"",
-    addRess: {
-
-    },
+    addRess:{},
     total: 0,
     vprice: 0,
     vipdiscount: "",
@@ -47,9 +45,7 @@ Page({
         data: that.data.orderid
       },
       success: function(res) {
-        //that.initProductData(res.data);
         var adds = res.data.data.ads;
-
         if (adds) {
           var addrId = adds.takedeliveryidid;
           that.setData({
@@ -118,8 +114,6 @@ Page({
       },
       success: function(res) {
         console.log(res.data)
-
-
         //endInitData
       },
     });
@@ -148,9 +142,12 @@ Page({
       paytype: 'weixin',
     });
     var that = this;
-    if (that.data.vipbalance < that.data.total) {
+    console.log("应付："+that.data.total)
+    console.log("余额:"+that.data.vipbalance)
+    console.log(that.data.total > that.data.vipbalance)
+    if (that.data.total > that.data.vipbalance) {
       wx.showToast({
-        title: "会员账户余额不足，请到店充值!",
+        title: "余额不足!",
         duration: 3000
       });
     } else {
@@ -183,6 +180,7 @@ Page({
 
   //调起微信支付
   wxpay: function(orderid) {
+   
     var that=this;
     wx.request({
       url: app.d.orderUrl + '/OrderService/payOrder',
@@ -190,7 +188,7 @@ Page({
         data: {
           orderid: orderid,
           address: that.data.addRess.address,
-          recipients: that.data.addRess.recipients,
+          recipients: that.data.addRess.consignee,
           phone: that.data.vipphone,
           ordermoney: that.data.total,
           userId:app.globalData.user.userId,

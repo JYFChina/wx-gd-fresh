@@ -21,7 +21,8 @@
     "pages/all-search/all-search",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/catalog/catalog"
+    "pages/catalog/catalog",
+    "pages/gps/gps"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,7 +52,6 @@
     "van-switch": "/miniprogram_npm/vant-weapp/switch/index",
     "van-notify": "/miniprogram_npm/vant-weapp/notify/index",
     "van-toast": "/miniprogram_npm/vant-weapp/toast/index"
-  
   },
   "tabBar": {
     "selectedColor": "#1296db",

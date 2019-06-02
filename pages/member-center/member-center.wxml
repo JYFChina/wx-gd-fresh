@@ -9,8 +9,19 @@
       <input placeholder="{{phone_zz}}" bindinput='phoneWdInput' type="digit" disabled="{{bindbool}}" maxlength="15" style=' border: 1px {{phoneboder}} solid;' value='{{phone}}'></input>
     </view>
 
+    <view class='input' wx:if="{{binding==0}}">
+      <view class='label'>
+        <label>余额(元)</label>
+      </view>
+      <input  type="digit" disabled="{{bindbool}}" maxlength="15"  value='{{vipdetails.vipbalance}}'></input>
+    </view>
+    <view class='input' wx:if="{{binding==0}}">
+      <view class='label'>
+        <label>积分</label>
+      </view>
+      <input type="digit" disabled="{{bindbool}}" maxlength="15"  value='{{vipdetails.vipintegral}}'></input>
+    </view>
 
-  
     <view class='input' wx:if="{{binding==1}}">
 
       <view class='label'>
@@ -32,8 +43,8 @@
       </van-panel>
     </view>
   </van-cell-group>
-  <button disabled="{{disabled}}"  class='member-add' bindtap='bindmember' wx:if="{{binding==1}}">点击绑定</button>
-  <button class='member-add' catchtap="openVerifyCodeView"  wx:if="{{binding==0}}" > 解除绑定 </button>
+  <button disabled="{{disabled}}" class='member-add' bindtap='bindmember' wx:if="{{binding==1}}">点击绑定</button>
+  <button class='member-add' catchtap="openVerifyCodeView" wx:if="{{binding==0}}"> 解除绑定 </button>
 </view>
 
 <!-- 验证码组件 -->

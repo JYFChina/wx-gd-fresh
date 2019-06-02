@@ -110,10 +110,11 @@
   overflow: hidden;
   display: inline-block;
   width: 40%;
-  margin-left: 6%;
+  margin-left: 3vw;
 }
 
 .typeTree .title {
+ 
   padding: 10px 0;
   display: block;
   color: #333;
@@ -144,13 +145,14 @@
 .catalogTWO {
   margin: 10px 0;
   width: 30vw;
-  height: 33px;
+  /* height: 33px; */
   font-size: 25rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+   
 }
 
 .catalogONE {
@@ -160,4 +162,5 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   padding: 0px 10px;
+
 }

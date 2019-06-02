@@ -10,9 +10,10 @@ Page({
     code: '验证码输入结果',
     bindbool: false, //false可输入，true不可输入
     binding: 1, //0：已绑定，1：未绑定
-    sms: "12345",
+    sms: "",
+    isCode: '',
     isnoVip: null,
-    phone: '13937900894',
+    phone: '',
     money: '',
     phone_zz: "手机号不能为空",
     phoneboder: "transparent",
@@ -30,6 +31,7 @@ Page({
     //选择组件对象
     this.verifycode = this.selectComponent("#verifycode");
     that.vipDetail();
+    
   },
   vipDetail: function() {
     var that = this;
@@ -43,7 +45,6 @@ Page({
       method: 'POST',
       dataType: 'json',
       success: function(res) {
-        console.log(res.data)
         if (res.data.data == null) {
           //未绑定      
           that.setData({
@@ -55,9 +56,11 @@ Page({
           that.setData({
             binding: "0",
             bindbool: true,
-            phone: res.data.data.vipphone
-          })
+            phone: res.data.data.vipphone,
+            vipdetails: res.data.data
 
+          })
+          
         }
 
       }
@@ -88,6 +91,7 @@ Page({
             mask: true,
             success: function() {
               that.setData({
+                vipdetails:{},
                 bindbool: true,
                 binding: "1",
                 disabled: true
@@ -95,16 +99,13 @@ Page({
             }
 
           })
-
-          console.log(result)
         }
       }
     })
   },
   //进行绑定会员
-  bindmember: function(e) {
+  bindmember: function() {
     var that = this;
-    console.log(app.globalData.user.userId)
     wx.request({
       url: app.d.vipUrl + '/VipService/updVipUserId',
       method: "POST",
@@ -115,7 +116,6 @@ Page({
         }
       },
       success: function(result) {
-
         if (result.statusCode == "404") {
           wx.showToast({
             title: '没有你访问的资源',
@@ -135,10 +135,9 @@ Page({
                 bindbool: true,
                 binding: "0"
               })
+              that.vipDetail();
             }
           })
-
-          console.log(result)
         }
       }
     })
@@ -146,90 +145,109 @@ Page({
 
   //判断预留手机号是否存在
   panduam: function() {
-    var that = this;
-    var is = false;
-    wx.request({
-      url: app.d.vipUrl + '/VipService/updVipUserId',
-      method: "POST",
-      data: {
-        data: {
-          "phone": that.data.phone,
-          "userId": app.globalData.user.userId
-        }
-      },
-      success: function(result) {
-        console.log(result.data)
-        if (result.statusCode == "404") {
-          wx.showToast({
-            title: '没有你访问的资源',
-            icon: 'loading',
-            duration: 4000,
-            mask: true,
-            success: function() {
-              that.setData({
-                "disabled": false
-              })
-            }
-          })
+    // var that = this;
+    // var is = false;
+    // wx.request({
+    //   url: app.d.vipUrl + '/VipService/updVipUserId',
+    //   method: "POST",
+    //   data: {
+    //     data: {
+    //       "phone": that.data.phone,
+    //       "userId": app.globalData.user.userId
+    //     }
+    //   },
+    //   success: function(result) {
+    //     console.log(result.data)
+    //     if (result.statusCode == "404") {
+    //       wx.showToast({
+    //         title: '没有你访问的资源',
+    //         icon: 'loading',
+    //         duration: 4000,
+    //         mask: true,
+    //         success: function() {
+    //           that.setData({
+    //             "disabled": false
+    //           })
+    //         }
+    //       })
 
-        } else if (result.statusCode == "200" && result.data.code == "101") {
-          wx.showToast({
-            title: '预留手机号不存在！',
-            icon: 'loading',
-            duration: 4000,
-            mask: true,
-            success: function() {
-              that.setData({
-                "disabled": true
-              })
-            }
-          })
-        } else {
-          is = true
-          wx.showToast({
-            title: '请稍后........',
-            icon: 'loading',
-            duration: 4000,
-            mask: true,
-            success: function() {
-              //发送手机验证码
-              that.setData({
+    //     } else if (result.statusCode == "200" && result.data.code == "101") {
+    //       wx.showToast({
+    //         title: '预留手机号不存在！',
+    //         icon: 'loading',
+    //         duration: 4000,
+    //         mask: true,
+    //         success: function() {
+    //           that.setData({
+    //             "disabled": true
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       is = true
+    //       wx.showToast({
+    //         title: '请稍后........',
+    //         icon: 'loading',
+    //         duration: 4000,
+    //         mask: true,
+    //         success: function() {
+    //           //发送手机验证码
+    //           that.setData({
 
-              })
-            }
-          })
+    //           })
+    //         }
+    //       })
 
-          console.log(result)
-        }
-      }
-    })
-    return is
+    //       console.log(result)
+    //     }
+    //   }
+    // })
+    // return is
   },
   //发送验证码
   telChange: function() {
     var that = this;
-    var is = that.panduam();
-    console.log(is);
+    wx.request({
+      url: app.d.vipUrl + '/VipService/sms',
+      method: "POST",
+      data: {
+        data: that.data.phone
+      },
+      success: function(result) {
+        console.log("发送验证请求")
+        console.log(result.data)
+        
+        that.setData({
+          isCode: result.data.data
+        })
+      }
+    })
 
 
   },
   //显示会员绑定信息
 
   openVerifyCodeView: function() {
+
     //弹出组件,此处必须把this重新赋予变量不然callback内部会提示找不到this
     var _this = this;
+    _this.telChange();
     console.log(_this.data.code);
     _this.verifycode.showView({
       phone: _this.data.phone,
       inputSuccess: function(phoneCode) {
         //调用组件关闭方法
         _this.verifycode.closeView();
+       
         //设置数据
         _this.setData({
           code: phoneCode
         });
-
-        _this.isBinding();
+        console.log(_this.data.code == _this.data.isCode)
+        if (_this.data.code == _this.data.isCode) {
+          _this.isBinding();
+        }
+     
       }
     });
   },
@@ -272,17 +290,29 @@ Page({
   //获取用户输入的短信验证码
   smsWdInput: function(e) {
     var that = this;
-    if (e.detail.value == that.data.sms && that.data.sms!=""){
-      that.setData({
-        sms: e.detail.value,
-        disabled:false
-      })
-    }else{
+    if (e.detail.value == that.data.isCode && that.data.isCode != "") {
+
+      if (e.detail.value == that.data.isCode) {
+        that.setData({
+          sms: e.detail.value,
+          disabled: false
+        })
+      } else {
+        wx.showToast({
+          title: '验证码错误',
+          icon: 'loading',
+          duration: 2000,
+          mask: true,
+
+        })
+      }
+
+    } else {
       that.setData({
         disabled: true
       })
     }
-   
+
 
   },
   onToastChanged: function() {

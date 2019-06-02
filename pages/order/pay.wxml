@@ -69,7 +69,7 @@
       
 			<button class="wx_pay_submit" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="createProductOrderByWX" wx:if="{{viplv!=0}}">会员余额支付</button>
 			<button class="xx_pay_submit" type="default" id="xxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="createProductOrderByXX">到店支付</button>
-			<view class="zhifu mt10 tc">会员账户余额：<span class="font_20 red">¥ {{vipbalance}}</span></view>
+			<view class="zhifu mt10 tc"  wx:if="{{viplv!=0}}">会员账户余额：<span class="font_20 red">¥ {{vipbalance}}</span></view>
 		</view>
 	</view>
 

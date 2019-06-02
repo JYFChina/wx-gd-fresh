@@ -12,7 +12,7 @@ Page({
     typeTree: [],
     value: "asda"
   },
-  searchValueInput: function (e) {
+  searchValueInput: function(e) {
     var value = e.detail.value;
     this.setData({
       searchValue: value,
@@ -35,12 +35,14 @@ Page({
       });
       return;
     };
-
+    wx.navigateTo({
+      url: '../all-search/all-search?text=' + [searchKey],
+    })
     this.setData({
       hotKeyShow: false,
       historyKeyShow: false,
     })
-   
+
   },
 
   onLoad: function(option) {

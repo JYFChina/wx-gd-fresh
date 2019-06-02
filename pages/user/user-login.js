@@ -25,8 +25,7 @@ Page({
       },
       method: "POST",
       success: function(res) {
-        app.globalData.user = res.data.data;
-
+        app.globalData.user = res.data.data;     
       }
     })
   },

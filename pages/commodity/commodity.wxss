@@ -1,6 +1,6 @@
 @import "../goodsaction/weui.wxss";
 @import "../goodsaction/goodsaction.wxss";
-
+@import "../catalog/catalog.wxss";
 .label {
   width: 100vw;
   min-height: 1.4rem;

@@ -6,7 +6,7 @@ Page({
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
     carts: [],
-    vipId: "18238817862",
+    vipId: "",
     viplv: "",
     vipdiscount: ""
   },
@@ -190,8 +190,9 @@ Page({
       obj = that.data.carts[i].data;
       arr.push(obj)
     }
+    console.log("山皮石水水水水")
+    console.log(arr);
     var userid = app.globalData.user.userId;
-
     //进行结算
     wx.request({
       url: app.d.orderUrl + '/OrderService/insertOrder',
@@ -201,7 +202,7 @@ Page({
           status: 1,
           userId: userid,
           tableData: arr,
-          vipId: that.data.vipId, //vi手机号
+          vipId: app.globalData.user.vipphone, //vi手机号
           ordermeans: 4, // 交易手段 ,
           storeid: 1, //TODO:店铺编号 获取当前店铺编号
           ordertype: 0, //交易类型 (0-消费 1-退款)

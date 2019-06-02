@@ -3,7 +3,16 @@ var app = getApp();
 Page({
 
   data: {
-    background: ['https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg', 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg'], //Baner图
+    background: [{
+      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+      activityId: 1
+    }, {
+      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+      activityId: 2
+    }, {
+      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+      activityId: 3
+    }], //Baner图
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -14,27 +23,50 @@ Page({
     nextMargin: 0,
     atitle: [],
     list: [],
-    value:"asd"
+    value: "asd"
 
   },
   onLoad: function() {
 
     var ss = this;
     ss.bindActivities();
-    ss.bindGoods();
-    // wx.request({
-    //   url: '',
-    // })
   },
   bindGoods: function() {
-    
-   
-  },
-  onSearch(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
-  },
 
+
+  },
+  searchValueInput: function(e) {
+    var value = e.detail.value;
+    this.setData({
+      searchValue: value,
+    });
+    if (!value && this.data.productData.length == 0) {
+      this.setData({
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+    }
+  },
+  doSearch: function() {
+    var searchKey = this.data.searchValue;
+    console.log(searchKey)
+    if (!searchKey) {
+      this.setData({
+        focus: true,
+        hotKeyShow: true,
+        historyKeyShow: true,
+      });
+      return;
+    };
+    wx.navigateTo({
+      url: '../all-search/all-search?text=' + [searchKey],
+    })
+    this.setData({
+      hotKeyShow: false,
+      historyKeyShow: false,
+    })
+
+  },
 
   bindActivities: function() {
       var ss = this;
@@ -46,9 +78,14 @@ Page({
         dataType: 'json',
         responseType: 'text',
         success: function(res) {
-          console.log(res.data)
+          console.log(res.data.data)
+          var arrimages = [];
+          for (var i = 0; i < 3; i++) {
+            arrimages.push(res.data.data[i])
+          }
           ss.setData({
             atitle: res.data.data
+            // background: arrimages
           })
 
         },
@@ -91,7 +128,6 @@ Page({
   },
   go: function(e) {
     var id = e.currentTarget.id;
-    console.log(id)
     app.globalData.category = "123";
     wx.navigateTo({
       url: '../all-search/all-search?ativ=' + [id]
@@ -99,7 +135,6 @@ Page({
   },
   swiperTap: function(e) {
     var id = e.currentTarget.id;
-
     wx.navigateTo({
       url: '../goodsaction/goodsaction?data=' + [id],
     })
