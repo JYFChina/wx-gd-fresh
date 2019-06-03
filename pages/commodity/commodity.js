@@ -23,12 +23,16 @@ Page({
     nextMargin: 0,
     atitle: [],
     list: [],
-    value: "asd"
-
+    value: "asd",
+    warning: ""
   },
   onLoad: function() {
 
     var ss = this;
+    ss.setData({
+      warning: app.globalData.peison
+    })
+    
     ss.bindActivities();
   },
   bindGoods: function() {

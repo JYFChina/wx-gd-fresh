@@ -199,7 +199,7 @@ Page({
         success: function(res) {
           console.log(res.data);
           wx.navigateTo({
-            url: '../address/address',
+            url: '/user-address/user-address',
           })
         },
         fail: function(res) {

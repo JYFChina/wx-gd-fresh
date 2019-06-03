@@ -13,7 +13,10 @@ Page({
     that.DataonLoad();
 
   },
-
+  onShow: function() {
+    var that = this;
+    that.DataonLoad();
+  },
   onReady: function() {
     // 页面渲染完成
   },

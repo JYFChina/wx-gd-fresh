@@ -7,10 +7,10 @@
   <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">退款/售后</view>
 </view>
 <view class="c_t60"></view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box"  duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
 
   <!-- 待付款 -->
-  <swiper-item>
+  <swiper-item >
     <view class="search_no" wx:if="{{!orderList0.length}}">
       <view class="font_14">
         <image class="scimg" src="/images/search_no.png"></image>
@@ -18,7 +18,7 @@
       <text>没有可用订单/(ㄒoㄒ)/~~</text>
     </view>
 
-    <view class="shop df" wx:for="{{orderList0}}">
+    <view class="shop df" wx:for="{{orderList0}}" >
       <image class="sh_slt" src="{{item.table[0].imageUrl}}"></image>
       <view class="df_1">
         <view class="sp_text">
@@ -35,7 +35,9 @@
 
         </view>
       </view>
+
     </view>
+  
   </swiper-item>
 
   <!-- 待发货 -->

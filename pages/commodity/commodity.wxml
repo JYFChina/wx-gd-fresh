@@ -1,8 +1,12 @@
 <!--pages/commodity/commodity.wxml-->
 <!-- 搜索引擎 -->
 <view>
+<van-notice-bar
+  mode="closeable"
+  text="{{warning}}" wx:if="{{warning!=''}}"
+/>
   <view class="search df">
-  <label><van-icon name="shop-o" /><navigator url='../gps/gps'>地址</navigator></label>
+  <label><navigator url='../gps/gps'>店铺</navigator></label>
     <input class="df_1" placeholder="请输入你有搜索的内容" auto-focus focus="{{focus}}" value="{{searchValue}}" bindinput="searchValueInput" />
     <button bindtap="doSearch">
       <image class="searchcion" src="/images/sousuo.png"></image>

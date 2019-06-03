@@ -5,6 +5,8 @@ App({
     category: '全部',
     openid: '',
     storeid: "1",
+    storename:"",
+    peison:"",//是否在配送范围内
     user: {
       userId: "",
       useraccount: "",
@@ -15,15 +17,15 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://azgrtq.natappfree.cc',
-    shopUrl: "http://azgrtq.natappfree.cc/gs",
-    orderUrl: 'http://azgrtq.natappfree.cc/os',
-    userUrl: 'http://azgrtq.natappfree.cc/as',
+    hostUrl: 'http://ir4wbx.natappfree.cc',
+    shopUrl: "http://ir4wbx.natappfree.cc/gs",
+    orderUrl: 'http://ir4wbx.natappfree.cc/os',
+    userUrl: 'http://ir4wbx.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-   
-    vipUrl: 'http://azgrtq.natappfree.cc/vs',
+    storUrl:"http://ir4wbx.natappfree.cc/ms",
+    vipUrl: 'http://ir4wbx.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力
@@ -31,6 +33,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+  
     wx.login({
       success: function(res) {
         console.log(res)
@@ -82,7 +85,25 @@ App({
       }
     })
 
-  }, //获取用户信息
+  }, // 微信获得经纬度
+  getLocation: function () {
+    let vm = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy;
+        vm.getLocal(latitude, longitude)
+      },
+      fail: function (res) {
+        console.log('fail' + JSON.stringify(res))
+      }
+    })
+  },
+  
+  //获取用户信息
   getUserInfo: function(cb) {
     var that = this
     wx.login({

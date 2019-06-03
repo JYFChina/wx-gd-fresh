@@ -51,7 +51,13 @@
     "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
     "van-switch": "/miniprogram_npm/vant-weapp/switch/index",
     "van-notify": "/miniprogram_npm/vant-weapp/notify/index",
-    "van-toast": "/miniprogram_npm/vant-weapp/toast/index"
+    "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
+    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "tabBar": {
     "selectedColor": "#1296db",
