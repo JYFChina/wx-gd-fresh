@@ -24,8 +24,8 @@ Page({
     });
     this.setData({
       "storename": app.globalData.storename,
-      warning: app.globalData.peison
-
+      warning: app.globalData.peison,
+      "lal": app.globalData.lal
     })
   },
   onReady: function(e) {

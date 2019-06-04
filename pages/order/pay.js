@@ -45,6 +45,13 @@ Page({
         data: that.data.orderid
       },
       success: function(res) {
+        if (res.data.data.ads == "" && res.data.data.ads==null){
+          wx.showToast({
+            title: "请添加配送地址!",
+            duration: 3000
+            
+          });
+        }
         var adds = res.data.data.ads;
         if (adds) {
           var addrId = adds.takedeliveryidid;

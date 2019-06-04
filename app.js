@@ -7,6 +7,7 @@ App({
     storeid: "1",
     storename:"",
     peison:"",//是否在配送范围内
+    lal:"",//门店经纬度
     user: {
       userId: "",
       useraccount: "",
@@ -17,15 +18,15 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://ir4wbx.natappfree.cc',
-    shopUrl: "http://ir4wbx.natappfree.cc/gs",
-    orderUrl: 'http://ir4wbx.natappfree.cc/os',
-    userUrl: 'http://ir4wbx.natappfree.cc/as',
+    hostUrl: 'http://qpr45x.natappfree.cc',
+    shopUrl: "http://qpr45x.natappfree.cc/gs",
+    orderUrl: 'http://qpr45x.natappfree.cc/os',
+    userUrl: 'http://qpr45x.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    storUrl:"http://ir4wbx.natappfree.cc/ms",
-    vipUrl: 'http://ir4wbx.natappfree.cc/vs',
+    storUrl:"http://qpr45x.natappfree.cc/ms",
+    vipUrl: 'http://qpr45x.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

@@ -237,7 +237,7 @@ Page({
 
           }
         }
-       
+        app.globalData.lal=text;
        if(temp>_this.data.scope){
        
          app.globalData.peison = "最近店铺【" + app.globalData.storename+"】友情提醒：不再配送范围值内，如果需要购买商品,请自行上门提货。"

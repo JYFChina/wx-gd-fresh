@@ -159,7 +159,7 @@ Page({
 
     var that = this;
 
-    var moeny=0;
+    var moeny = that.data.detail.price;
     if (that.data.detail.oldprice > that.data.detail.price && that.data.detail.price!=null){
       moeny = that.data.detail.price
     

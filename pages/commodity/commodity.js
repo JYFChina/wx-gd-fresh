@@ -4,13 +4,13 @@ Page({
 
   data: {
     background: [{
-      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+      imagesurl: 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1559620671&di=3ac78c0faa2a946dfe00f835f7c5b80f&src=http://img.zcool.cn/community/01720b59acbdcba801211d259f4c1c.jpg@1280w_1l_2o_100sh.jpg',
       activityId: 1
     }, {
-      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+        imagesurl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560226017&di=31e5b8e0fb744cdc36efbf272be1b79b&imgtype=jpg&er=1&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd36c7a256d6c79a285c652a1be50129609741727dd4d-3jX6QY_fw658',
       activityId: 2
     }, {
-      imagesurl: 'https://zgwjava.oss-cn-beijing.aliyuncs.com/images/1550977508946.jpg',
+        imagesurl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559631339043&di=c33f69d5d1433198a4541098d7d60f89&imgtype=0&src=http%3A%2F%2Fp3.so.qhmsg.com%2Ft01270d3bfbbe1e060d.jpg',
       activityId: 3
     }], //Baner图
     indicatorDots: true,

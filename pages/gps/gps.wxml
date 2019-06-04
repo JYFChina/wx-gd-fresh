@@ -34,7 +34,7 @@
 
   <!--多个终点位置示例：39.984060,116.307520;39.984060,116.507520-->
   <!-- 终点坐标: -->
-  <input style="border:1px solid #000;display:none;" name="dest" value='34.6346203414,112.4473857880' disabled='hide'></input>
+  <input style="border:1px solid #000;display:none;" name="dest" value='{{lal}}' disabled='hide'></input>
 
   <!--提交表单数据-->
   <button form-type="submit" size='mini'>导航</button>
