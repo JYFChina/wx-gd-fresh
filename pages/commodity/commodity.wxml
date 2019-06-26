@@ -1,12 +1,11 @@
 <!--pages/commodity/commodity.wxml-->
 <!-- 搜索引擎 -->
 <view>
-<van-notice-bar
-  mode="closeable"
-  text="{{warning}}" wx:if="{{warning!=''}}"
-/>
+  <van-notice-bar mode="closeable" text="{{warning}}" wx:if="{{warning!=''}}" />
   <view class="search df">
-  <label><navigator url='../gps/gps'>店铺</navigator></label>
+    <label>
+      <navigator url='../gps/gps'>店铺</navigator>
+    </label>
     <input class="df_1" placeholder="请输入你有搜索的内容" auto-focus focus="{{focus}}" value="{{searchValue}}" bindinput="searchValueInput" />
     <button bindtap="doSearch">
       <image class="searchcion" src="/images/sousuo.png"></image>
@@ -30,7 +29,7 @@
       <!-- 根据标题分类查商品 -->
 
 
-      <view wx:for="{{atitle}}">
+      <view wx:for="{{atitle}}" wx:if="{{item.list.length>3}}">
         <view style='padding:20rpx 20rpx;'>
           <text>{{item.activityname}}</text>
           <view style='text-align: right;' bindtap='go' id='{{item.activityId}}' hover-class='none'> 更多</view>
@@ -49,7 +48,9 @@
 
               </view>
             </van-col>
-
+           <view wx:if="{{item.list.length<3}}">
+              
+           </view>
           </van-row>
         </view>
       </view>

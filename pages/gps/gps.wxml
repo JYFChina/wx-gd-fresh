@@ -1,7 +1,7 @@
 <!--index.wxml-->
 
 <view class="retailStore">
-  <van-notice-bar color="rgb(25, 137, 250);" left-icon="../../../images/提示.png" text="{{province}}  {{city}}分店  【{{storename}}】{{warning}}" />
+  <van-notice-bar color="rgb(25, 137, 250);" left-icon="../../../images/提示.png" text="距离 ： {{province}}  {{city}}最近分店  【{{storename}}】{{warning}}" />
 </view>
 <form bindsubmit="addressNameQuery">
   <view class="search df">

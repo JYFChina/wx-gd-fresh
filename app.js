@@ -3,7 +3,7 @@ App({
   globalData: {
     userInfo: null,
     category: '全部',
-    openid: '',
+    openid: 'oeZmf4hLE_y__hrO7_e-CESAiZkA',
     storeid: "1",
     storename:"",
     peison:"",//是否在配送范围内
@@ -18,15 +18,15 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://qpr45x.natappfree.cc',
-    shopUrl: "http://qpr45x.natappfree.cc/gs",
-    orderUrl: 'http://qpr45x.natappfree.cc/os',
-    userUrl: 'http://qpr45x.natappfree.cc/as',
+    hostUrl: 'http://fktu22.natappfree.cc',
+    shopUrl: "http://fktu22.natappfree.cc/gs",
+    orderUrl: 'http://fktu22.natappfree.cc/os',
+    userUrl: 'http://fktu22.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    storUrl:"http://qpr45x.natappfree.cc/ms",
-    vipUrl: 'http://qpr45x.natappfree.cc/vs',
+    storUrl:"http://fktu22.natappfree.cc/ms",
+    vipUrl: 'http://fktu22.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力
@@ -46,9 +46,13 @@ App({
 
           },
           success: function(result) {
-            that.globalData.openid = result.data.data.openid;
-            that.globalData.user.useraccount = result.data.data.openid;
-           
+            if (result.data.data!=null){
+              that.globalData.openid = result.data.data.openid;
+              that.globalData.user.useraccount = result.data.data.openid;
+            }else{
+              that.globalData.openid ="oeZmf4hLE_y__hrO7_e-CESAiZkA";
+              that.globalData.user.useraccount ="oeZmf4hLE_y__hrO7_e - CESAiZkA" ;
+            }
           }
         })
 
@@ -86,23 +90,8 @@ App({
       }
     })
 
-  }, // 微信获得经纬度
-  getLocation: function () {
-    let vm = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy;
-        vm.getLocal(latitude, longitude)
-      },
-      fail: function (res) {
-        console.log('fail' + JSON.stringify(res))
-      }
-    })
-  },
+  }, 
+  
   
   //获取用户信息
   getUserInfo: function(cb) {

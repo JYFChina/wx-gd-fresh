@@ -44,7 +44,7 @@ Page({
     this.setData({
       searchValue: value,
     });
-    if (!value && this.data.productData.length == 0) {
+    if (!value ) {
       this.setData({
         hotKeyShow: true,
         historyKeyShow: true,

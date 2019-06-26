@@ -8,7 +8,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     // tab切换  
-    currentTab: 0,
+    currentTab: 1,
     isStatus: 'pay', //10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,

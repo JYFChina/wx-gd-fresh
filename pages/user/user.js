@@ -5,10 +5,10 @@ Page({
 
     userInfo: {},
     orderInfo: {
-      refund_num:"1",
-      pay_num: "2",
-      finish_num: "3",
-      rec_num: "4"
+      refund_num:"0",
+      pay_num: "0",
+      finish_num: "0",
+      rec_num: "0"
     },
     projectSource: '',
     userListInfo: [{

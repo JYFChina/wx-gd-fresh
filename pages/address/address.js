@@ -47,7 +47,6 @@ Page({
   },
   // 选择省市区函数 
   changeRegin(e) {
-    console.log(e.detail.value)
     this.setData({
       region: e.detail.value,
       address: e.detail.value
@@ -55,7 +54,6 @@ Page({
   },
   // 选择二级联动 
   changeMultiPicker(e) {
-
     this.setData({
       multiIndex: e.detail.value
     })
@@ -71,8 +69,6 @@ Page({
   onChange({
     detail
   }) {
-
-    console.log(detail)
     // 需要手动对 checked 状态进行更新
     this.setData({
       checked: detail
@@ -198,7 +194,7 @@ Page({
         responseType: 'text',
         success: function(res) {
           console.log(res.data);
-          wx.navigateTo({
+          wx.redirectTo({
             url: 'user-address/user-address',
           })
         },

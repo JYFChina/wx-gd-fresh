@@ -12,8 +12,8 @@ Page({
     proData: [],
     odrx: [],
     vipbalance: "",
-    vipphone:"",
-    addRess:{},
+    vipphone: "",
+    addRess: {},
     total: 0,
     vprice: 0,
     vipdiscount: "",
@@ -45,13 +45,7 @@ Page({
         data: that.data.orderid
       },
       success: function(res) {
-        if (res.data.data.ads == "" && res.data.data.ads==null){
-          wx.showToast({
-            title: "请添加配送地址!",
-            duration: 3000
-            
-          });
-        }
+
         var adds = res.data.data.ads;
         if (adds) {
           var addrId = adds.takedeliveryidid;
@@ -59,6 +53,30 @@ Page({
             addRess: res.data.data.ads,
             addrId: addrId
           });
+
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '添加配送地址',
+            success(res) {
+              if (res.confirm) {
+                wx.showToast({
+                  title: '请点击向右箭头',
+                  duration: 2000
+                })
+
+                // setTimeout(function() {
+                //   wx.hideLoading()
+                // }, 2000)
+
+              } else if (res.cancel) {
+                wx.showToast({
+                  title: "需要配送地址",
+                  duration: 2000
+                });
+              }
+            }
+          })
 
         }
         var pro = []
@@ -149,8 +167,8 @@ Page({
       paytype: 'weixin',
     });
     var that = this;
-    console.log("应付："+that.data.total)
-    console.log("余额:"+that.data.vipbalance)
+    console.log("应付：" + that.data.total)
+    console.log("余额:" + that.data.vipbalance)
     console.log(that.data.total > that.data.vipbalance)
     if (that.data.total > that.data.vipbalance) {
       wx.showToast({
@@ -180,15 +198,15 @@ Page({
       }
     });
     return false;
- 
+
   },
 
- 
+
 
   //调起微信支付
   wxpay: function(orderid) {
-   
-    var that=this;
+
+    var that = this;
     wx.request({
       url: app.d.orderUrl + '/OrderService/payOrder',
       data: {
@@ -198,23 +216,26 @@ Page({
           recipients: that.data.addRess.consignee,
           phone: that.data.vipphone,
           ordermoney: that.data.total,
-          userId:app.globalData.user.userId,
+          userId: app.globalData.user.userId,
           storeid: app.globalData.storeid
         }
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       success: function(res) {
-      
+
         wx.showToast({
           title: res.data.msg,
           duration: 2000,
-          success:function(){
-            wx.navigateTo({
+          success: function() {
+            wx.redirectTo({
               url: '../user/dingdan',
             })
+            // wx.navigateTo({
+            //   url: '../user/dingdan',
+            // })
           }
         });
-      
+
       },
       fail: function() {
         // fail
