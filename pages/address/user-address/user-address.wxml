@@ -26,7 +26,7 @@
   </view>
 </view>
 </radio-group>
-<navigator url="../address?cartId={{cartId}}">
+<navigator url="../address?cartId={{cartId}}" redirect="true">
   <view hidden="{{hiddenAddress}}" class="add-address">
     <image class="add-address-icon" src="../../../images/地址.png"></image>
     <view>新增地址</view>

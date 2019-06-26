@@ -18,15 +18,15 @@ App({
     }
   },
   d: {
-    hostUrl: 'http://fktu22.natappfree.cc',
-    shopUrl: "http://fktu22.natappfree.cc/gs",
-    orderUrl: 'http://fktu22.natappfree.cc/os',
-    userUrl: 'http://fktu22.natappfree.cc/as',
+    hostUrl: 'http://gr2rhx.natappfree.cc',
+    shopUrl: "http://gr2rhx.natappfree.cc/gs",
+    orderUrl: 'http://gr2rhx.natappfree.cc/os',
+    userUrl: 'http://gr2rhx.natappfree.cc/as',
     userId:'',
     appId: "",
     appKey: "",
-    storUrl:"http://fktu22.natappfree.cc/ms",
-    vipUrl: 'http://fktu22.natappfree.cc/vs',
+    storUrl:"http://gr2rhx.natappfree.cc/ms",
+    vipUrl: 'http://gr2rhx.natappfree.cc/vs',
   },
   onLaunch: function() {
     // 展示本地存储能力

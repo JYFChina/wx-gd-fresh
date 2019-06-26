@@ -51,7 +51,7 @@
         <text>全选</text>
         <text class="reds">¥ {{total}} <text wx:if="{{vipdiscount!=''}}"
         >享有会员折扣</text><text wx:if="{{vipdiscount==''}}"
-        >未享有会员折扣</text></text>
+        ></text></text>
    </view>
        <view class="button" bindtap='bindCheckout'>立即结算             </view>
 </view>
