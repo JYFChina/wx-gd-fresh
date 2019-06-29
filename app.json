@@ -31,6 +31,7 @@
     "navigationBarTextStyle": "black"
   },
   "debug": true,
+
   "usingComponents": {
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-nav-bar": "/miniprogram_npm/vant-weapp/nav-bar/index",
@@ -59,6 +60,7 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
+
   "tabBar": {
     "selectedColor": "#1296db",
     "list": [

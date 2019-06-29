@@ -1,11 +1,11 @@
 //app.js
 App({
   globalData: {
-    userInfo: null,
+    userInfo: null,//用户信息
     category: '全部',
     openid: 'oeZmf4hLE_y__hrO7_e-CESAiZkA',
     storeid: "1",
-    storename:"",
+    storename:"",//门店名
     peison:"",//是否在配送范围内
     lal:"",//门店经纬度
     user: {
@@ -17,6 +17,7 @@ App({
       viplv:""    
     }
   },
+  //配置的域名
   d: {
     hostUrl: 'http://gr2rhx.natappfree.cc',
     shopUrl: "http://gr2rhx.natappfree.cc/gs",

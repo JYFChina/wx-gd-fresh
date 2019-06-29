@@ -8,7 +8,6 @@ Page({
   data: {
     orderIs: false,
     prosList: [
-     
     ]
       
      //商品信息
@@ -53,7 +52,7 @@ Page({
         historyKeyShow: true,
       });
     }
-  },
+  },//查询
   doSearch: function () {
     var searchKey = this.data.searchValue;
     console.log(searchKey)
@@ -71,7 +70,7 @@ Page({
       historyKeyShow: false,
     })
 
-  },
+  },//根据活动查
   ative: function (event){
     var ss = this;
     var category = getApp().globalData.category
