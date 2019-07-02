@@ -19,15 +19,23 @@ App({
   },
   //配置的域名
   d: {
-    hostUrl: 'http://gr2rhx.natappfree.cc',
-    shopUrl: "http://gr2rhx.natappfree.cc/gs",
-    orderUrl: 'http://gr2rhx.natappfree.cc/os',
-    userUrl: 'http://gr2rhx.natappfree.cc/as',
+    // hostUrl: 'http://171.16.1.181:8999',
+    // shopUrl: "http://171.16.1.181:8333",
+    // orderUrl: 'http://171.16.1.181:8555',
+    // userUrl: 'http://171.16.1.181:8222',
+    // userId:'',
+    // appId: "",
+    // appKey: "",
+    // storUrl:"http://171.16.1.181:8444",
+    hostUrl: 'http://255c7777h3.zicp.vip:43035',
+    shopUrl: "http://255c7777h3.zicp.vip:43035/gs",
+    orderUrl: 'http://255c7777h3.zicp.vip:43035/os',
+    vipUrl: 'http://255c7777h3.zicp.vip:43035c/vs',
+    userUrl: 'http://255c7777h3.zicp.vip:43035/as',
     userId:'',
     appId: "",
     appKey: "",
-    storUrl:"http://gr2rhx.natappfree.cc/ms",
-    vipUrl: 'http://gr2rhx.natappfree.cc/vs',
+    storUrl:"http://255c7777h3.zicp.vip:43035/ms"
   },
   onLaunch: function() {
     // 展示本地存储能力

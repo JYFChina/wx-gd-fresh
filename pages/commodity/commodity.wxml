@@ -23,12 +23,11 @@
   </swiper>
 </view>
 <!-- 主题部分 -->
+
 <view>
   <view style=''>
     <view style='width:100vw;text-align:center;background-color:#F2F2F2;'>
       <!-- 根据标题分类查商品 -->
-
-
       <view wx:for="{{atitle}}" wx:if="{{item.list.length>3}}">
         <view style='padding:20rpx 20rpx;'>
           <text>{{item.activityname}}</text>
@@ -39,7 +38,8 @@
             <van-col span="12" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName" >
               <view class='sp-radius'>
                 <view class='sp-image' bindtap='swiperTap' id='{{itemName.commodityId}}'>
-                  <image lazy-load="true" class="img" src="{{itemName.imagesurl}}" />
+                  <image lazy-load="true" class="img" src="{{itemName.imagesurl}}" mode='aspectFill'  wx:if='{{itemName.imagesurl!=null}}'/>
+                  <view wx:else> <van-loading type="spinner" /> </view>
                 </view>
                 <view class='sp-text'>
                   <text>{{itemName.comdityname}}\n</text>

@@ -53,7 +53,8 @@
     "van-switch": "/miniprogram_npm/vant-weapp/switch/index",
     "van-notify": "/miniprogram_npm/vant-weapp/notify/index",
     "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
-    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index"
+    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index",
+    "van-loading": "/miniprogram_npm/vant-weapp/loading/index"
   },
   "permission": {
     "scope.userLocation": {
